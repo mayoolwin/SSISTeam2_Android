@@ -74,6 +74,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.dept_authority:
                 startActivity(new Intent(this, DelegateAuthorityActivity.class));
                 return true;
+            case R.id.view_request:
+                startActivity(new Intent(this, ViewAllPendingRequestActivity.class));
+                return true;
             case R.id.logout:
                 Logout();
         }

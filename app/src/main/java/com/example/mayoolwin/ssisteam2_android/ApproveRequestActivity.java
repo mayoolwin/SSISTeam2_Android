@@ -16,44 +16,9 @@ public class ApproveRequestActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_approve_request);
 
-        String item=getIntent().getExtras().getString("Id");
+        String item = getIntent().getExtras().getString("Id");
 
-        new AsyncTask<String, Void, Request>() {
-            @Override
-            protected Request doInBackground(String... params) {
-                return null;
-            }
 
-            @Override
-            protected void onPostExecute(Request result) {
-                for (int i = 0; i < view.length; i++) {
-                    EditText t = (EditText) findViewById(view[i]);
-                    t.setText(result.get(key[i]));
-                }
-            }
-        }.execute(item);
 
-        /*Button b = (Button) findViewById(R.id.reject);
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Request r = new Request();
-                for (int i=0; i<view.length; i++) {
-                    EditText t = (EditText) findViewById(view[i]);
-                    r.put(key[i], t.getText().toString());
-                }
-                new AsyncTask<Request, Void, Void>() {
-                    @Override
-                    protected Void doInBackground(Request... params) {
-                        Request.rejectRequest(params[0]);
-                        return null;
-                    }
-                    @Override
-                    protected void onPostExecute(Void result) {
-                        finish();
-                    }
-                }.execute(r);
-            }
-        });*/
     }
 }
