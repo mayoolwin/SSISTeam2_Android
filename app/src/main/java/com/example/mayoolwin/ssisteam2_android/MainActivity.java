@@ -38,12 +38,7 @@ public class MainActivity extends AppCompatActivity {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Login.class);
-                SharedPreferences.Editor editor = pref.edit();
-                editor.putString("username","default");
-                editor.putString("role", "default");
-                editor.putString("dept_code", "default");
-                startActivity(intent);
+                Logout();
             }
 
 
@@ -71,13 +66,25 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent;
 
         switch (item.getItemId()) {
             case R.id.clerk_monthly:
                 startActivity(new Intent(this, MonthlyCheckActivity.class));
                 return true;
+            case R.id.logout:
+                Logout();
         }
         return true;
+    }
+
+    public void Logout() {
+        Intent intent = new Intent(getApplicationContext(), Login.class);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("username","default");
+        editor.putString("role", "default");
+        editor.putString("dept_code", "default");
+        editor.commit();
+        startActivity(intent);
+        finish();
     }
 }
