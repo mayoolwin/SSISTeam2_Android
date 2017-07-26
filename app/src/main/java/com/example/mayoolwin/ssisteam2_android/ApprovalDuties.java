@@ -1,0 +1,72 @@
+package com.example.mayoolwin.ssisteam2_android;
+
+import android.app.LauncherActivity;
+import android.util.Log;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+/**
+ * Created by May Oo Lwin on 7/26/2017.
+ */
+
+public class ApprovalDuties extends java.util.HashMap<String,String> {
+    //final static String host = "http:// 192.168.1.14:8090/DelegateAuthorityWebService/Service.svc";
+
+    final static String host = "http://172.23.135.69/DelegateAuthorityWebService/Service.svc";
+    private static final String TAG = "**********Jason Output*********";
+    public ApprovalDuties(String username, Date startDate, Date endDate, String deptCode,Date createdDate,String deleted,String reason) {
+        put("UserName", username);
+        put("StartDate", startDate.toString());
+        put("EndDate", endDate.toString());
+        put("DeptCode", deptCode.toString());
+        put("CreatedDate", createdDate.toString());
+        put("Deleted", deleted);
+        put("Reason", reason);
+    }
+
+    public ApprovalDuties(){}
+
+    public static List<String> listEmployeeName() {
+        List<String> list = new ArrayList<String>();
+        try {
+            JSONArray a = JSONParser.getJSONArrayFromUrl(host+"/EmployeeList");
+            for (int i=0; i<a.length(); i++) {
+                String c = a.getString(i);
+                list.add(c);
+                Log.d("list", list.toString());
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+    public static void createCustomer(ApprovalDuties ad) {
+        JSONObject jApprovalDuties = new JSONObject();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss aa");
+        ArrayList<String> listItems = new ArrayList<String>();
+        try {
+            jApprovalDuties.put("UserName", ad.get("UserName"));
+            jApprovalDuties.put("CreatedDate", dateFormat.parse(ad.get("CreatedDate")));
+            jApprovalDuties.put("DeptCode", "REGR");
+            jApprovalDuties.put("Reason", ad.get("Reason"));
+            jApprovalDuties.put("StartDate", dateFormat.parse(ad.get("StartDate")));
+            jApprovalDuties.put("EndDate", dateFormat.parse(ad.get("EndDate")));
+            jApprovalDuties.put("Deleted", "N");
+
+
+
+          //  listItems.add(jApprovalDuties.getString("UserName"));
+           // listItems.add(jApprovalDuties.getString("CreatedDate"));
+
+
+        } catch (Exception e) {
+        }
+
+        String result = JSONParser.postStream(host+"/Create", jApprovalDuties.toString());
+    }
+}
