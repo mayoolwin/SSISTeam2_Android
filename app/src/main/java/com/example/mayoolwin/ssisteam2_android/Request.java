@@ -17,10 +17,11 @@ public class Request extends HashMap<String,String> {
     final static String host = "http://192.168.1.118/SSISTeam2/Classes/WebServices/Service.svc";
 
 
-    public Request(String id, String name, String date) {
+    public Request(String id, String name, String date, String reason) {
         put("Id", id);
         put("Name", name);
         put("Date", date);
+        put("Reason",reason);
 
     }
 
@@ -37,7 +38,8 @@ public class Request extends HashMap<String,String> {
                 JSONObject b=c.getJSONObject(i);
                 Request req = new Request(b.getString("req_id"),
                         b.getString("user"),
-                        b.getString("requestdate"));
+                        b.getString("requestdate"),
+                b.getString("reason"));
                 reqList.add(req);
             }
 

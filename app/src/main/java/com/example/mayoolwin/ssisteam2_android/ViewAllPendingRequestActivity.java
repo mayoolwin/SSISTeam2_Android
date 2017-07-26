@@ -50,6 +50,9 @@ public class ViewAllPendingRequestActivity extends ListActivity {
         Intent i=new Intent(this,ApproveRequestActivity.class);
 
         i.putExtra("Id",req.get("Id"));
+        i.putExtra("Date",req.get("Date"));
+        i.putExtra("Name",req.get("Name"));
+        i.putExtra("Reason",req.get("Reason"));
 
         startActivity(i);
 
