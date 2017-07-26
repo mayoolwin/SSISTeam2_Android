@@ -29,13 +29,20 @@ public class Request extends HashMap<String,String> {
 
     public static List<Request> listRequest(String dept_code) {
 
-        List<Request> reqList = null;
+        List<Request> reqList = new ArrayList<Request>();
         try {
-            JSONObject c = JSONParser.getJSONFromUrl(host+"/pendingrequest/"+dept_code);
-            Request req = new Request(c.getString("req_id"),
-                    c.getString("user"),
-                    c.getString("requestdate"));
-            reqList.add(req);
+            JSONArray c = JSONParser.getJSONArrayFromUrl(host+"/pendingrequest/"+dept_code);
+            for(int i=0;i< c.length();i++)
+            {
+                JSONObject b=c.getJSONObject(i);
+                Request req = new Request(b.getString("req_id"),
+                        b.getString("user"),
+                        b.getString("requestdate"));
+                reqList.add(req);
+            }
+
+
+
 
         } catch (Exception e) {
         }

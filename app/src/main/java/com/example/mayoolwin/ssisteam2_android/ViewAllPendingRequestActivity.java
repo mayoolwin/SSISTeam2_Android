@@ -45,9 +45,12 @@ public class ViewAllPendingRequestActivity extends ListActivity {
     }
     protected void onListItemClick(ListView l, View v, int postion, long id)
     {
-        String request=(String)getListAdapter().getItem(postion);
+        Request req=(Request) getListAdapter().getItem(postion);
+
         Intent i=new Intent(this,ApproveRequestActivity.class);
-        i.putExtra("Id",request);
+
+        i.putExtra("Id",req.get("Id"));
+
         startActivity(i);
 
     }
