@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SSISTeam2_Android</string>
+    <string name="app_name">SISSTeam2</string>
     <string name="clerk_menu_monthly">Monthly Check</string>
     <string name="clerk_menu_retrieval">Retrieval Forms</string>
     <string name="clerk_menu_disbursement">Disbursement Forms</string>
