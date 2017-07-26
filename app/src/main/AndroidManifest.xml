@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.mayoolwin.ssisteam2_android">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <application
@@ -26,7 +24,6 @@
         <activity android:name=".Login" />
         <activity android:name=".SecondAcitvity"></activity>
         <activity android:name=".ApproveRequestActivity"></activity>
-        <activity android:name=".ApproveRequestActivity" />
         <activity android:name=".ViewAllPendingRequestActivity"></activity>
         <activity android:name=".DelegateAuthorityActivity"></activity>
     </application>

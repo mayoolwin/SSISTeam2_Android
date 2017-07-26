@@ -35,13 +35,7 @@ public class MainActivity extends AppCompatActivity {
         String name= pref.getString("username", "default");
         String role= pref.getString("role", "default");
         String dept_code= pref.getString("dept_code", "default");
-
         TextView roleTextView = (TextView)findViewById(R.id.roleTextView);
-
-
-
-
-
         roleTextView.setText(role);
         if(dept_code.equals("default") || role.equals("default"))
         {
@@ -71,9 +65,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.clerk_monthly:
                 startActivity(new Intent(this, MonthlyCheckActivity.class));
                 return true;
+
             case R.id.dept_authority:
                 startActivity(new Intent(this, DelegateAuthorityActivity.class));
                 return true;
+
             case R.id.logout:
                 Logout();
         }
