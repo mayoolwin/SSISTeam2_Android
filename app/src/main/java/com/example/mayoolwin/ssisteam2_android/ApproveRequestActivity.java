@@ -21,7 +21,7 @@ public class ApproveRequestActivity extends AppCompatActivity{
         new AsyncTask<String, Void, Request>() {
             @Override
             protected Request doInBackground(String... params) {
-                return Request.getRequest(params[0]);
+                return null;
             }
 
             @Override
