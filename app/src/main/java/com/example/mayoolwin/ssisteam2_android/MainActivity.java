@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //Testing git again
+        pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String name= pref.getString("username", "default");
         String role= pref.getString("role", "default");
         String dept_code= pref.getString("dept_code", "default");

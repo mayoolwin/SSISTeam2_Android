@@ -48,7 +48,7 @@ public class Login extends AppCompatActivity {
             user.setError(null);
         }
 
-        if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
+        if (password.isEmpty()) {
             pass.setError("between 4 and 10 alphanumeric characters");
             valid = false;
         } else {
