@@ -28,8 +28,6 @@ public class ViewAllPendingRequestActivity extends ListActivity {
 
             @Override
             protected void onPostExecute(List<String> result) {
-                ArrayAdapter<String> adapter=new ArrayAdapter<String>(getApplicationContext(),R.layout.row,R.id.textView,result);
-                setListAdapter(adapter);
             }
         }.execute();
     }
