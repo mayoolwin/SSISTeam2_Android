@@ -33,8 +33,8 @@ public class ApproveRequestActivity extends AppCompatActivity{
             }
         }.execute(item);
 
-        /*Button a = (Button) findViewById(R.id.approve);
-        a.setOnClickListener(new View.OnClickListener() {
+        /*Button b = (Button) findViewById(R.id.reject);
+        b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Request r = new Request();
@@ -45,7 +45,7 @@ public class ApproveRequestActivity extends AppCompatActivity{
                 new AsyncTask<Request, Void, Void>() {
                     @Override
                     protected Void doInBackground(Request... params) {
-                        Request.updateRequest(params[0]);
+                        Request.rejectRequest(params[0]);
                         return null;
                     }
                     @Override

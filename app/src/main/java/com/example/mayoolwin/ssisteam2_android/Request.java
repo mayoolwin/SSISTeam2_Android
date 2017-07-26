@@ -20,7 +20,7 @@ public class Request extends HashMap<String,String> {
     public Request(String id, String name, String date) {
         put("Id", id);
         put("Name", name);
-        put("Date", date_time);
+        put("Date", date);
 
     }
 
@@ -44,15 +44,15 @@ public class Request extends HashMap<String,String> {
         try {
             JSONObject c = JSONParser.getJSONFromUrl(host+"/Request/"+id);
             request = new Request(c.getString("req_id"),
-                    c.getString("requestdate"),
+                     c.getString("requestdate"),
                     c.getString("user"));
 
         } catch (Exception e) {
         }
         return request;
     }
-
-   /* public static void updateRequest(Request r) {
+/*
+    public static void updateRequest(Request r) {
         JSONObject jrequest = new JSONObject();
         try {
             jrequest.put("Id", r.get("Id"));
@@ -63,7 +63,7 @@ public class Request extends HashMap<String,String> {
             jrequest.put("Quantity", Integer.parseInt(r.get("Quantity")));
         } catch (Exception e) {
         }
-        String result = JSONParser.postStream(host+"/Update", jrequest.toString());
+        String result = JSONParser.postStream(host+"/Reject", jrequest.toString());
     }*/
 
 
