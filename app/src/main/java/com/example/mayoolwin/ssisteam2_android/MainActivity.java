@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.prefs.PreferenceChangeEvent;
@@ -30,30 +31,40 @@ public class MainActivity extends AppCompatActivity {
         String role= pref.getString("role", "default");
         String dept_code= pref.getString("dept_code", "default");
 
+        TextView roleTextView = (TextView)findViewById(R.id.roleTextView);
+
+        Button logoutButton = (Button)findViewById(R.id.logoutButton);
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Login.class);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("username","default");
+                editor.putString("role", "default");
+                editor.putString("dept_code", "default");
+                startActivity(intent);
+            }
+
+
+        });
+
+        roleTextView.setText(role);
         if(dept_code.equals("default") || role.equals("default"))
         {
-
             Intent intent = new Intent(this, Login.class);
             startActivity(intent);
-
         }
-        else
-        {
-
-
-        }
-
-
-
     }
 
     @Override
     public boolean onCreateOptionsMenu (Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        String test = "clerk";
-        if (test == "clerk")
+        pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String test = pref.getString("role", "employee");
+        if (test.equals("Clerk"))
             getMenuInflater().inflate(R.menu.clerk_menu, menu);
-        else if (test == "employee")
+        else if (test.equals("Employee"))
             getMenuInflater().inflate(R.menu.employee_menu, menu);
         return true;
     }
