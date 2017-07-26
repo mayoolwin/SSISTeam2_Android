@@ -16,7 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ApproveRequestActivity"></activity>
+        <activity android:name=".ApproveRequestActivity" />
+        <activity android:name=".MonthlyCheckActivity" />
+        <activity android:name=".MonthlyCheckConfirmActivity"></activity>
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

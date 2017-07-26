@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+    <item android:id="@+id/clerk_retrieval" android:title="@string/clerk_menu_retrieval"
+        android:orderInCategory="101"/>
+    <item android:id="@+id/clerk_disbursement" android:title="@string/clerk_menu_disbursement"
+        android:orderInCategory="102"/>
+    <item android:id="@+id/clerk_monthly" android:title="@string/clerk_menu_monthly"
+        android:orderInCategory="103"/>
+    <item android:id="@+id/clerk_discrepancy" android:title="@string/clerk_menu_discrepancy"
+        android:orderInCategory="103"/>
+</menu>
