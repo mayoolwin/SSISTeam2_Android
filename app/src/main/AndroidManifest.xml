@@ -24,6 +24,8 @@
         <activity android:name=".Login" />
         <activity android:name=".SecondAcitvity"></activity>
         <activity android:name=".ApproveRequestActivity"></activity>
+        <activity android:name=".ApproveRequestActivity" />
+        <activity android:name=".ViewAllPendingRequestActivity"></activity>
     </application>
 
 </manifest>
