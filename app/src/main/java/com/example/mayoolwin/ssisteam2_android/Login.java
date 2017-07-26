@@ -90,8 +90,8 @@ public class Login extends AppCompatActivity {
                     pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                     SharedPreferences.Editor editor = pref.edit();
                     editor.putString("username", u.get("UserName"));
-                    editor.putString("role", u.get("DeptCode"));
-                    editor.putString("dept_code",u.get("Role"));
+                    editor.putString("role", u.get("Role"));
+                    editor.putString("dept_code",u.get("DeptCode"));
                     editor.commit();
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
