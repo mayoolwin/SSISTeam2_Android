@@ -19,7 +19,7 @@ public class ApprovalDuties extends java.util.HashMap<String,String> {
     //final static String host = "http:// 192.168.1.14:8090/DelegateAuthorityWebService/Service.svc";
     //final static String host = "http://172.23.135.69/DelegateAuthorityWebService/Service.svc";
 
-    final static String host = "http://172.23.135.69/SSISTeam2/Classes/WebServices/Service.svc";
+    final static String host = "http://192.168.1.14/SSISTeam2/Classes/WebServices/Service.svc";
 
 
     public ApprovalDuties(String username, Date startDate, Date endDate, String deptCode,Date createdDate,String deleted,String reason) {
@@ -41,34 +41,27 @@ public class ApprovalDuties extends java.util.HashMap<String,String> {
             for (int i=0; i<a.length(); i++) {
                 String c = a.getString(i);
                 list.add(c);
-                Log.d("list", list.toString());
+
             }
         } catch (Exception e) {
         }
         return list;
     }
-   /* public static void createCustomer(ApprovalDuties ad) {
+   public static void createCustomer(ApprovalDuties ad) {
         JSONObject jApprovalDuties = new JSONObject();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss aa");
         ArrayList<String> listItems = new ArrayList<String>();
         try {
             jApprovalDuties.put("UserName", ad.get("UserName"));
-            jApprovalDuties.put("CreatedDate", dateFormat.parse(ad.get("CreatedDate")));
-            jApprovalDuties.put("DeptCode", "REGR");
-            jApprovalDuties.put("Reason", ad.get("Reason"));
             jApprovalDuties.put("StartDate", dateFormat.parse(ad.get("StartDate")));
             jApprovalDuties.put("EndDate", dateFormat.parse(ad.get("EndDate")));
+            jApprovalDuties.put("DeptCode", ad.get("DeptCode"));
+            jApprovalDuties.put("CreatedDate", dateFormat.parse(ad.get("CreatedDate")));
             jApprovalDuties.put("Deleted", "N");
-
-
-
-          //  listItems.add(jApprovalDuties.getString("UserName"));
-           // listItems.add(jApprovalDuties.getString("CreatedDate"));
-
-
+            jApprovalDuties.put("Reason", ad.get("Reason"));
         } catch (Exception e) {
         }
 
         String result = JSONParser.postStream(host+"/Create", jApprovalDuties.toString());
-    }*/
+    }
 }

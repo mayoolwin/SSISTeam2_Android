@@ -29,9 +29,9 @@ public class DelegateAuthorityActivity extends AppCompatActivity implements
     Button btnDatePicker, btnTimePicker,btnDatePicker2;
     EditText txtDate,txtDate2;
     private int mYear, mMonth, mDay;
-    final static int []view = {R.id.textView2, R.id.spinner2, R.id.textView4, R.id.in_date,R.id.in_date2};
+    //final static int []view = {R.id.textView2, R.id.spinner2, R.id.textView4, R.id.in_date,R.id.in_date2};
     //final static String []key = {"UserName", "DeptCode", "StartDate", "EndDate","CreatedDate","Deleted","Reason"};
-    final static String []key = {"CreatedDate","UserName","Reason","StartDate","EndDate"};
+    final static String []key = {"CreatedDate","UserName","Reason","StartDate","EndDate","DeptCode"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,17 +75,12 @@ public class DelegateAuthorityActivity extends AppCompatActivity implements
             }
         }.execute();
 
-        /*Button b = (Button) findViewById(R.id.button);
+        Button b = (Button) findViewById(R.id.button);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ApprovalDuties c = new ApprovalDuties();
-
-                /*for (int i=0; i<view.length; i++) {
-                    TextView t = (TextView) findViewById(view[i]);
-                    c.put(key[i], t.getText().toString());
-                }*/
-                /*TextView createdDate = (TextView) findViewById(R.id.textView2);
+                TextView createdDate = (TextView) findViewById(R.id.textView2);
                 Spinner userName = (Spinner) findViewById(R.id.spinner2);
                 EditText reason = (EditText) findViewById(R.id.textView4);
                 EditText startDate = (EditText) findViewById(R.id.in_date);
@@ -95,6 +90,7 @@ public class DelegateAuthorityActivity extends AppCompatActivity implements
                 c.put(key[2],reason.getText().toString());
                 c.put(key[3],startDate.getText().toString());
                 c.put(key[4],endDate.getText().toString());
+                c.put(key[5],dept_code.toString());
 
 
                 new AsyncTask<ApprovalDuties, Void, Void>() {
@@ -109,7 +105,7 @@ public class DelegateAuthorityActivity extends AppCompatActivity implements
                     }
                 }.execute(c);
             }
-        });*/
+        });
 
     }
     @Override
