@@ -17,9 +17,10 @@ import java.util.List;
 
 public class ApprovalDuties extends java.util.HashMap<String,String> {
     //final static String host = "http:// 192.168.1.14:8090/DelegateAuthorityWebService/Service.svc";
+    //final static String host = "http://172.23.135.69/DelegateAuthorityWebService/Service.svc";
+    final static String host = "http://172.23.135.134/SSISAndroidTeam2/Service.svc";
 
-    final static String host = "http://172.23.135.69/DelegateAuthorityWebService/Service.svc";
-    private static final String TAG = "**********Jason Output*********";
+
     public ApprovalDuties(String username, Date startDate, Date endDate, String deptCode,Date createdDate,String deleted,String reason) {
         put("UserName", username);
         put("StartDate", startDate.toString());
@@ -32,10 +33,10 @@ public class ApprovalDuties extends java.util.HashMap<String,String> {
 
     public ApprovalDuties(){}
 
-    public static List<String> listEmployeeName() {
+    public static List<String> listEmployeeName(String dept_code) {
         List<String> list = new ArrayList<String>();
         try {
-            JSONArray a = JSONParser.getJSONArrayFromUrl(host+"/EmployeeList");
+            JSONArray a = JSONParser.getJSONArrayFromUrl(host+"/EmployeeList/"+dept_code);
             for (int i=0; i<a.length(); i++) {
                 String c = a.getString(i);
                 list.add(c);
@@ -45,7 +46,7 @@ public class ApprovalDuties extends java.util.HashMap<String,String> {
         }
         return list;
     }
-    public static void createCustomer(ApprovalDuties ad) {
+   /* public static void createCustomer(ApprovalDuties ad) {
         JSONObject jApprovalDuties = new JSONObject();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss aa");
         ArrayList<String> listItems = new ArrayList<String>();
@@ -68,5 +69,5 @@ public class ApprovalDuties extends java.util.HashMap<String,String> {
         }
 
         String result = JSONParser.postStream(host+"/Create", jApprovalDuties.toString());
-    }
+    }*/
 }

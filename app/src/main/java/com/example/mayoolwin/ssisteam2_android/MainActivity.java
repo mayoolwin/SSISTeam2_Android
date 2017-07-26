@@ -38,16 +38,9 @@ public class MainActivity extends AppCompatActivity {
 
         TextView roleTextView = (TextView)findViewById(R.id.roleTextView);
 
-        Button logoutButton = (Button)findViewById(R.id.logoutButton);
-
-        logoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Logout();
-            }
 
 
-        });
+
 
         roleTextView.setText(role);
         if(dept_code.equals("default") || role.equals("default"))
@@ -66,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
             getMenuInflater().inflate(R.menu.clerk_menu, menu);
         else if (test.equals("Employee"))
             getMenuInflater().inflate(R.menu.employee_menu, menu);
+        else if (test.equals("DeptHead"))
+            getMenuInflater().inflate(R.menu.departmenthead_menu,menu);
         return true;
     }
 
@@ -75,6 +70,9 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.clerk_monthly:
                 startActivity(new Intent(this, MonthlyCheckActivity.class));
+                return true;
+            case R.id.dept_authority:
+                startActivity(new Intent(this, DelegateAuthorityActivity.class));
                 return true;
             case R.id.logout:
                 Logout();

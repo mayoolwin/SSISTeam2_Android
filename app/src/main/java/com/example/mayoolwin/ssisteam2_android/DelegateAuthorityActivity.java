@@ -1,9 +1,12 @@
 package com.example.mayoolwin.ssisteam2_android;
 
 import android.app.DatePickerDialog;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -22,16 +25,25 @@ import static android.R.attr.key;
 
 public class DelegateAuthorityActivity extends AppCompatActivity implements
         View.OnClickListener {
+    SharedPreferences pref;
     Button btnDatePicker, btnTimePicker,btnDatePicker2;
     EditText txtDate,txtDate2;
     private int mYear, mMonth, mDay;
     final static int []view = {R.id.textView2, R.id.spinner2, R.id.textView4, R.id.in_date,R.id.in_date2};
     //final static String []key = {"UserName", "DeptCode", "StartDate", "EndDate","CreatedDate","Deleted","Reason"};
     final static String []key = {"CreatedDate","UserName","Reason","StartDate","EndDate"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delegate_authority);
+
+        pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String name= pref.getString("username", "default");
+        String role= pref.getString("role", "default");
+        final String dept_code= pref.getString("dept_code", "default");
+
+
         TextView tv = (TextView) findViewById(R.id.textView2);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String currentDateandTime = sdf.format(new Date());
@@ -49,7 +61,7 @@ public class DelegateAuthorityActivity extends AppCompatActivity implements
         new AsyncTask<Void, Void, List<String>>() {
             @Override
             protected List<String> doInBackground(Void... params) {
-                return ApprovalDuties.listEmployeeName();
+                return ApprovalDuties.listEmployeeName(dept_code);
             }
             @Override
             protected void onPostExecute(List<String> result) {
@@ -63,7 +75,7 @@ public class DelegateAuthorityActivity extends AppCompatActivity implements
             }
         }.execute();
 
-        Button b = (Button) findViewById(R.id.button);
+        /*Button b = (Button) findViewById(R.id.button);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,7 +85,7 @@ public class DelegateAuthorityActivity extends AppCompatActivity implements
                     TextView t = (TextView) findViewById(view[i]);
                     c.put(key[i], t.getText().toString());
                 }*/
-                TextView createdDate = (TextView) findViewById(R.id.textView2);
+                /*TextView createdDate = (TextView) findViewById(R.id.textView2);
                 Spinner userName = (Spinner) findViewById(R.id.spinner2);
                 EditText reason = (EditText) findViewById(R.id.textView4);
                 EditText startDate = (EditText) findViewById(R.id.in_date);
@@ -97,7 +109,7 @@ public class DelegateAuthorityActivity extends AppCompatActivity implements
                     }
                 }.execute(c);
             }
-        });
+        });*/
 
     }
     @Override
