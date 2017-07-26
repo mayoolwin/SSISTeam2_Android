@@ -9,8 +9,7 @@ import android.widget.EditText;
 
 public class ApproveRequestActivity extends AppCompatActivity{
 
-    final static int []view={R.id.editText1,R.id.editText2,R.id.editText3};
-    final static String [] key={"Name","Item Description","Quantity"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
