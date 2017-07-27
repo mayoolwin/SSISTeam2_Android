@@ -14,7 +14,7 @@ import java.util.List;
 
 public class Request extends HashMap<String,String> {
 
-    final static String host = "http://172.23.135.222/SSISTeam2/Classes/WebServices/Service.svc";
+    static String host = "http://172.23.135.222/SSISTeam2/Classes/WebServices/Service.svc";
 
 
     public Request(String id, String name, String date, String reason) {
