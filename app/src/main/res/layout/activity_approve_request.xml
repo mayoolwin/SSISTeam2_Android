@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/scrollViewmain"
+    android:layout_below="@+id/tableLayout"
+    android:scrollbars="none">
+
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.mayoolwin.ssisteam2_android.ApproveRequestActivity">
@@ -17,11 +24,15 @@
         android:textStyle="bold"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
+        <HorizontalScrollView
+            android:id="@+id/title"
+            android:layout_below="@+id/lblTitle"
+            android:layout_width="fill_parent" android:layout_height="fill_parent">
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:stretchColumns="1"
-        android:layout_below="@+id/lblTitle"
+
         android:id="@+id/tableLayout">
 
 
@@ -98,17 +109,19 @@
 
 
     </TableLayout>
+</HorizontalScrollView>
 
 
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/scrollView"
-        android:layout_below="@+id/tableLayout"
-        android:scrollbars="none">
+        <HorizontalScrollView
+            android:id="@+id/horizontal_scroll"
+            android:layout_below="@+id/title"
+            android:layout_marginLeft="5dp"
+
+            android:layout_marginRight="5dp"
+            android:layout_width="500dp" android:layout_height="fill_parent">
         <TableLayout
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:layout_marginTop="28dp"
 
             android:layout_width="fill_parent"
@@ -117,9 +130,10 @@
 
             android:id="@+id/maintable" >
         </TableLayout>
+        </HorizontalScrollView>
 
 
-    </ScrollView>
+
 
 
     <Button
@@ -128,7 +142,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/scrollView"
+        android:layout_below="@+id/horizontal_scroll"
         android:layout_marginLeft="58dp"
         android:layout_marginStart="58dp"
         android:layout_marginTop="28dp"
@@ -146,4 +160,4 @@
         android:text="Reject" />
 
 </RelativeLayout>
-
+</ScrollView>

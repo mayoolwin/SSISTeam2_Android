@@ -13,7 +13,7 @@ import java.util.List;
 
 public class RequestDetail extends HashMap<String,String> {
 
-    final static String host = "http://192.168.1.118/SSISTeam2/Classes/WebServices/Service.svc";
+    final static String host = "http://172.23.135.222/SSISTeam2/Classes/WebServices/Service.svc";
     public RequestDetail(String item_name, String quantity) {
 
         put("ItemName", item_name);
