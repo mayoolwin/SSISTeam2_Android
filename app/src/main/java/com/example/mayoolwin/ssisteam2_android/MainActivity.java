@@ -2,6 +2,7 @@ package com.example.mayoolwin.ssisteam2_android;
 
 import android.content.Intent;
 import android.content.Intent;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
@@ -10,6 +11,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.view.View;
 import android.widget.Button;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,55 +33,25 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences pref;
 
     Button b;
-    String dept_code = "REGR";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button b = (Button) findViewById(R.id.button2);
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                new AsyncTask<String, Void, ApprovalDuties>() {
-                    @Override
-                    protected ApprovalDuties doInBackground(String... params) {
-                        Log.e("Testing333",dept_code);
-                        return ApprovalDuties.checkApprovalDuties(params[0]);
-                    }
-                    @Override
-                    protected void onPostExecute(ApprovalDuties result) {
-                        if(result.get("Deleted").equals("Y")){
-                            Intent i = new Intent(getApplicationContext(),DelegateAuthorityActivity.class);
-                            startActivityForResult(i, 0);
-                        }if(result.get("Deleted").equals("N")){
-                            Intent i = new Intent(MainActivity.this,Test.class);
-                            //i.putExtra("result", result);
-                            i.putExtra("createddate", result.get("CreatedDate"));
-                            i.putExtra("username", result.get("UserName"));
-                            i.putExtra("reason", result.get("Reason"));
-                            i.putExtra("startdate", result.get("StartDate"));
-                            i.putExtra("enddate", result.get("EndDate"));
-                            startActivity(i);
-                        }
-                    }
-                }.execute(dept_code);
-            }
-        });
-
-        /*Button button1 = (Button) findViewById(R.id.button2);
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(),DelegateAuthorityActivity.class);
-                startActivity(i);
-            }
-        });*/
-
 
         //Testing git again
-       /* pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+
+        //Yin Test
+        Button btntest = (Button) findViewById(R.id.btnStationary);
+        btntest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent yintent = new Intent(getApplicationContext(),YDisburseActivity.class);
+                startActivity(yintent);
+            }
+        });
+        pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String name= pref.getString("username", "default");
         String role= pref.getString("role", "default");
         String dept_code= pref.getString("dept_code", "default");
@@ -88,10 +61,10 @@ public class MainActivity extends AppCompatActivity {
         {
             Intent intent = new Intent(this, Login.class);
             startActivity(intent);
-        }*/
+        }
     }
 
-    /*@Override
+    @Override
     public boolean onCreateOptionsMenu (Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -135,5 +108,5 @@ public class MainActivity extends AppCompatActivity {
         editor.commit();
         startActivity(intent);
         finish();
-    }*/
+    }
 }

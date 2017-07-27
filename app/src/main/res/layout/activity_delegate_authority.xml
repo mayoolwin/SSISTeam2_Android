@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="match_parent" android:layout_height="match_parent"
     tools:context="com.example.mayoolwin.ssisteam2_android.DelegateAuthorityActivity">
+
+
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -21,18 +24,24 @@
                 android:layout_height="wrap_content"
                 android:text="TextView" />
         </TableRow>
-        <TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
             <TextView
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Current Delegate : " />
+
             <Spinner
                 android:id="@+id/spinner2"
-                android:layout_width="match_parent"
-                android:popupBackground="@color/primary_dark"
+                android:layout_width="wrap_content"
 
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:foreground="@color/primary_dark"
+                android:popupBackground="@color/primary_dark" />
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -47,6 +56,7 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:text="" />
         </TableRow>
         <TableRow>
@@ -61,6 +71,7 @@
                 android:id="@+id/in_date"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
+                android:textColor="@color/white"
                 android:layout_alignParentStart="true" />
             <Button
                 android:layout_width="wrap_content"
@@ -82,6 +93,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/in_date2"
                 android:layout_alignParentTop="true"
+                android:textColor="@color/white"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
             <Button
@@ -101,5 +113,5 @@
                 android:text="Button" />
         </TableRow>
     </TableLayout>
-</LinearLayout>
+</RelativeLayout>
 

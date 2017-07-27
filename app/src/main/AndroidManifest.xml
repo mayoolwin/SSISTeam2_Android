@@ -3,8 +3,8 @@
     package="com.example.mayoolwin.ssisteam2_android">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,15 +19,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".YRetrieveActivity" />
+        <activity android:name=".YDisburseActivity" />
+        <activity android:name=".YDisbDetailActivity" />
         <activity android:name=".ApproveRequestActivity" />
         <activity android:name=".MonthlyCheckActivity" />
         <activity android:name=".MonthlyCheckConfirmActivity" />
         <activity android:name=".Login" />
         <activity android:name=".SecondAcitvity" />
-        <activity android:name=".ApproveRequestActivity" />
         <activity android:name=".ViewAllPendingRequestActivity" />
         <activity android:name=".DelegateAuthorityActivity" />
-        <activity android:name=".Test"></activity>
+        <activity android:name=".MakeNewRequestActivity"></activity>
     </application>
 
 </manifest>
