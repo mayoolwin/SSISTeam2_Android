@@ -1,5 +1,6 @@
 package com.example.mayoolwin.ssisteam2_android;
 
+import android.app.*;
 import android.content.Intent;
 import android.content.Intent;
 import android.content.Intent;
@@ -15,11 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.prefs.PreferenceChangeEvent;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -53,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         roleTextView.setText(role);
         if(dept_code.equals("default") || role.equals("default"))
         {
-            Intent intent = new Intent(this, Login.class);
+            Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }
     }
@@ -94,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void Logout() {
-        Intent intent = new Intent(getApplicationContext(), Login.class);
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         SharedPreferences.Editor editor = pref.edit();
         editor.putString("username","default");
         editor.putString("role", "default");

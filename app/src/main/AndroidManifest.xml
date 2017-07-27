@@ -3,7 +3,6 @@
     package="com.example.mayoolwin.ssisteam2_android">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
@@ -26,7 +25,7 @@
         <activity android:name=".ApproveRequestActivity" />
         <activity android:name=".MonthlyCheckActivity" />
         <activity android:name=".MonthlyCheckConfirmActivity" />
-        <activity android:name=".Login" />
+        <activity android:name=".LoginActivity" />
         <activity android:name=".SecondAcitvity" />
         <activity android:name=".ViewAllPendingRequestActivity" />
         <activity android:name=".DelegateAuthorityActivity" />
