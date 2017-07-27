@@ -19,7 +19,7 @@ public class ApprovalDuties extends java.util.HashMap<String,String> {
     //final static String host = "http:// 192.168.1.14:8090/DelegateAuthorityWebService/Service.svc";
     //final static String host = "http://172.23.135.69/DelegateAuthorityWebService/Service.svc";
 
-    final static String host = "http://192.168.1.118/SSISTeam2/Classes/WebServices/Service.svc";
+    final static String host = "http://172.23.135.222/SSISTeam2/Classes/WebServices/Service.svc";
 
 
     public ApprovalDuties(String username, Date startDate, Date endDate, String deptCode,Date createdDate,String deleted,String reason) {
