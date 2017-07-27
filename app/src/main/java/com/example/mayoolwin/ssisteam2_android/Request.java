@@ -14,57 +14,45 @@ import java.util.List;
 
 public class Request extends HashMap<String,String> {
 
-    final static String host = "http://172.23.135.134/SSISAndroidTeam2/Service.svc";
+    static String host = "http://172.23.135.222/SSISTeam2/Classes/WebServices/Service.svc";
 
 
-    public Request(String id, String name, String date) {
+    public Request(String id, String name, String date, String reason) {
         put("Id", id);
         put("Name", name);
         put("Date", date);
+        put("Reason",reason);
 
     }
 
-    public Request(String id, String name, String date, String status, String item_description, String quantity){}
+    public Request()
+    {}
 
-    public static List<String> listRequest() {
-        List<String> list = new ArrayList<String>();
+    public static List<Request> listRequest(String dept_code) {
+
+        List<Request> reqList = new ArrayList<Request>();
         try {
-            JSONArray a = JSONParser.getJSONArrayFromUrl(host+"/Request");
-            for (int i=0; i<a.length(); i++) {
-                String c = a.getString(i);
-                list.add(c);
+            JSONArray c = JSONParser.getJSONArrayFromUrl(host+"/pendingrequest/"+dept_code);
+            for(int i=0;i< c.length();i++)
+            {
+                JSONObject b=c.getJSONObject(i);
+                Request req = new Request(b.getString("req_id"),
+                        b.getString("user"),
+                        b.getString("requestdate"),
+                b.getString("reason"));
+                reqList.add(req);
             }
-        } catch (Exception e) {
-        }
-        return list;
-    }
 
-    public static Request getRequest(String id) {
-        Request request = null;
-        try {
-            JSONObject c = JSONParser.getJSONFromUrl(host+"/Request/"+id);
-            request = new Request(c.getString("req_id"),
-                     c.getString("requestdate"),
-                    c.getString("user"));
+
+
 
         } catch (Exception e) {
         }
-        return request;
+        return reqList;
+
     }
-/*
-    public static void updateRequest(Request r) {
-        JSONObject jrequest = new JSONObject();
-        try {
-            jrequest.put("Id", r.get("Id"));
-            jrequest.put("Name", r.get("Name"));
-            jrequest.put("Date", r.get("Date"));
-            jrequest.put("Status", r.get("Status"));
-            jrequest.put("Item Description", r.get("Item Description"));
-            jrequest.put("Quantity", Integer.parseInt(r.get("Quantity")));
-        } catch (Exception e) {
-        }
-        String result = JSONParser.postStream(host+"/Reject", jrequest.toString());
-    }*/
+
+
 
 
 }

@@ -24,6 +24,8 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
+
         user=(EditText) findViewById(R.id.input_user);
         pass=(EditText) findViewById(R.id.input_password);
         btn=(Button) findViewById(R.id.btn_login);

@@ -1,10 +1,16 @@
 package com.example.mayoolwin.ssisteam2_android;
 
 import android.content.Intent;
+import android.content.Intent;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.view.View;
+import android.widget.Button;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,25 +31,25 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         //Testing git again
+
+
+        //Yin Test
+        Button btntest = (Button) findViewById(R.id.btnStationary);
+        btntest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent yintent = new Intent(getApplicationContext(),YDisburseActivity.class);
+                startActivity(yintent);
+            }
+        });
         pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String name= pref.getString("username", "default");
         String role= pref.getString("role", "default");
         String dept_code= pref.getString("dept_code", "default");
-
         TextView roleTextView = (TextView)findViewById(R.id.roleTextView);
-
-        Button logoutButton = (Button)findViewById(R.id.logoutButton);
-
-        logoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Logout();
-            }
-
-
-        });
-
         roleTextView.setText(role);
         if(dept_code.equals("default") || role.equals("default"))
         {
@@ -61,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
             getMenuInflater().inflate(R.menu.clerk_menu, menu);
         else if (test.equals("Employee"))
             getMenuInflater().inflate(R.menu.employee_menu, menu);
+        else if (test.equals("DeptHead"))
+            getMenuInflater().inflate(R.menu.departmenthead_menu,menu);
         return true;
     }
 
@@ -70,6 +78,14 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.clerk_monthly:
                 startActivity(new Intent(this, MonthlyCheckActivity.class));
+                return true;
+
+            case R.id.dept_authority:
+                startActivity(new Intent(this, DelegateAuthorityActivity.class));
+                return true;
+
+            case R.id.view_request:
+                startActivity(new Intent(this, ViewAllPendingRequestActivity.class));
                 return true;
             case R.id.logout:
                 Logout();

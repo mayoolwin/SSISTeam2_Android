@@ -1,4 +1,5 @@
 package com.example.mayoolwin.ssisteam2_android;
+
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -13,6 +14,10 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+/**
+ * Created by May Oo Lwin on 7/26/2017.
+ */
 
 public class JSONParser {
 

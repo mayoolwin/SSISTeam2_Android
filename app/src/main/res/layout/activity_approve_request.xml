@@ -1,18 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/scrollViewmain"
+    android:layout_below="@+id/tableLayout"
+    android:scrollbars="none">
+
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.mayoolwin.ssisteam2_android.ApproveRequestActivity">
 
 
+    <TextView
+        android:id="@+id/lblTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:text="Request Detail"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
+        <HorizontalScrollView
+            android:id="@+id/title"
+            android:layout_below="@+id/lblTitle"
+            android:layout_width="fill_parent" android:layout_height="fill_parent">
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:stretchColumns="1"
+
         android:id="@+id/tableLayout">
+
+
 
         <TableRow
             android:layout_width="match_parent"
@@ -20,18 +43,45 @@
 
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/lblname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="6dp"
-                android:text="Name"
+                android:text="Name :"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:editable="false"
+                android:textColor="@color/white"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/editText1" />
+                android:id="@+id/name" />
+        </TableRow>
+
+
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="6dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Reason :" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:editable="false"
+                android:textColor="@color/white"
+                android:id="@+id/reason" />
+
+
+
         </TableRow>
 
         <TableRow
@@ -42,44 +92,49 @@
                 android:layout_height="wrap_content"
                 android:padding="6dp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Description" />
+                android:text="Order Date :" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/editText2" />
+                android:editable="false"
+                android:textColor="@color/white"
+                android:id="@+id/edit_date" />
 
 
 
         </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:padding="6dp"
-                android:text="Quantity" />
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/editText3" />
-
-        </TableRow>
-
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </TableRow>
 
     </TableLayout>
+</HorizontalScrollView>
+
+
+        <HorizontalScrollView
+            android:id="@+id/horizontal_scroll"
+            android:layout_below="@+id/title"
+            android:layout_marginLeft="5dp"
+
+            android:layout_marginRight="5dp"
+            android:layout_width="500dp" android:layout_height="fill_parent">
+        <TableLayout
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="28dp"
+
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:stretchColumns="0,1"
+
+            android:id="@+id/maintable" >
+        </TableLayout>
+        </HorizontalScrollView>
+
+
+
+
 
     <Button
         android:id="@+id/approve"
@@ -87,7 +142,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/tableLayout"
+        android:layout_below="@+id/horizontal_scroll"
         android:layout_marginLeft="58dp"
         android:layout_marginStart="58dp"
         android:layout_marginTop="28dp"
@@ -104,6 +159,5 @@
         android:layout_marginRight="58dp"
         android:text="Reject" />
 
-
 </RelativeLayout>
-
+</ScrollView>
