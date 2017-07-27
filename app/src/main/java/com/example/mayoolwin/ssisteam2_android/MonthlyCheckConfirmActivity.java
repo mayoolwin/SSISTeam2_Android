@@ -20,7 +20,7 @@ public class MonthlyCheckConfirmActivity extends AppCompatActivity {
         setContentView(R.layout.activity_monthly_check_confirm);
 
         Intent intent = getIntent();
-        ArrayList<InventoryCheck> list = (ArrayList<InventoryCheck>) intent.getSerializableExtra("List");
+        //ArrayList<InventoryCheck> list = (ArrayList<InventoryCheck>) intent.getSerializableExtra("List");
         FragmentManager fm = getFragmentManager();
         FragmentTransaction fTransaction = fm.beginTransaction();
 

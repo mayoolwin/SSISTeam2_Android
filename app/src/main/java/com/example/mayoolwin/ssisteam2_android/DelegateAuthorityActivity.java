@@ -31,8 +31,9 @@ public class DelegateAuthorityActivity extends AppCompatActivity implements
     private int mYear, mMonth, mDay;
     //final static int []view = {R.id.textView2, R.id.spinner2, R.id.textView4, R.id.in_date,R.id.in_date2};
     //final static String []key = {"UserName", "DeptCode", "StartDate", "EndDate","CreatedDate","Deleted","Reason"};
+    //String []key = {"CreatedDate","UserName","Reason","StartDate","EndDate","DeptCode","Deleted"};
     String []key = {"CreatedDate","UserName","Reason","StartDate","EndDate","DeptCode","Deleted"};
-    String dept_code = "REGR";
+   // String dept_code = "REGR";
 
     TextView createdDate;Spinner userName;EditText reason,startDate,endDate;
     @Override
@@ -40,10 +41,10 @@ public class DelegateAuthorityActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delegate_authority);
 
-        /*pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String name= pref.getString("username", "default");
         String role= pref.getString("role", "default");
-        final String dept_code= pref.getString("dept_code", "default");*/
+        final String dept_code= pref.getString("dept_code", "default");
 
 
         createdDate = (TextView) findViewById(R.id.textView2);
@@ -82,6 +83,7 @@ public class DelegateAuthorityActivity extends AppCompatActivity implements
                 sp1.setAdapter(adapter);
             }
         }.execute(dept_code);
+
 
         Button b = (Button) findViewById(R.id.button);
         b.setOnClickListener(new View.OnClickListener() {
