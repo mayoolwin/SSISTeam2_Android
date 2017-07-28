@@ -1,22 +1,33 @@
 package com.example.mayoolwin.ssisteam2_android;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.TestLooperManager;
+
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.Spinner;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import static android.R.attr.key;
+import static com.example.mayoolwin.ssisteam2_android.MainActivity.dept_code;
+import static com.example.mayoolwin.ssisteam2_android.MainActivity.name;
 import static com.example.mayoolwin.ssisteam2_android.R.id.listView;
 import static com.example.mayoolwin.ssisteam2_android.R.id.textView2;
 
@@ -33,10 +44,11 @@ public class MakeNewRequestActivity extends AppCompatActivity {
 
     private TextView quantity;
 
-    ArrayList<Item> itemlist = new ArrayList<Item>();
+    ArrayList<Item> itemlist;
 
-    TableLayout tl;
-    TableRow tr;
+    ListView listView;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +57,8 @@ public class MakeNewRequestActivity extends AppCompatActivity {
         spinner = (Spinner) findViewById(R.id.spinner2);
         itemspinner = (Spinner) findViewById(R.id.spinner1);
         btn = (Button) findViewById(R.id.add);
-        tl = (TableLayout) findViewById(R.id.maintable);
-        addHeaders();
+        listView=(ListView)findViewById(R.id.listView1);
+
 
         new AsyncTask<Void, Void, List<String>>() {
             @Override
@@ -66,6 +78,33 @@ public class MakeNewRequestActivity extends AppCompatActivity {
             }
         }.execute();
 
+        // Submit button
+        Button b = (Button) findViewById(R.id.submit);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                String currentDateandTime = sdf.format(new Date());
+                EditText reason=(EditText) findViewById(R.id.reason);
+                NewRequest req = new NewRequest(name,dept_code,reason.getText().toString(),"Pending",currentDateandTime);
+
+                new AsyncTask<NewRequest, Void, Void>() {
+                    @Override
+                    protected Void doInBackground(NewRequest... params) {
+                        NewRequest.InsertRequest(params[0]);
+                        return null;
+                    }
+                    @Override
+                    protected void onPostExecute(Void result) {
+                        finish();
+                    }
+                }.execute(req);
+            }
+        });
+
+
+
+        // Spinner Event
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -119,119 +158,125 @@ public class MakeNewRequestActivity extends AppCompatActivity {
                 Spinner cat_name = (Spinner) findViewById(R.id.spinner2);
                 Spinner item_desc = (Spinner) findViewById(R.id.spinner1);
                 EditText quantity = (EditText) findViewById(R.id.edit_qty);
-
-
+                Button submit=(Button)findViewById(R.id.submit) ;
+                boolean duplicate=false;
                 Item item = new Item(item_desc.getSelectedItem().toString(), quantity.getText().toString());
 
-                itemlist.add(item);
+                if(itemlist==null)
+                {
+                    itemlist= new ArrayList<Item>();
+                    itemlist.add(item);
+                    View(itemlist);
+                    submit.setVisibility(View.VISIBLE);
+                }
+
+                else {
 
 
-                addData(item);
+                    for (Item i: itemlist)
+                    {
+                        if (i.get("ItemDesc") == item.get("ItemDesc"))
+                        {
+                            duplicate = true;
+                            break;
+                        }
 
+                    }
+
+                    if (!duplicate)
+                    {
+
+                        itemlist.add(item);
+                        View(itemlist);
+                        submit.setVisibility(View.VISIBLE);
+
+                    }
+                    else {
+                       DuplicateItem();
+                        View(itemlist);
+                        submit.setVisibility(View.VISIBLE);
+                    }
+
+                }
+
+                //Testing Duplication
+
+
+
+
+
+
+
+
+                }
+            });
+
+        }
+
+
+        public void View(List<Item> itemList)
+        {
+             listView.setAdapter(new SimpleAdapter(getApplicationContext(),itemList,R.layout.request_item_row,new String[]{"ItemDesc","Quantity"},new int[]{R.id.itemName,R.id.quantity}));
+            registerForContextMenu(listView);
+        }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
+    {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        menu.add(0, v.getId(), 0, "Delete");//groupId, itemId, order, title
+
+    }
+    @Override
+    public boolean onContextItemSelected(MenuItem item){
+
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+
+        int pos = info.position;
+
+        String name=itemlist.get(pos).get("ItemDesc");
+
+        if(item.getTitle()=="Delete"){
+
+
+            for (Item i:itemlist)
+            {
+                if(i.get("ItemDesc").equals(name))
+                {
+
+                    itemlist.remove(i);
+                    View(itemlist);
+                    break;
+                }
 
             }
-        });
+            Toast.makeText(getApplicationContext(),"Deleted",Toast.LENGTH_LONG).show();
 
+        }
+        else{
+            return false;
+        }
+        return true;
+    }
+
+    public void DuplicateItem()
+    {
+
+        new AlertDialog.Builder(this)
+                .setTitle("Duplicate Item!")
+                .setMessage("Duplicate Item!")
+                .setCancelable(true)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
     }
 
 
-    public void addHeaders() {
-
-        /** Create a TableRow dynamically **/
-        tr = new TableRow(this);
-        tr.setLayoutParams(new TableRow.LayoutParams(
-                TableRow.LayoutParams.FILL_PARENT,
-                TableRow.LayoutParams.WRAP_CONTENT));
-
-        /** Creating a TextView to add to the row **/
-        TextView itemdesc = new TextView(this);
-        itemdesc.setText("Item Description");
-        itemdesc.setTextSize(19);
-
-
-        itemdesc.setPadding(5, 5, 5, 0);
-        tr.addView(itemdesc);  // Adding textView to tablerow.
-
-        /** Creating another textview **/
-        TextView quantity = new TextView(this);
-        quantity.setText("Quantity");
-        quantity.setTextSize(19);
-
-        quantity.setPadding(200, 20, 20, 0);
-
-
-        tr.addView(quantity); // Adding textView to tablerow.
-
-        // Add the TableRow to the TableLayout
-        tl.addView(tr, new TableRow.LayoutParams(
-                TableRow.LayoutParams.FILL_PARENT,
-                TableRow.LayoutParams.WRAP_CONTENT));
-
-        // we are adding two textviews for the divider because we have two columns
-        tr = new TableRow(this);
-        tr.setLayoutParams(new TableRow.LayoutParams(
-                TableRow.LayoutParams.FILL_PARENT,
-                TableRow.LayoutParams.WRAP_CONTENT));
-
-        /** Creating another textview **/
-        TextView divider = new TextView(this);
-        divider.setText("---------------------------");
-        divider.setTextSize(17);
-        // divider.setTextColor(Color.GREEN);
-        divider.setPadding(5, 0, 0, 0);
-        //divider.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
-        tr.addView(divider); // Adding textView to tablerow.
-
-        TextView divider2 = new TextView(this);
-        divider2.setText("--------------");
-        divider2.setTextSize(17);
-        // divider2.setTextColor(Color.GREEN);
-        divider2.setPadding(200, 0, 0, 0);
-        // divider2.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
-        tr.addView(divider2); // Adding textView to tablerow.
-
-        // Add the TableRow to the TableLayout
-        tl.addView(tr, new TableLayout.LayoutParams(
-                TableRow.LayoutParams.FILL_PARENT,
-                TableRow.LayoutParams.WRAP_CONTENT));
-    }
-
-
-    public void addData(Item r) {
-
-
-
-            /** Create a TableRow dynamically **/
-            tr = new TableRow(this);
-            tr.setLayoutParams(new TableRow.LayoutParams(
-                    TableRow.LayoutParams.FILL_PARENT,
-                    TableRow.LayoutParams.WRAP_CONTENT));
-
-            /** Creating a TextView to add to the row **/
-            itemdesc = new TextView(this);
-            itemdesc.setText(r.get("ItemDesc"));
-
-            itemdesc.setTextSize(17);
-            itemdesc.setPadding(5, 5, 5, 5);
-            tr.addView(itemdesc);  // Adding textView to tablerow.
-
-            /** Creating another textview **/
-            quantity = new TextView(this);
-            quantity.setText(r.get("Quantity"));
-            quantity.setTextSize(17);
-            quantity.setPadding(200, 20, 20, 20);
-
-
-            tr.addView(quantity); // Adding textView to tablerow.
-
-            // Add the TableRow to the TableLayout
-            tl.addView(tr, new TableLayout.LayoutParams(
-                    TableRow.LayoutParams.FILL_PARENT,
-                    TableRow.LayoutParams.WRAP_CONTENT));
 
 
 
 
-    }
+
+
 
 }

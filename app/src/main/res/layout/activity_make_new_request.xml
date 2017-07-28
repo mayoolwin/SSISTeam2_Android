@@ -2,10 +2,9 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/scrollViewmain"
-    android:layout_below="@+id/tableLayout"
     android:scrollbars="none">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -25,13 +24,19 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TableLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:stretchColumns="1"
         android:layout_below="@+id/lblTitle"
         android:id="@+id/tableLayout">
 
+        <HorizontalScrollView
+            android:id="@+id/horizontal_scroll1"
+            android:layout_below="@+id/catrow"
+            android:scrollbars="none"
 
+            android:layout_marginRight="5dp"
+            android:layout_width="fill_parent" android:layout_height="fill_parent">
 
         <TableRow
             android:layout_width="match_parent"
@@ -57,13 +62,13 @@
                 android:foreground="@color/primary_dark"
                 android:popupBackground="@color/primary_dark" />
         </TableRow>
-
+    </HorizontalScrollView>
 
 
         <HorizontalScrollView
-            android:id="@+id/horizontal_scroll"
+            android:id="@+id/horizontal_scroll2"
             android:layout_below="@+id/catrow"
-
+            android:scrollbars="none"
 
             android:layout_marginRight="5dp"
             android:layout_width="fill_parent" android:layout_height="fill_parent">
@@ -93,6 +98,12 @@
         </TableRow>
         </HorizontalScrollView>
 
+
+        <HorizontalScrollView
+            android:id="@+id/horizontal_scroll2"
+            android:layout_marginRight="5dp"
+            android:layout_width="fill_parent" android:layout_height="fill_parent">
+
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -104,22 +115,47 @@
                 android:text="Quantity:" />
 
             <EditText
-                android:layout_width="match_parent"
+                android:id="@+id/edit_qty"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:editable="true"
+                android:ems="10"
                 android:textColor="@color/white"
-                android:id="@+id/edit_qty" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="6dp"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/unit" />
+                android:inputType="number" />
+
 
 
 
         </TableRow>
+        </HorizontalScrollView>
+
+        <HorizontalScrollView
+            android:id="@+id/horizontal_scroll2"
+            android:layout_marginRight="5dp"
+            android:layout_width="fill_parent" android:layout_height="fill_parent">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="6dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Reason:" />
+
+                <EditText
+                    android:id="@+id/reason"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:textColor="@color/white"
+                    android:inputType="textMultiLine" />
+
+
+
+
+            </TableRow>
+        </HorizontalScrollView>
 
 
 
@@ -132,32 +168,57 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/tableLayout"
-        android:layout_marginLeft="58dp"
-        android:layout_marginStart="58dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="7dp"
         android:text="Add" />
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tableLayout"
+        android:layout_marginLeft="30dp"
+        android:layout_toRightOf="@+id/add"
+
+        android:layout_marginTop="7dp"
+        android:visibility="invisible"
+        android:text="Submit" />
+
+
+
+    <TextView
+        android:id="@+id/lblyouritem"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/add"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="7dp"
+        android:text="Your Item"
+        android:textSize="25dp"
+
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+
 
     <HorizontalScrollView
         android:id="@+id/horizontal_scroll"
-        android:layout_below="@+id/add"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="5dp"
-        android:layout_width="fill_parent" android:layout_height="fill_parent">
-        <TableLayout
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:layout_marginTop="28dp"
+        android:layout_below="@+id/lblyouritem"
 
-            android:layout_width="match_parent"
+        android:scrollbars="none"
+        android:layout_width="wrap_content" android:layout_height="200dp">
+        <ListView
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-
-
-            android:id="@+id/maintable" >
-        </TableLayout>
+            android:id="@+id/listView1"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="1dp"
+            />
     </HorizontalScrollView>
+
+
+
 
 </RelativeLayout>
 

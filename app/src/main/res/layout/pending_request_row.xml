@@ -14,13 +14,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name: "
+        android:textSize="25dp"
         android:textColor="@color/white"
         android:id="@+id/textView1" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:textSize="25dp"
         android:textColor="@color/white"
         android:id="@+id/name" />
     </TableRow>
@@ -29,14 +30,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:textSize="25dp"
             android:text="Order Date: "
             android:id="@+id/textView2" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:textSize="25dp"
             android:id="@+id/date" />
     </TableRow>
 
