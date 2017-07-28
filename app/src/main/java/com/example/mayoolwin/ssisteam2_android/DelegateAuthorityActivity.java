@@ -14,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -29,10 +30,14 @@ public class DelegateAuthorityActivity extends AppCompatActivity implements
     Button btnDatePicker, btnTimePicker,btnDatePicker2;
     EditText txtDate,txtDate2;
     private int mYear, mMonth, mDay;
+    int flag = 0;
     //final static int []view = {R.id.textView2, R.id.spinner2, R.id.textView4, R.id.in_date,R.id.in_date2};
     //final static String []key = {"UserName", "DeptCode", "StartDate", "EndDate","CreatedDate","Deleted","Reason"};
-    final static String []key = {"CreatedDate","UserName","Reason","StartDate","EndDate","DeptCode"};
+    //String []key = {"CreatedDate","UserName","Reason","StartDate","EndDate","DeptCode","Deleted"};
+    String []key = {"CreatedDate","UserName","Reason","StartDate","EndDate","DeptCode","Deleted"};
+    // String dept_code = "REGR";
 
+    TextView createdDate;Spinner userName;EditText reason,startDate,endDate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,24 +49,30 @@ public class DelegateAuthorityActivity extends AppCompatActivity implements
         final String dept_code= pref.getString("dept_code", "default");
 
 
-        TextView tv = (TextView) findViewById(R.id.textView2);
+        createdDate = (TextView) findViewById(R.id.textView2);
+        userName = (Spinner) findViewById(R.id.spinner2);
+        reason = (EditText) findViewById(R.id.textView4);
+        startDate = (EditText) findViewById(R.id.in_date);
+        endDate = (EditText) findViewById(R.id.in_date2);
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String currentDateandTime = sdf.format(new Date());
-       // String ct = DateFormat.getDateInstance().format(new Date());
-        tv.setText(currentDateandTime);
+        // String ct = DateFormat.getDateInstance().format(new Date());
+        createdDate.setText(currentDateandTime);
+
         btnDatePicker=(Button)findViewById(R.id.btn_date);
-        txtDate=(EditText)findViewById(R.id.in_date);
+        //txtDate=(EditText)findViewById(R.id.in_date);
 
         btnDatePicker2=(Button)findViewById(R.id.btn_date2);
-        txtDate2=(EditText)findViewById(R.id.in_date2);
+        //txtDate2=(EditText)findViewById(R.id.in_date2);
 
         btnDatePicker.setOnClickListener(this);
         btnDatePicker2.setOnClickListener(this);
 
-        new AsyncTask<Void, Void, List<String>>() {
+        new AsyncTask<String, Void, List<String>>() {
             @Override
-            protected List<String> doInBackground(Void... params) {
-                return ApprovalDuties.listEmployeeName(dept_code);
+            protected List<String> doInBackground(String... params) {
+                return ApprovalDuties.listEmployeeName(params[0]);
             }
             @Override
             protected void onPostExecute(List<String> result) {
@@ -73,37 +84,75 @@ public class DelegateAuthorityActivity extends AppCompatActivity implements
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 sp1.setAdapter(adapter);
             }
-        }.execute();
+        }.execute(dept_code);
+
 
         Button b = (Button) findViewById(R.id.button);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ApprovalDuties c = new ApprovalDuties();
-                TextView createdDate = (TextView) findViewById(R.id.textView2);
-                Spinner userName = (Spinner) findViewById(R.id.spinner2);
-                EditText reason = (EditText) findViewById(R.id.textView4);
-                EditText startDate = (EditText) findViewById(R.id.in_date);
-                EditText endDate = (EditText) findViewById(R.id.in_date2);
-                c.put(key[0],createdDate.getText().toString());
-                c.put(key[1],userName.getSelectedItem().toString());
-                c.put(key[2],reason.getText().toString());
-                c.put(key[3],startDate.getText().toString());
-                c.put(key[4],endDate.getText().toString());
-                c.put(key[5],dept_code.toString());
+
+                Log.e("Test",userName.getSelectedItem().toString()+"Date"+createdDate.getText().toString());
+
+                Log.e("TESTING",userName.getSelectedItem().toString()+createdDate.getText().toString()+reason.getText().toString()+startDate.getText().toString()+endDate.getText().toString()+dept_code.toString());
+                c.put(key[0],createdDate.getText().toString()+"");
+                c.put(key[1],userName.getSelectedItem().toString()+" ");
+                c.put(key[2],reason.getText().toString()+" ");
+                c.put(key[3],startDate.getText().toString()+"");
+                c.put(key[4],endDate.getText().toString()+"");
+                c.put(key[5],dept_code);
+                c.put(key[6],"N");
 
 
-                new AsyncTask<ApprovalDuties, Void, Void>() {
-                    @Override
-                    protected Void doInBackground(ApprovalDuties... params) {
-                        ApprovalDuties.createCustomer(params[0]);
-                        return null;
+                DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); // Make sure user insert date into edittext in this format.
+
+                Date strDate,enDate;
+
+                try{
+                    String dob_var1=(startDate.getText().toString());
+                    String dob_var2=(endDate.getText().toString());
+
+                    strDate = formatter.parse(dob_var1);
+                    enDate = formatter.parse(dob_var2);
+                    if(strDate.before(enDate)){
+                        flag = 0;
+                    }else{
+                        flag = 1;
                     }
-                    @Override
-                    protected void onPostExecute(Void result) {
-                        finish();
-                    }
-                }.execute(c);
+
+                }catch (java.text.ParseException e)
+                {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                    Log.i("Not Correct Date Format", e.toString());
+                }
+
+/*
+               c.put(key[0],"2017-01-01");
+                c.put(key[1],"Jerry");
+                c.put(key[2],"Testing");
+                c.put(key[3],"2017-01-01");
+                c.put(key[4],"2017-01-01");
+                c.put(key[5],"REGR");
+                c.put(key[6],"N");
+*/
+                if(flag==0){
+                    new AsyncTask<ApprovalDuties, Void, Void>() {
+                        @Override
+                        protected Void doInBackground(ApprovalDuties... params) {
+                            ApprovalDuties.createCustomer(params[0]);
+                            return null;
+                        }
+                        @Override
+                        protected void onPostExecute(Void result) {
+                            finish();
+                        }
+                    }.execute(c);
+                }else{
+                    Toast.makeText(getBaseContext(), "Start Date should before End Date", Toast.LENGTH_LONG).show();
+                }
+
             }
         });
 
@@ -126,16 +175,17 @@ public class DelegateAuthorityActivity extends AppCompatActivity implements
                                               int monthOfYear, int dayOfMonth) {
 
                             if(v==btnDatePicker){
-                                txtDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+
+                                startDate.setText(year + "-" + (monthOfYear + 1) + "-" +dayOfMonth );
                             }
                             if(v==btnDatePicker2){
-                                txtDate2.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                                endDate.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
                             }
 
 
                         }
                     }, mYear, mMonth, mDay);
-
+            datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
             datePickerDialog.show();
 
         }

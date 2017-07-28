@@ -29,7 +29,8 @@
         <activity android:name=".SecondAcitvity" />
         <activity android:name=".ViewAllPendingRequestActivity" />
         <activity android:name=".DelegateAuthorityActivity" />
-        <activity android:name=".MakeNewRequestActivity"></activity>
+        <activity android:name=".MakeNewRequestActivity" />
+        <activity android:name=".DeleteAuthorityCheck" />
     </application>
 
 </manifest>
