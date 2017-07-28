@@ -23,8 +23,9 @@
         android:layout_height="wrap_content"
         android:text="y Test Stationary"
         tools:layout_editor_absoluteX="-63dp"
-        tools:layout_editor_absoluteY="74dp" />
+        tools:layout_editor_absoluteY="74dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="72dp" />
 
-
-</android.support.constraint.ConstraintLayout>
 </RelativeLayout>

@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         btntest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent yintent = new Intent(getApplicationContext(),YDisburseActivity.class);
+                Intent yintent = new Intent(getApplicationContext(),YRetrieveActivity.class);
                 startActivity(yintent);
             }
         });
