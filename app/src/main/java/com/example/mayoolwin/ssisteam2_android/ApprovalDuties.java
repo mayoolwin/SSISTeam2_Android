@@ -20,7 +20,7 @@ public class ApprovalDuties extends java.util.HashMap<String,String> {
     //final static String host = "http://172.23.135.69/DelegateAuthorityWebService/Service.svc";
 
     //final static String host = "http://172.23.135.222/SSISTeam2/Classes/WebServices/Service.svc";
-    final static String host = "http://172.23.135.128/SSISTeam2/Classes/WebServices/Service.svc";
+    final static String host = "http://172.23.135.102/SSISTeam2/Classes/WebServices/Service.svc";
 
     public ApprovalDuties(String username, String startDate, String endDate, String deptCode,String createdDate,String deleted,String reason) {
         put("UserName", username);
@@ -49,12 +49,12 @@ public class ApprovalDuties extends java.util.HashMap<String,String> {
     }
    public static void createCustomer(ApprovalDuties ad) {
         JSONObject jApprovalDuties = new JSONObject();
-        //SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss aa");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss aa");
         ArrayList<String> listItems = new ArrayList<String>();
         try {
             jApprovalDuties.put("UserName", ad.get("UserName"));
-            jApprovalDuties.put("StartDate", ad.get("StartDate"));
-            jApprovalDuties.put("EndDate", ad.get("EndDate"));
+            jApprovalDuties.put("StartDate", dateFormat.parse(ad.get("StartDate")));
+            jApprovalDuties.put("EndDate", dateFormat.parse(ad.get("EndDate")));
             jApprovalDuties.put("DeptCode", ad.get("DeptCode"));
             jApprovalDuties.put("CreatedDate", ad.get("CreatedDate"));
             jApprovalDuties.put("Deleted",ad.get("Deleted"));

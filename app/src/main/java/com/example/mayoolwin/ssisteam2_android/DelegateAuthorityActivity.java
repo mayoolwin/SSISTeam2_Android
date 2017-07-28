@@ -87,6 +87,7 @@ public class DelegateAuthorityActivity extends AppCompatActivity implements
         }.execute(dept_code);
 
 
+
         Button b = (Button) findViewById(R.id.button);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
