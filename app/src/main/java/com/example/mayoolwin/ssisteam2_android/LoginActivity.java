@@ -57,15 +57,7 @@ public class LoginActivity extends AppCompatActivity {
             pass.setError(null);
             validate();
         }
-
-
     }
-
-
-
-
-
-
     public void validate() {
 
 
