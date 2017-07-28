@@ -25,11 +25,12 @@
         <activity android:name=".ApproveRequestActivity" />
         <activity android:name=".MonthlyCheckActivity" />
         <activity android:name=".MonthlyCheckConfirmActivity" />
-        <activity android:name=".Login" />
+        <activity android:name=".LoginActivity" />
         <activity android:name=".SecondAcitvity" />
         <activity android:name=".ViewAllPendingRequestActivity" />
         <activity android:name=".DelegateAuthorityActivity" />
-        <activity android:name=".MakeNewRequestActivity"></activity>
+        <activity android:name=".MakeNewRequestActivity" />
+        <activity android:name=".DeleteAuthorityCheck" />
     </application>
 
 </manifest>
