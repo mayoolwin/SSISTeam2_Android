@@ -12,7 +12,8 @@ import java.util.List;
 
 public class User extends java.util.HashMap<String,String> {
 
-    final static String host = "http://172.23.135.102/SSISTeam2/Classes/WebServices/Service.svc";
+    final static String host = "http://172.23.134.20/SSISTeam2/Classes/WebServices/Service.svc";
+//    final static String host = "http://172.23.134.20/SSISTeam2/Classes/WebServices/Service.svc";
 
     public User(String user_name, String dept_code, String role) {
         put("UserName", user_name);

@@ -14,8 +14,8 @@ import java.util.List;
 
 public class YDisburseDetailModel extends java.util.HashMap<String,String> {
 
-    //final static  String host = "http://172.23.134.14/TestAd/Service.svc";
-    final static  String host = "http://192.168.0.18/TestAd/Service.svc";
+    final static  String host = "http://172.23.134.20/ssisteam2/Classes/WebServices/Service.svc";
+    //final static  String host = "http://192.168.0.18/TestAd/Service.svc";
 
     public YDisburseDetailModel(String itemName, String reqQty) {
         put("itemName", itemName);

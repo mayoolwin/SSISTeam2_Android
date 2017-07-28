@@ -42,15 +42,6 @@ public class MainActivity extends AppCompatActivity {
         //Testing git again
 
 
-        //Yin Test
-        Button btntest = (Button) findViewById(R.id.btnStationary);
-        btntest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent yintent = new Intent(getApplicationContext(),YRetrieveActivity.class);
-                startActivity(yintent);
-            }
-        });
         pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String name= pref.getString("username", "default");
         String role= pref.getString("role", "default");
@@ -125,6 +116,15 @@ public class MainActivity extends AppCompatActivity {
             case R.id.view_request:
                 startActivity(new Intent(this, ViewAllPendingRequestActivity.class));
                 return true;
+
+            case R.id.clerk_retrieval:
+                startActivity(new Intent(this, YRetrieveActivity.class));
+                return true;
+
+            case R.id.clerk_disbursement:
+                startActivity(new Intent(this, YDisburseActivity.class));
+                return true;
+
             case R.id.logout:
                 Logout();
         }
