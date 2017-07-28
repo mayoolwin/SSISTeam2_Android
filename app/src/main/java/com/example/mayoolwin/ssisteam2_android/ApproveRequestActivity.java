@@ -1,5 +1,6 @@
 package com.example.mayoolwin.ssisteam2_android;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.TableRow.LayoutParams;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -29,7 +31,7 @@ public class ApproveRequestActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_approve_request);
         String name = getIntent().getExtras().getString("Name");
-        String req_id = getIntent().getExtras().getString("Id");
+        final String req_id = getIntent().getExtras().getString("Id");
         String date = getIntent().getExtras().getString("Date");
         String reason = getIntent().getExtras().getString("Reason");
         tl = (TableLayout) findViewById(R.id.maintable);
@@ -60,7 +62,63 @@ public class ApproveRequestActivity extends AppCompatActivity{
 
             }
         }.execute(req_id);
+
+        //Button Approve
+        Button b = (Button) findViewById(R.id.approve);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                new AsyncTask<String, Void, Void>() {
+                    @Override
+                    protected Void doInBackground(String... params) {
+                        Request.Approve(params[0]);
+                        return null;
+                    }
+                    @Override
+                    protected void onPostExecute(Void result) {
+                        Toast t = Toast.makeText(getApplicationContext(), "Approved Successful", Toast.LENGTH_SHORT);
+                        t.show();
+                        Intent i=new Intent(getApplicationContext(),ViewAllPendingRequestActivity.class);
+                        startActivity(i);
+                    }
+                }.execute(req_id);
+            }
+        });
+
+
+
+        //Button Reject
+
+        //Button Approve
+        Button r = (Button) findViewById(R.id.reject);
+        r.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                new AsyncTask<String, Void, Void>() {
+                    @Override
+                    protected Void doInBackground(String... params) {
+                        Request.Reject(params[0]);
+                        return null;
+                    }
+                    @Override
+                    protected void onPostExecute(Void result) {
+                        Toast t = Toast.makeText(getApplicationContext(), "Rejected Successful", Toast.LENGTH_SHORT);
+                        t.show();
+                        Intent i=new Intent(getApplicationContext(),ViewAllPendingRequestActivity.class);
+                        startActivity(i);
+                    }
+                }.execute(req_id);
+            }
+        });
+
+
     }
+
+
+
+
 
     public void addHeaders(){
 
@@ -84,7 +142,8 @@ public class ApproveRequestActivity extends AppCompatActivity{
         quantity.setText("Quantity");
         quantity.setTextSize(19);
 
-        quantity.setPadding(5, 5, 5, 0);
+        quantity.setPadding(200, 20, 20, 0);
+
 
         tr.addView(quantity); // Adding textView to tablerow.
 
@@ -112,7 +171,7 @@ public class ApproveRequestActivity extends AppCompatActivity{
         divider2.setText("--------------");
         divider2.setTextSize(17);
        // divider2.setTextColor(Color.GREEN);
-        divider2.setPadding(5, 0, 0, 0);
+        divider2.setPadding(200, 0, 0, 0);
        // divider2.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
         tr.addView(divider2); // Adding textView to tablerow.
 
@@ -145,7 +204,9 @@ public class ApproveRequestActivity extends AppCompatActivity{
             quantity = new TextView(this);
             quantity.setText(r.get("Quantity"));
             quantity.setTextSize(17);
-            quantity.setPadding(5, 5, 5, 5);
+            quantity.setPadding(200, 20, 20, 20);
+
+
 
             tr.addView(quantity); // Adding textView to tablerow.
 

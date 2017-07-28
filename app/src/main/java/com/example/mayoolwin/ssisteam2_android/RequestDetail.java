@@ -7,13 +7,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static com.example.mayoolwin.ssisteam2_android.User.host;
+
 /**
  * Created by Htein Lin Aung on 7/26/2017.
  */
 
 public class RequestDetail extends HashMap<String,String> {
 
-    final static String host = "http://172.23.135.222/SSISTeam2/Classes/WebServices/Service.svc";
+
     public RequestDetail(String item_name, String quantity) {
 
         put("ItemName", item_name);
