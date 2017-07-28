@@ -58,10 +58,10 @@ public class DelegateAuthorityActivity extends AppCompatActivity implements
         btnDatePicker.setOnClickListener(this);
         btnDatePicker2.setOnClickListener(this);
 
-        new AsyncTask<Void, Void, List<String>>() {
+        new AsyncTask<String, Void, List<String>>() {
             @Override
-            protected List<String> doInBackground(Void... params) {
-                return ApprovalDuties.listEmployeeName(dept_code);
+            protected List<String> doInBackground(String... params) {
+                return ApprovalDuties.listEmployeeName(params[0]);
             }
             @Override
             protected void onPostExecute(List<String> result) {
@@ -73,7 +73,7 @@ public class DelegateAuthorityActivity extends AppCompatActivity implements
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 sp1.setAdapter(adapter);
             }
-        }.execute();
+        }.execute(dept_code);
 
         Button b = (Button) findViewById(R.id.button);
         b.setOnClickListener(new View.OnClickListener() {

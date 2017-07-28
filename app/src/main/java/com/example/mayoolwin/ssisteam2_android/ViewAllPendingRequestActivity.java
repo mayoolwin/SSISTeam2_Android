@@ -18,6 +18,7 @@ import java.util.List;
 
 public class ViewAllPendingRequestActivity extends Activity implements AdapterView.OnItemClickListener {
 
+
     SharedPreferences pref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +29,9 @@ public class ViewAllPendingRequestActivity extends Activity implements AdapterVi
 
         String dept_code= pref.getString("dept_code", "default");
 
-        ListView listView=(ListView)findViewById(R.id.listView1);
+        final ListView listView=(ListView)findViewById(R.id.listView1);
 
-        listView.setOnItemClickListener(this);
+
 
         new AsyncTask<String,Void,List<Request>>()
         {
@@ -44,14 +45,17 @@ public class ViewAllPendingRequestActivity extends Activity implements AdapterVi
             @Override
             protected void onPostExecute(List<Request> result) {
 
-                ListView listView=(ListView)findViewById(R.id.listView1);
+
 
                 listView.setAdapter(new SimpleAdapter(getApplicationContext(),result,R.layout.pending_request_row,new String[]{"Name","Date"},new int[]{R.id.name,R.id.date}));
 
 
 
+
             }
         }.execute(dept_code);
+
+        listView.setOnItemClickListener(this);
     }
 
     @Override

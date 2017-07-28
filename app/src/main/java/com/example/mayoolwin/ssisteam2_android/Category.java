@@ -16,7 +16,7 @@ import static com.example.mayoolwin.ssisteam2_android.User.host;
 
 public class Category extends HashMap<String,String> {
 
-    String data=host;
+
 
     public Category(String cat_id, String itemcode, String itemdesc, String uom) {
         put("CatId", cat_id);
@@ -48,7 +48,7 @@ public class Category extends HashMap<String,String> {
             {
                 JSONObject b=c.getJSONObject(i);
                 Category item = new Category(b.getString("catId"),b.getString("itemCode"),
-                        b.getString("itemCode"),b.getString("uom"));
+                        b.getString("itemDesc"),b.getString("uom"));
                 itemList.add(item);
             }
 

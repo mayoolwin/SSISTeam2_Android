@@ -8,13 +8,15 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import static com.example.mayoolwin.ssisteam2_android.User.host;
+
 /**
  * Created by macbook on 25/7/17.
  */
 
 public class Request extends HashMap<String,String> {
 
-    static String host = "http://172.23.135.222/SSISTeam2/Classes/WebServices/Service.svc";
+
 
 
     public Request(String id, String name, String date, String reason) {
@@ -27,6 +29,18 @@ public class Request extends HashMap<String,String> {
 
     public Request()
     {}
+
+    public static void Approve(String id)
+    {
+
+        JSONArray c=JSONParser.getJSONArrayFromUrl(host+"/Approve/"+id);
+    }
+
+    public static void Reject(String id)
+    {
+
+        JSONArray c=JSONParser.getJSONArrayFromUrl(host+"/Reject/"+id);
+    }
 
     public static List<Request> listRequest(String dept_code) {
 

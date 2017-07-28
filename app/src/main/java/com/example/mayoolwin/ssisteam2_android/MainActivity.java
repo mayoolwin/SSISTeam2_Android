@@ -87,6 +87,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.view_request:
                 startActivity(new Intent(this, ViewAllPendingRequestActivity.class));
                 return true;
+
+            case R.id.make_request:
+                startActivity(new Intent(this,MakeNewRequestActivity.class));
+                return true;
+
             case R.id.logout:
                 Logout();
         }
