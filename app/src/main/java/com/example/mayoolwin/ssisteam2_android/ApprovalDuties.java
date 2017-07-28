@@ -19,8 +19,9 @@ public class ApprovalDuties extends java.util.HashMap<String,String> {
     //final static String host = "http:// 192.168.1.14:8090/DelegateAuthorityWebService/Service.svc";
     //final static String host = "http://172.23.135.69/DelegateAuthorityWebService/Service.svc";
 
-    final static String host = "http://172.23.135.128/SSISTeam2/Classes/WebServices/Service.svc";
-//    final static String host = "http://172.23.135.102/SSISTeam2/Classes/WebServices/Service.svc";
+    //final static String host = "http://172.23.135.222/SSISTeam2/Classes/WebServices/Service.svc";
+//    final static String host = "http://172.23.135.128/SSISTeam2/Classes/WebServices/Service.svc";
+    final static String host = "http://172.23.134.205/SSISTeam2/Classes/WebServices/Service.svc";
 
     public ApprovalDuties(String username, String startDate, String endDate, String deptCode,String createdDate,String deleted,String reason) {
         put("UserName", username);
@@ -62,7 +63,12 @@ public class ApprovalDuties extends java.util.HashMap<String,String> {
         } catch (Exception e) {
         }
        Log.e("dddCreatettt","REsult"+jApprovalDuties.toString());
-        String result = JSONParser.postStream(host+"/Create", jApprovalDuties.toString());
+
+       String result = "";
+       try {
+           result = JSONParser.postStream(host+"/Create", jApprovalDuties.toString()); } catch (Exception e) {
+
+       }
        Log.e("dddCreate","REsult"+result);
 
    }
@@ -99,7 +105,12 @@ public class ApprovalDuties extends java.util.HashMap<String,String> {
 
 
         Log.e("dddCreatettt","REsult"+jdeletelDuties.toString());
+        try {
+
         String result = JSONParser.postStream(host+"/Update", jdeletelDuties.toString());
         Log.e("ddd","REsult"+result);
+        } catch (Exception e) {
+
+        }
     }
 }

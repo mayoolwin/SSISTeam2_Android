@@ -31,7 +31,8 @@ import static com.example.mayoolwin.ssisteam2_android.R.color.base;
 public class MainActivity extends AppCompatActivity {
 
     SharedPreferences pref;
-    String dept_code;
+    public static String dept_code;
+    public static String name;
     Button b;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        String name= pref.getString("username", "default");
+        name= pref.getString("username", "default");
         String role= pref.getString("role", "default");
         dept_code= pref.getString("dept_code", "default");
         TextView roleTextView = (TextView)findViewById(R.id.roleTextView);
