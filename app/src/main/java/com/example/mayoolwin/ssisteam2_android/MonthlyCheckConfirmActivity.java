@@ -28,20 +28,20 @@ public class MonthlyCheckConfirmActivity extends AppCompatActivity implements In
         Bundle arg = intent.getBundleExtra("Bundle");
         ArrayList<HashMap<String, String>> maps = (ArrayList<HashMap<String, String>>) arg.getSerializable("List");
 
+        ArrayList<InventoryCheck> inventoryChecks = new ArrayList<>();
         ArrayList<InventoryCheck> confirmList = new ArrayList<>();
 
         for (HashMap<String, String> hash: maps
              ) {
             InventoryCheck inventorycheck = InventoryCheck.fromHashMap(hash);
-            confirmList.add(inventorycheck);
+            //For post to web server
+            inventoryChecks.add(inventorycheck);
+
+            if (inventorycheck.getActualQuantity() != inventorycheck.getCurrentQuantity()){
+                //To be used for confirmation list
+                confirmList.add(inventorycheck);
+            }
         }
-//        for (InventoryCheck inventory: inventoryChecks
-//             ) {
-//            if (inventory.getActualQuantity() == inventory.getCurrentQuantity()) {
-//                Toast.makeText(getApplicationContext(), "test", Toast.LENGTH_LONG).show();
-//                confirmList.add(inventory);
-//            }
-//        }
 
         FragmentManager fm = getFragmentManager();
         FragmentTransaction fTransaction = fm.beginTransaction();

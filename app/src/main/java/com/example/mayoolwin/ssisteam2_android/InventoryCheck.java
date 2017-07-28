@@ -27,7 +27,7 @@ import java.util.List;
 
 public class InventoryCheck extends HashMap<String,String> implements Serializable {
 
-    final static String host = "http://192.168.1.10/SSISTeam2/Classes/WebServices/Service.svc";
+    final static String host = "http://172.23.134.205/SSISTeam2/Classes/WebServices/Service.svc";
 
     private String itemCode;
     private String itemDescription;
