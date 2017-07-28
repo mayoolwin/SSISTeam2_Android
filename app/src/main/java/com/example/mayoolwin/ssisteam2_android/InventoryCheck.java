@@ -130,6 +130,30 @@ public class InventoryCheck extends HashMap<String,String> implements Serializab
         return inventoryCheck;
     }
 
+    public static void UpdateInventoryChecks(ArrayList<InventoryCheck> inventoryChecks) {
+        JSONArray jInventoryChecks = toJSONArrayString(inventoryChecks);
+        String result = JSONParser.postStream(host + "/InventoryCheck/Update", jInventoryChecks.toString());
+    }
+
+    public static JSONArray toJSONArrayString (ArrayList<InventoryCheck> inventoryChecks) {
+        JSONArray jInventoryChecks = new JSONArray();
+        for (InventoryCheck inventoryCheck: inventoryChecks
+             ) {
+            JSONObject jInventoryCheck = new JSONObject();
+            try {
+                jInventoryCheck.put("itemCode", inventoryCheck.getItemCode());
+                jInventoryCheck.put("itemDescription", inventoryCheck.getItemDescription());
+                jInventoryCheck.put("categoryName", inventoryCheck.getCategoryName());
+                jInventoryCheck.put("currentQuantity", inventoryCheck.getCurrentQuantity());
+                jInventoryCheck.put("actualQuantity", inventoryCheck.getActualQuantity());
+                jInventoryCheck.put("reason", inventoryCheck.getReason());
+                jInventoryChecks.put(jInventoryCheck);
+            } catch (JSONException e) {
+            }
+        }
+        return jInventoryChecks;
+    }
+
     public static String getJsonStringFromUrl(String url) throws JSONException {
         StringBuilder b = new StringBuilder();
         HttpURLConnection connection = null;
