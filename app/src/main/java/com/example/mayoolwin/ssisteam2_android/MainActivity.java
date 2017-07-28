@@ -27,11 +27,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.prefs.PreferenceChangeEvent;
 
+import static com.example.mayoolwin.ssisteam2_android.R.color.base;
+
 
 public class MainActivity extends AppCompatActivity {
 
     SharedPreferences pref;
-
+    String dept_code;
     Button b;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String name= pref.getString("username", "default");
         String role= pref.getString("role", "default");
-        String dept_code= pref.getString("dept_code", "default");
+        dept_code= pref.getString("dept_code", "default");
         TextView roleTextView = (TextView)findViewById(R.id.roleTextView);
         roleTextView.setText(role);
         if(dept_code.equals("default") || role.equals("default"))
@@ -78,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    @Override
+    /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
@@ -87,7 +89,8 @@ public class MainActivity extends AppCompatActivity {
                 return true;
 
             case R.id.dept_authority:
-                startActivity(new Intent(this, DelegateAuthorityActivity.class));
+               // startActivity(new Intent(this, DelegateAuthorityActivity.class));
+                checkApprovalDutiesEixstence(dept_code);
                 return true;
 
             case R.id.view_request:
@@ -97,7 +100,31 @@ public class MainActivity extends AppCompatActivity {
                 Logout();
         }
         return true;
+    }*/
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.clerk_monthly:
+                startActivity(new Intent(this, MonthlyCheckActivity.class));
+                return true;
+
+            case R.id.dept_authority:
+            //    startActivity(new Intent(this, DelegateAuthorityActivity.class));
+                checkApprovalDutiesEixstence(dept_code);
+                return true;
+
+            case R.id.view_request:
+                startActivity(new Intent(this, ViewAllPendingRequestActivity.class));
+                return true;
+            case R.id.logout:
+                Logout();
+        }
+        return super.onOptionsItemSelected(item);
     }
+
+
 
     public void Logout() {
         Intent intent = new Intent(getApplicationContext(), Login.class);
@@ -108,5 +135,33 @@ public class MainActivity extends AppCompatActivity {
         editor.commit();
         startActivity(intent);
         finish();
+    }
+
+    public void checkApprovalDutiesEixstence(String dept_code){
+
+        new AsyncTask<String, Void, ApprovalDuties>() {
+            @Override
+            protected ApprovalDuties doInBackground(String... params) {
+                Log.e("Param",params[0]);
+                return ApprovalDuties.checkApprovalDuties(params[0]);
+            }
+            @Override
+            protected void onPostExecute(ApprovalDuties result) {
+                if(result.get("Deleted").equals("Y")){
+                    Intent i = new Intent(MainActivity.this,DelegateAuthorityActivity.class);
+                    startActivity(i);
+                }if(result.get("Deleted").equals("N")){
+                    Intent i = new Intent(MainActivity.this,DeleteAuthorityCheck.class);
+                    i.putExtra("createddate", result.get("CreatedDate"));
+                    i.putExtra("username", result.get("UserName"));
+                    i.putExtra("reason", result.get("Reason"));
+                    i.putExtra("startdate", result.get("StartDate"));
+                    i.putExtra("enddate", result.get("EndDate"));
+                    i.putExtra("deptcode",result.get("DeptCode"));
+                    i.putExtra("deleted",result.get("Deleted"));
+                    startActivity(i);
+                }
+            }
+        }.execute(dept_code);
     }
 }

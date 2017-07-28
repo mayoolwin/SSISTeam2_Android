@@ -12,8 +12,8 @@ import java.util.List;
 
 public class RequestEvent extends HashMap<String,String> {
 
-//final static String host = "http://172.23.135.134/SSISAndroidTeam2/Service.svc";
-    final static String host = "http://172.23.135.128/SSISAndroidTeam2/Service.svc";
+final static String host = "http://172.23.135.134/SSISAndroidTeam2/Service.svc";
+
 
 
 

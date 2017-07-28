@@ -14,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -29,11 +30,12 @@ public class DelegateAuthorityActivity extends AppCompatActivity implements
     Button btnDatePicker, btnTimePicker,btnDatePicker2;
     EditText txtDate,txtDate2;
     private int mYear, mMonth, mDay;
+    int flag = 0;
     //final static int []view = {R.id.textView2, R.id.spinner2, R.id.textView4, R.id.in_date,R.id.in_date2};
     //final static String []key = {"UserName", "DeptCode", "StartDate", "EndDate","CreatedDate","Deleted","Reason"};
     //String []key = {"CreatedDate","UserName","Reason","StartDate","EndDate","DeptCode","Deleted"};
     String []key = {"CreatedDate","UserName","Reason","StartDate","EndDate","DeptCode","Deleted"};
-   // String dept_code = "REGR";
+    // String dept_code = "REGR";
 
     TextView createdDate;Spinner userName;EditText reason,startDate,endDate;
     @Override
@@ -101,6 +103,31 @@ public class DelegateAuthorityActivity extends AppCompatActivity implements
                 c.put(key[4],endDate.getText().toString()+"");
                 c.put(key[5],dept_code);
                 c.put(key[6],"N");
+
+
+                DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); // Make sure user insert date into edittext in this format.
+
+                Date strDate,enDate;
+
+                try{
+                    String dob_var1=(startDate.getText().toString());
+                    String dob_var2=(endDate.getText().toString());
+
+                    strDate = formatter.parse(dob_var1);
+                    enDate = formatter.parse(dob_var2);
+                    if(strDate.before(enDate)){
+                        flag = 0;
+                    }else{
+                        flag = 1;
+                    }
+
+                }catch (java.text.ParseException e)
+                {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                    Log.i("Not Correct Date Format", e.toString());
+                }
+
 /*
                c.put(key[0],"2017-01-01");
                 c.put(key[1],"Jerry");
@@ -110,18 +137,22 @@ public class DelegateAuthorityActivity extends AppCompatActivity implements
                 c.put(key[5],"REGR");
                 c.put(key[6],"N");
 */
+                if(flag==0){
+                    new AsyncTask<ApprovalDuties, Void, Void>() {
+                        @Override
+                        protected Void doInBackground(ApprovalDuties... params) {
+                            ApprovalDuties.createCustomer(params[0]);
+                            return null;
+                        }
+                        @Override
+                        protected void onPostExecute(Void result) {
+                            finish();
+                        }
+                    }.execute(c);
+                }else{
+                    Toast.makeText(getBaseContext(), "Start Date should before End Date", Toast.LENGTH_LONG).show();
+                }
 
-                new AsyncTask<ApprovalDuties, Void, Void>() {
-                    @Override
-                    protected Void doInBackground(ApprovalDuties... params) {
-                        ApprovalDuties.createCustomer(params[0]);
-                        return null;
-                    }
-                    @Override
-                    protected void onPostExecute(Void result) {
-                        finish();
-                    }
-                }.execute(c);
             }
         });
 
@@ -144,6 +175,7 @@ public class DelegateAuthorityActivity extends AppCompatActivity implements
                                               int monthOfYear, int dayOfMonth) {
 
                             if(v==btnDatePicker){
+
                                 startDate.setText(year + "-" + (monthOfYear + 1) + "-" +dayOfMonth );
                             }
                             if(v==btnDatePicker2){
@@ -153,7 +185,7 @@ public class DelegateAuthorityActivity extends AppCompatActivity implements
 
                         }
                     }, mYear, mMonth, mDay);
-
+            datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
             datePickerDialog.show();
 
         }
