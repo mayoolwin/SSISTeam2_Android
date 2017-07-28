@@ -15,7 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-//import com.example.mayoolwin.ssisteam2_android.InventoryCheck;
+import com.example.mayoolwin.ssisteam2_android.InventoryCheck;
 import com.example.mayoolwin.ssisteam2_android.MonthlyCheckActivity;
 import com.example.mayoolwin.ssisteam2_android.R;
 /*
@@ -34,35 +34,35 @@ public class InventoryCheckDetail extends android.app.Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    //private InventoryCheck inventoryCheck;
+    private InventoryCheck inventoryCheck;
     private int index;
 
-   // private OnFragmentInteractionListener mListener;
+    private OnFragmentInteractionListener mListener;
 
     public InventoryCheckDetail() {
         // Required empty public constructor
     }
 
     // TODO: Rename and change types and number of parameters
-    /*public static InventoryCheckDetail newInstance(InventoryCheck inventoryCheck, int index) {
+    public static InventoryCheckDetail newInstance(InventoryCheck inventoryCheck, int index) {
         InventoryCheckDetail fragment = new InventoryCheckDetail();
         Bundle args = new Bundle();
         args.putSerializable(ARG_PARAM1, inventoryCheck);
         args.putInt(ARG_PARAM2, index);
         fragment.setArguments(args);
         return fragment;
-    }*/
+    }
 
-   /* @Override
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             inventoryCheck = (InventoryCheck) getArguments().getSerializable(ARG_PARAM1);
             index = getArguments().getInt(ARG_PARAM2);
         }
-    }*/
+    }
 
-    /*@Override
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -88,9 +88,9 @@ public class InventoryCheckDetail extends android.app.Fragment {
                     inventoryCheck.setActualQuantity(i1);
                 }
             }
-        });*/
+        });
 
-       /* final EditText reasonText =  (EditText) view.findViewById(R.id.inventoryCheckDetailEdit);
+        final EditText reasonText =  (EditText) view.findViewById(R.id.inventoryCheckDetailEdit);
         reasonText.setText(inventoryCheck.getReason());
 
         Button confirmButton = (Button) view.findViewById(R.id.inventoryCheckDetailConfirm);
@@ -108,9 +108,9 @@ public class InventoryCheckDetail extends android.app.Fragment {
         });
 
         return view;
-    }*/
+    }
 
-   /* // TODO: Rename method, update argument and hook method into UI event
+    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(inventoryCheck.getReason(), inventoryCheck.getActualQuantity(), index);
@@ -155,9 +155,8 @@ public class InventoryCheckDetail extends android.app.Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-   /*
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(String reason, int actualQty, int index);
-    }*/
+    }
 }
