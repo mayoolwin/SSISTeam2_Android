@@ -118,6 +118,10 @@ public class MainActivity extends AppCompatActivity {
                 checkApprovalDutiesEixstence(dept_code);
                 return true;
 
+            case R.id.make_request:
+                startActivity(new Intent(this, MakeNewRequestActivity.class));
+                return true;
+
             case R.id.view_request:
                 startActivity(new Intent(this, ViewAllPendingRequestActivity.class));
                 return true;

@@ -25,13 +25,15 @@ public class MakeNewRequestActivity extends AppCompatActivity {
     private Spinner spinner;
     private Spinner itemspinner;
 
+    int count=0;
+
     private Button btn;
 
     private TextView itemdesc;
 
     private TextView quantity;
 
-    List<Item> itemlist = new ArrayList<Item>();
+    ArrayList<Item> itemlist = new ArrayList<Item>();
 
     TableLayout tl;
     TableRow tr;
@@ -44,7 +46,7 @@ public class MakeNewRequestActivity extends AppCompatActivity {
         itemspinner = (Spinner) findViewById(R.id.spinner1);
         btn = (Button) findViewById(R.id.add);
         tl = (TableLayout) findViewById(R.id.maintable);
-
+        addHeaders();
 
         new AsyncTask<Void, Void, List<String>>() {
             @Override
@@ -123,8 +125,8 @@ public class MakeNewRequestActivity extends AppCompatActivity {
 
                 itemlist.add(item);
 
-                addHeaders();
-                addData(itemlist);
+
+                addData(item);
 
 
             }
@@ -195,9 +197,9 @@ public class MakeNewRequestActivity extends AppCompatActivity {
     }
 
 
-    public void addData(List<Item> result) {
+    public void addData(Item r) {
 
-        for (Item r : result) {
+
 
             /** Create a TableRow dynamically **/
             tr = new TableRow(this);
@@ -227,7 +229,7 @@ public class MakeNewRequestActivity extends AppCompatActivity {
                     TableRow.LayoutParams.FILL_PARENT,
                     TableRow.LayoutParams.WRAP_CONTENT));
 
-        }
+
 
 
     }

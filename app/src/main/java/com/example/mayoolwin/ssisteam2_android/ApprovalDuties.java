@@ -20,7 +20,7 @@ public class ApprovalDuties extends java.util.HashMap<String,String> {
     //final static String host = "http://172.23.135.69/DelegateAuthorityWebService/Service.svc";
 
     //final static String host = "http://172.23.135.222/SSISTeam2/Classes/WebServices/Service.svc";
-    final static String host = "http://172.23.135.128/SSISTeam2/Classes/WebServices/Service.svc";
+    final static String host = "http://172.23.135.102/SSISTeam2/Classes/WebServices/Service.svc";
 
     public ApprovalDuties(String username, String startDate, String endDate, String deptCode,String createdDate,String deleted,String reason) {
         put("UserName", username);
