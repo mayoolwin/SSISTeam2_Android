@@ -69,7 +69,11 @@ public class JSONParser {
             OutputStream os = new BufferedOutputStream(conn.getOutputStream());
             os.write(data.getBytes());
             os.flush();
-            is = conn.getInputStream();
+            if (conn.getResponseCode() >= 400) {
+                is = conn.getInputStream();
+            } else {
+                is = conn.getErrorStream();
+            }
         } catch (UnsupportedEncodingException e) {
             Log.e("postStream Exception", StackTrace.trace(e));
         } catch (Exception e) {

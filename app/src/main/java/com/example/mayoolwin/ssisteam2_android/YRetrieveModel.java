@@ -12,13 +12,14 @@ import java.util.List;
 
 public class YRetrieveModel extends java.util.HashMap<String,String>
 {
-   // final static  String host = "http://172.23.135.53/TestAd/Service.svc";
-   final static  String host = "http://192.168.0.18/TestAd/Service.svc";
+   //final static  String host = "http://192.168.0.18/TestAd/Service.svc";
+   final static  String host = "http://172.23.134.20/ssisteam2/Classes/WebServices/Service.svc";
 
-    public YRetrieveModel(String itemDes, String totalQty)
+    public YRetrieveModel(String itemDes, String totalQty, String retrieveQty)
     {
         put("itemDes", itemDes);
         put("totalQty", totalQty);
+        put("retrieveQty",retrieveQty);
     }
 
     public YRetrieveModel(){}
@@ -31,7 +32,7 @@ public class YRetrieveModel extends java.util.HashMap<String,String>
             for (int i = 0; i < a.length(); i++)
             {
                 JSONObject j = a.getJSONObject(i);
-                list.add(new YRetrieveModel(j.getString("itemDes"), j.getString("totalQty")));
+                list.add(new YRetrieveModel(j.getString("itemDes"), j.getString("totalQty"),Integer.toString(j.getInt("retrieveQty"))));
             }
         }catch (Exception e)
         {

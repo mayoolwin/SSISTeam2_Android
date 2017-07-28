@@ -1,10 +1,12 @@
 package com.example.mayoolwin.ssisteam2_android;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mayoolwin.ssisteam2_android.fragment.InventoryCheckList;
+
+import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -64,13 +68,15 @@ public class MonthlyCheckConfirmActivity extends AppCompatActivity implements In
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 //                InventoryCheck
 
-                new AsyncTask<Void, Void, Void>() {
+                new AsyncTask<ArrayList<InventoryCheck>, Void, Void>() {
                     @Override
-                    protected Void doInBackground(Void... voids) {
-                        InventoryCheck.UpdateInventoryChecks(inventoryChecks);
+                    protected Void doInBackground(ArrayList<InventoryCheck>... params) {
+                        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                        String username = pref.getString("username", "default");
+                        InventoryCheck.UpdateInventoryChecks(inventoryChecks, username);
                         return null;
                     }
-                }.execute();
+                }.execute(inventoryChecks);
 
                 startActivity(intent);
             }

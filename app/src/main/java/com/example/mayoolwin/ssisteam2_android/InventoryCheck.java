@@ -1,7 +1,11 @@
 package com.example.mayoolwin.ssisteam2_android;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.example.mayoolwin.ssisteam2_android.JSONParser;
 import com.example.mayoolwin.ssisteam2_android.Request;
@@ -130,12 +134,12 @@ public class InventoryCheck extends HashMap<String,String> implements Serializab
         return inventoryCheck;
     }
 
-    public static void UpdateInventoryChecks(ArrayList<InventoryCheck> inventoryChecks) {
-        JSONArray jInventoryChecks = toJSONArrayString(inventoryChecks);
-        String result = JSONParser.postStream(host + "/InventoryCheck/Update", jInventoryChecks.toString());
-    }
+//    public static void UpdateInventoryChecks(ArrayList<InventoryCheck> inventoryChecks) {
+//        JSONArray jInventoryChecks = toJSONArrayString(inventoryChecks);
+//        String result = JSONParser.postStream(host + "/InventoryCheck/Update", jInventoryChecks.toString());
+//    }
 
-    public static JSONArray toJSONArrayString (ArrayList<InventoryCheck> inventoryChecks) {
+    public static void UpdateInventoryChecks (ArrayList<InventoryCheck> inventoryChecks, String shareUsername) {
         JSONArray jInventoryChecks = new JSONArray();
         for (InventoryCheck inventoryCheck: inventoryChecks
              ) {
@@ -151,7 +155,13 @@ public class InventoryCheck extends HashMap<String,String> implements Serializab
             } catch (JSONException e) {
             }
         }
-        return jInventoryChecks;
+        Log.e("dddCreatettt","REsult"+jInventoryChecks.toString());
+        try {
+            String result = JSONParser.postStream(host+"InventoryCheck/Update/" + shareUsername, jInventoryChecks.toString());
+            Log.e("ddd","REsult"+result);
+        } catch (Exception e) {
+
+        }
     }
 
     public static String getJsonStringFromUrl(String url) throws JSONException {

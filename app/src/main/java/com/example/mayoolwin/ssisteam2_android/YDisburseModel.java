@@ -1,5 +1,7 @@
 package com.example.mayoolwin.ssisteam2_android;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -12,13 +14,9 @@ import java.util.List;
 
 public class YDisburseModel extends java.util.HashMap<String,String>
 {
-   final static  String host = "http://172.23.134.14/TestAd/Service.svc";
+   final static  String host = "http://172.23.134.20/ssisteam2/Classes/WebServices/Service.svc";
    //final static  String host = "http://192.168.0.18/TestAd/Service.svc";
-//
-//    public YDisburseModel(String collectP)
-//    {
-//        put("collectP", collectP);
-//    }
+
 
     public YDisburseModel(){}
 
@@ -57,11 +55,10 @@ public class YDisburseModel extends java.util.HashMap<String,String>
 
         }catch (Exception e)
         {
-            e.printStackTrace();
+
         }
         return  list;
     }
-
 
 
 
