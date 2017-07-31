@@ -32,6 +32,9 @@
         <activity android:name=".DelegateAuthorityActivity" />
         <activity android:name=".MakeNewRequestActivity" />
         <activity android:name=".DeleteAuthorityCheck" />
+        <activity android:name=".ViewAllAdjustment" />
+        <activity android:name=".ViewAllAdjustmentDetail" />
+        <activity android:name=".TestActivity"></activity>
         <activity android:name=".MonthlyCheckDetailActivity"></activity>
     </application>
 
