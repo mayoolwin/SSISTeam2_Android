@@ -39,7 +39,7 @@ public class MakeNewRequestActivity extends AppCompatActivity {
 
     private TextView quantity;
 
-    ArrayList<Item> itemlist;
+    private List<Item> itemlist;
 
     ListView listView;
 
@@ -87,13 +87,26 @@ public class MakeNewRequestActivity extends AppCompatActivity {
                     @Override
                     protected Void doInBackground(NewRequest... params) {
                         NewRequest.InsertRequest(params[0]);
+                        for (Item i:itemlist
+                             ) {
+
+                            Item.CreateRequestDetail(i);
+
+                        }
+
+
+
                         return null;
                     }
                     @Override
                     protected void onPostExecute(Void result) {
-                        finish();
+
                     }
                 }.execute(req);
+
+
+
+
             }
         });
 
@@ -265,6 +278,9 @@ public class MakeNewRequestActivity extends AppCompatActivity {
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
     }
+
+
+
 
 
 

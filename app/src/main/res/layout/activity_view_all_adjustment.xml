@@ -4,17 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.mayoolwin.ssisteam2_android.MonthlyCheckConfirmActivity">
+    tools:context="com.example.mayoolwin.ssisteam2_android.ViewAllAdjustment">
 
-    <Button
-        android:id="@+id/inventoryCheckUpdateButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <FrameLayout
+    <ListView
+        android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/inventoryConfirmPlaceHolder">
-    </FrameLayout>
+        />
 
 </RelativeLayout>

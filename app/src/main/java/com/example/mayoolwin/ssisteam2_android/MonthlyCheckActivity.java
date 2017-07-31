@@ -1,5 +1,6 @@
 package com.example.mayoolwin.ssisteam2_android;
 
+import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
@@ -23,6 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import static com.example.mayoolwin.ssisteam2_android.InventoryCheck.listInventoryCheck;
+import static com.example.mayoolwin.ssisteam2_android.User.host;
 
 public class MonthlyCheckActivity extends AppCompatActivity implements InventoryCheckList.OnFragmentInteractionListener, InventoryCheckDetail.OnFragmentInteractionListener {
 
@@ -38,7 +40,6 @@ public class MonthlyCheckActivity extends AppCompatActivity implements Inventory
 
                 @Override
                 protected String doInBackground(Void... voids) {
-                    final String host = InventoryCheck.host;
                     final String service = "/InventoryCheck/";
                     try {
                         return InventoryCheck.getJsonStringFromUrl(host + service);
@@ -112,6 +113,7 @@ public class MonthlyCheckActivity extends AppCompatActivity implements Inventory
         });
     }
 
+    //Portrait orientation
     @Override
     public void onFragmentInteraction(InventoryCheck inventoryCheck, int index) {
         Toast.makeText(getApplicationContext(), inventoryCheck.getItemDescription(), Toast.LENGTH_SHORT).show();
@@ -132,10 +134,40 @@ public class MonthlyCheckActivity extends AppCompatActivity implements Inventory
 
         } else {
             // start new activity
-            Intent intent = new Intent(this, MonthlyCheckConfirmActivity.class);
-            intent.putExtra("Details", inventoryCheck);
+            HashMap<String, String> inventoryHash = inventoryCheck.toHashMap();
+            Intent intent = new Intent(this, MonthlyCheckDetailActivity.class);
+            intent.putExtra("Details", inventoryHash);
+            intent.putExtra("Index", index);
 
-            startActivity(intent);
+            startActivityForResult(intent, 1);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK){
+                HashMap<String, String> inventoryHash = (HashMap<String, String>) data.getSerializableExtra("ResultInventory");
+                int index = data.getIntExtra("ResultIndex", -1);
+
+                InventoryCheck inventoryCheck = InventoryCheck.fromHashMap(inventoryHash);
+                inventoryChecks.get(index).setActualQuantity(inventoryCheck.getActualQuantity());
+                inventoryChecks.get(index).setReason(inventoryCheck.getReason());
+
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction fTransaction = fm.beginTransaction();
+
+                InventoryCheckList fragment = InventoryCheckList.newInstance(inventoryChecks);
+                if (fm.findFragmentByTag("InventoryList") == null) {
+                    fTransaction.add(R.id.inventoryCheckListPlaceHolder, fragment, "InventoryList");
+                } else {
+                    fTransaction.replace(R.id.inventoryCheckListPlaceHolder, fragment, "InventoryList");
+                }
+                fTransaction.commit();
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
         }
     }
 
@@ -147,6 +179,7 @@ public class MonthlyCheckActivity extends AppCompatActivity implements Inventory
         Toast.makeText(getApplicationContext(), inventoryChecks.get(index).getReason(), Toast.LENGTH_LONG).show();
     }
 
+    //Landscape orientation
     @Override
     public void onFragmentInteraction(String reason, int actualQty, int index) {
         inventoryChecks.get(index).setActualQuantity(actualQty);
