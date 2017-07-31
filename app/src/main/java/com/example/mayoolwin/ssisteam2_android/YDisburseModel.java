@@ -8,6 +8,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.mayoolwin.ssisteam2_android.User.host;
+
 /**
  * Created by Y on 25/07/2017.
  */

@@ -8,26 +8,26 @@
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="4dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:text="TextView"
-                android:layout_marginTop="15pt"/>
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="3dp"
-                android:layout_height="wrap_content"
+                android:layout_height="10pt"
                 android:layout_weight="2"
                 android:text="TextView"
-                android:layout_marginTop="15pt"/>
+                android:layout_marginTop="35pt"
+               />
 
-            <EditText
-                android:id="@+id/editText1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:layout_marginTop="15pt"/>
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="3dp"
+        android:layout_height="10pt"
+        android:layout_weight="1"
+        android:text="TextView"
+        android:layout_marginTop="35pt"/>
 
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="0dp"
+        android:layout_height="20pt"
+        android:layout_weight="1"
+        android:layout_marginTop="35pt"/>
 
 
 </LinearLayout>

@@ -34,7 +34,9 @@
         <activity android:name=".DeleteAuthorityCheck" />
         <activity android:name=".ViewAllAdjustment" />
         <activity android:name=".ViewAllAdjustmentDetail" />
-        <activity android:name=".TestActivity"></activity>
+        <activity android:name=".TestActivity" />
+        <activity android:name=".MonthlyCheckDetailActivity" />
+        <activity android:name=".FileDiscrepencyActivity"></activity>
     </application>
 
 </manifest>

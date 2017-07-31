@@ -1,14 +1,6 @@
 package com.example.mayoolwin.ssisteam2_android;
 
-import android.app.Activity;
-import android.content.SharedPreferences;
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.preference.PreferenceManager;
 import android.util.Log;
-
-import com.example.mayoolwin.ssisteam2_android.JSONParser;
-import com.example.mayoolwin.ssisteam2_android.Request;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,21 +9,20 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.InterruptedIOException;
 import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+
+import static com.example.mayoolwin.ssisteam2_android.User.host;
+
 
 /**
  * Created by heng_ on 26/7/2017.
  */
 
 public class InventoryCheck extends HashMap<String,String> implements Serializable {
-
-    final static String host = "http://172.23.134.205/SSISTeam2/Classes/WebServices/Service.svc";
 
     private String itemCode;
     private String itemDescription;
@@ -95,12 +86,12 @@ public class InventoryCheck extends HashMap<String,String> implements Serializab
     }
 
     public static InventoryCheck fromJSONObject(JSONObject jsonObject) throws JSONException{
-        InventoryCheck inventoryCheck = new InventoryCheck(jsonObject.getString("itemCode"),
-                jsonObject.getString("itemDescription"),
-                jsonObject.getString("categoryName"),
-                jsonObject.getString("currentQuantity"),
-                jsonObject.getString("actualQuantity"),
-                jsonObject.getString("reason"));
+        InventoryCheck inventoryCheck = new InventoryCheck(jsonObject.getString("ItemCode"),
+                jsonObject.getString("ItemDescription"),
+                jsonObject.getString("CategoryName"),
+                jsonObject.getString("CurrentQuantity"),
+                jsonObject.getString("ActualQuantity"),
+                jsonObject.getString("Reason"));
 
         return inventoryCheck;
     }
@@ -139,29 +130,69 @@ public class InventoryCheck extends HashMap<String,String> implements Serializab
 //        String result = JSONParser.postStream(host + "/InventoryCheck/Update", jInventoryChecks.toString());
 //    }
 
-    public static void UpdateInventoryChecks (ArrayList<InventoryCheck> inventoryChecks, String shareUsername) {
+    public static void UpdateInventoryChecks (ArrayList<InventoryCheck> inventoryChecks, String username) {
         JSONArray jInventoryChecks = new JSONArray();
         for (InventoryCheck inventoryCheck: inventoryChecks
              ) {
             JSONObject jInventoryCheck = new JSONObject();
             try {
-                jInventoryCheck.put("itemCode", inventoryCheck.getItemCode());
-                jInventoryCheck.put("itemDescription", inventoryCheck.getItemDescription());
-                jInventoryCheck.put("categoryName", inventoryCheck.getCategoryName());
-                jInventoryCheck.put("currentQuantity", inventoryCheck.getCurrentQuantity());
-                jInventoryCheck.put("actualQuantity", inventoryCheck.getActualQuantity());
-                jInventoryCheck.put("reason", inventoryCheck.getReason());
+                jInventoryCheck.put("ItemCode", inventoryCheck.getItemCode());
+                jInventoryCheck.put("ItemDescription", inventoryCheck.getItemDescription());
+                jInventoryCheck.put("CategoryName", inventoryCheck.getCategoryName());
+                jInventoryCheck.put("CurrentQuantity", String.valueOf(inventoryCheck.getCurrentQuantity()));
+                jInventoryCheck.put("ActualQuantity", String.valueOf(inventoryCheck.getActualQuantity()));
+                jInventoryCheck.put("Reason", inventoryCheck.getReason());
                 jInventoryChecks.put(jInventoryCheck);
             } catch (JSONException e) {
             }
         }
         Log.e("dddCreatettt","REsult"+jInventoryChecks.toString());
         try {
-            String result = JSONParser.postStream(host+"InventoryCheck/Update/" + shareUsername, jInventoryChecks.toString());
+            String result = JSONParser.postStream(host+"/InventoryCheck/Update/" + username, jInventoryChecks.toString());
             Log.e("ddd","REsult"+result);
         } catch (Exception e) {
 
         }
+    }
+
+    public static void UpdateInventory (InventoryCheck inventoryCheck, String username) {
+
+        JSONObject jInventoryCheck = new JSONObject();
+        try {
+            jInventoryCheck.put("ItemCode", inventoryCheck.getItemCode());
+            jInventoryCheck.put("ItemDescription", inventoryCheck.getItemDescription());
+            jInventoryCheck.put("CategoryName", inventoryCheck.getCategoryName());
+            jInventoryCheck.put("CurrentQuantity", inventoryCheck.getCurrentQuantity());
+            jInventoryCheck.put("ActualQuantity", inventoryCheck.getActualQuantity());
+            jInventoryCheck.put("Reason", inventoryCheck.getReason());
+        } catch (JSONException e) {
+
+        }
+        Log.e("dddCreatettt","REsult"+jInventoryCheck.toString());
+
+            try {
+                String result = JSONParser.postStream(host+"/InventoryCheck/Update/"  + username, jInventoryCheck.toString());
+                Log.e("ddd","REsult"+result);
+            } catch (Exception e) {
+
+            }
+    }
+
+    public static void InsertRequest(NewRequest req, String username) {
+        JSONObject jreq = new JSONObject();
+        try {
+            jreq.put("Name", req.get("Name"));
+            jreq.put("DeptCode", req.get("DeptCode"));
+            jreq.put("Reason", req.get("Reason"));
+            jreq.put("Status", req.get("Status"));
+            jreq.put("Date", req.get("Date"));
+
+
+        } catch (Exception e) {
+        }
+        Log.e("dddCreatettt","REsult"+jreq.toString());
+
+        String result = JSONParser.postStream(host+"/InventoryCheck/Update/" + username, jreq.toString());
     }
 
     public static String getJsonStringFromUrl(String url) throws JSONException {

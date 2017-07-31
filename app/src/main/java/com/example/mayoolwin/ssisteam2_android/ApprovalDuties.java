@@ -48,7 +48,7 @@ public class ApprovalDuties extends java.util.HashMap<String,String> {
     }
    public static void createCustomer(ApprovalDuties ad) {
         JSONObject jApprovalDuties = new JSONObject();
-        //SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss aa");
+
         ArrayList<String> listItems = new ArrayList<String>();
         try {
             jApprovalDuties.put("UserName", ad.get("UserName"));
@@ -56,7 +56,7 @@ public class ApprovalDuties extends java.util.HashMap<String,String> {
             jApprovalDuties.put("EndDate", ad.get("EndDate"));
             jApprovalDuties.put("DeptCode", ad.get("DeptCode"));
             jApprovalDuties.put("CreatedDate", ad.get("CreatedDate"));
-            jApprovalDuties.put("Deleted",ad.get("Deleted"));
+            jApprovalDuties.put("Deleted", ad.get("Deleted"));
             jApprovalDuties.put("Reason", ad.get("Reason"));
         } catch (Exception e) {
         }
@@ -102,7 +102,7 @@ public class ApprovalDuties extends java.util.HashMap<String,String> {
             jdeletelDuties.put("EndDate", ap.get("EndDate"));
             jdeletelDuties.put("DeptCode", ap.get("DeptCode"));
             jdeletelDuties.put("CreatedDate", ap.get("CreatedDate"));
-            jdeletelDuties.put("Deleted",ap.get("Deleted"));
+            jdeletelDuties.put("Deleted", ap.get("Deleted"));
             jdeletelDuties.put("Reason", ap.get("Reason"));
         } catch (Exception e) {
         }
