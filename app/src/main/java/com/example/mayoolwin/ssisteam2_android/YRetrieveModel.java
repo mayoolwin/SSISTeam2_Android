@@ -37,7 +37,7 @@ public class YRetrieveModel extends java.util.HashMap<String,String>
     {
         ArrayList<YRetrieveModel> list = new ArrayList<YRetrieveModel>();
         try {
-            JSONArray jAry = JSONParser.getJSONArrayFromUrl(host+"/RetriveTQty");
+            JSONArray jAry = JSONParser.getJSONArrayFromUrl(host+"/RetriveTQty/");
             for (int i = 0; i < jAry.length(); i++)
             {
                 JSONObject jObj = jAry.getJSONObject(i);
