@@ -1,7 +1,5 @@
 package com.example.mayoolwin.ssisteam2_android;
 
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.AsyncTask;
 
 import android.support.v7.app.AlertDialog;
@@ -25,11 +23,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static android.R.attr.key;
 import static com.example.mayoolwin.ssisteam2_android.MainActivity.dept_code;
 import static com.example.mayoolwin.ssisteam2_android.MainActivity.name;
-import static com.example.mayoolwin.ssisteam2_android.R.id.listView;
-import static com.example.mayoolwin.ssisteam2_android.R.id.textView2;
 
 public class MakeNewRequestActivity extends AppCompatActivity {
 
@@ -57,7 +52,7 @@ public class MakeNewRequestActivity extends AppCompatActivity {
         spinner = (Spinner) findViewById(R.id.spinner2);
         itemspinner = (Spinner) findViewById(R.id.spinner1);
         btn = (Button) findViewById(R.id.add);
-        listView=(ListView)findViewById(R.id.listView1);
+        listView=(ListView)findViewById(R.id.listView2);
 
 
         new AsyncTask<Void, Void, List<String>>() {
