@@ -92,18 +92,15 @@ public class DelegateAuthorityActivity extends AppCompatActivity implements
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ApprovalDuties c = new ApprovalDuties();
 
-                Log.e("Test",userName.getSelectedItem().toString()+"Date"+createdDate.getText().toString());
 
-                Log.e("TESTING",userName.getSelectedItem().toString()+createdDate.getText().toString()+reason.getText().toString()+startDate.getText().toString()+endDate.getText().toString()+dept_code.toString());
-                c.put(key[0],createdDate.getText().toString()+"");
-                c.put(key[1],userName.getSelectedItem().toString()+" ");
-                c.put(key[2],reason.getText().toString()+" ");
-                c.put(key[3],startDate.getText().toString()+"");
-                c.put(key[4],endDate.getText().toString()+"");
-                c.put(key[5],dept_code);
-                c.put(key[6],"N");
+               String cDate= createdDate.getText().toString();
+               String user= userName.getSelectedItem().toString();
+               String why= reason.getText().toString();
+                String sDate=startDate.getText().toString();
+                String eDate=endDate.getText().toString();
+                ApprovalDuties c = new ApprovalDuties(user,sDate,eDate,dept_code,cDate,"N",why);
+
 
 
                 DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); // Make sure user insert date into edittext in this format.
