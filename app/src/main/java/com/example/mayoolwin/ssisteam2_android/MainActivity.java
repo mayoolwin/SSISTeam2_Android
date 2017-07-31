@@ -67,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
             getMenuInflater().inflate(R.menu.employee_menu, menu);
         else if (test.equals("DeptHead"))
             getMenuInflater().inflate(R.menu.departmenthead_menu,menu);
+        else if (test.equals("Supervisor"))
+            getMenuInflater().inflate(R.menu.supervisor_menu,menu);
         return true;
     }
 
@@ -128,6 +130,9 @@ public class MainActivity extends AppCompatActivity {
 
 
             case R.id.view_adjustment:
+                startActivity(new Intent(this, ViewAllAdjustment.class));
+                return true;
+            case R.id.supervisor_view_adjustment:
                 startActivity(new Intent(this, ViewAllAdjustment.class));
                 return true;
             case R.id.logout:

@@ -64,8 +64,6 @@ public class LoginActivity extends AppCompatActivity {
         String name = user.getText().toString();
         String password = pass.getText().toString();
 
-
-
         new AsyncTask<String, Void, User>()
         {
             @Override

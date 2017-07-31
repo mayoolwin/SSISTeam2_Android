@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class ViewAllAdjustmentModel extends java.util.HashMap<String,String>
 {
-    final static String host = "http://172.20.10.5/SSISTeam2/Classes/WebServices/Service.svc";
+    final static String host = "http://172.23.135.97/SSISTeam2/Classes/WebServices/Service.svc";
     String  vocherId,clerk,date,status,highestCost;
     public ViewAllAdjustmentModel(String VoucherID, String Clerk,String Date,String Status,String HighestCost)
     {
