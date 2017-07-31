@@ -16,12 +16,8 @@ import java.util.List;
  */
 
 public class ApprovalDuties extends java.util.HashMap<String,String> {
-    //final static String host = "http:// 192.168.1.14:8090/DelegateAuthorityWebService/Service.svc";
-    //final static String host = "http://172.23.135.69/DelegateAuthorityWebService/Service.svc";
 
-    //final static String host = "http://172.23.135.222/SSISTeam2/Classes/WebServices/Service.svc";
-//    final static String host = "http://172.23.135.128/SSISTeam2/Classes/WebServices/Service.svc";
-    final static String host = "http://172.23.134.205/SSISTeam2/Classes/WebServices/Service.svc";
+    final static String host = "http://172.20.10.5/SSISTeam2/Classes/WebServices/Service.svc";
 
     public ApprovalDuties(String username, String startDate, String endDate, String deptCode,String createdDate,String deleted,String reason) {
         put("UserName", username);
@@ -50,24 +46,23 @@ public class ApprovalDuties extends java.util.HashMap<String,String> {
     }
    public static void createCustomer(ApprovalDuties ad) {
         JSONObject jApprovalDuties = new JSONObject();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss aa");
+        //SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss aa");
         ArrayList<String> listItems = new ArrayList<String>();
         try {
             jApprovalDuties.put("UserName", ad.get("UserName"));
-            jApprovalDuties.put("StartDate", dateFormat.parse(ad.get("StartDate")));
-            jApprovalDuties.put("EndDate", dateFormat.parse(ad.get("EndDate")));
+            jApprovalDuties.put("StartDate", ad.get("StartDate"));
+            jApprovalDuties.put("EndDate", ad.get("EndDate"));
             jApprovalDuties.put("DeptCode", ad.get("DeptCode"));
             jApprovalDuties.put("CreatedDate", ad.get("CreatedDate"));
             jApprovalDuties.put("Deleted",ad.get("Deleted"));
             jApprovalDuties.put("Reason", ad.get("Reason"));
         } catch (Exception e) {
         }
-       Log.e("dddCreatettt","REsult"+jApprovalDuties.toString());
+       Log.e("dddCreatetttteees","REsult"+jApprovalDuties.toString());
 
        String result = "";
        try {
            result = JSONParser.postStream(host+"/Create", jApprovalDuties.toString()); } catch (Exception e) {
-
        }
        Log.e("dddCreate","REsult"+result);
 
@@ -77,13 +72,20 @@ public class ApprovalDuties extends java.util.HashMap<String,String> {
         ApprovalDuties ap = null;
         try {
             JSONObject a = JSONParser.getJSONFromUrl(host+"/CheckApprovalDuties/"+dept_code);
-            ap = new ApprovalDuties(a.getString("UserName"),
-                    a.getString("StartDate"),
-                    a.getString("EndDate"),
-                    a.getString("DeptCode"),
-                    a.getString("CreatedDate"),
-                    a.getString("Deleted"),
-                    a.getString("Reason"));
+            Log.e("Error Handling","Test"+a);
+            if(a!=null){
+                ap = new ApprovalDuties(a.getString("UserName"),
+                        a.getString("StartDate"),
+                        a.getString("EndDate"),
+                        a.getString("DeptCode"),
+                        a.getString("CreatedDate"),
+                        a.getString("Deleted"),
+                        a.getString("Reason"));
+
+            }else{
+                Log.e("Error Handling Block","Test");
+                ap = null;
+            }
 
         } catch (Exception e) {
         }
@@ -103,10 +105,8 @@ public class ApprovalDuties extends java.util.HashMap<String,String> {
         } catch (Exception e) {
         }
 
-
         Log.e("dddCreatettt","REsult"+jdeletelDuties.toString());
         try {
-
         String result = JSONParser.postStream(host+"/Update", jdeletelDuties.toString());
         Log.e("ddd","REsult"+result);
         } catch (Exception e) {

@@ -8,4 +8,6 @@
         android:orderInCategory="104"/>
     <item android:id="@+id/view_request" android:title="View Pending Request"
         android:orderInCategory="105"/>
+    <item android:id="@+id/view_adjustment" android:title="View All Adjustment"
+        android:orderInCategory="106"/>
 </menu>

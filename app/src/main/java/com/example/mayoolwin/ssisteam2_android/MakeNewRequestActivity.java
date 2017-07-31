@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
@@ -87,11 +88,12 @@ public class MakeNewRequestActivity extends AppCompatActivity {
                 String currentDateandTime = sdf.format(new Date());
                 EditText reason=(EditText) findViewById(R.id.reason);
                 NewRequest req = new NewRequest(name,dept_code,reason.getText().toString(),"Pending",currentDateandTime);
-
+                Log.e("Testing",req.toString());
                 new AsyncTask<NewRequest, Void, Void>() {
                     @Override
                     protected Void doInBackground(NewRequest... params) {
                         NewRequest.InsertRequest(params[0]);
+
                         return null;
                     }
                     @Override

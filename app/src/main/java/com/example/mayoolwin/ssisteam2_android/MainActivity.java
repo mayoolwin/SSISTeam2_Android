@@ -126,6 +126,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.view_request:
                 startActivity(new Intent(this, ViewAllPendingRequestActivity.class));
                 return true;
+
+            case R.id.view_adjustment:
+                startActivity(new Intent(this, ViewAllAdjustment.class));
+                return true;
             case R.id.logout:
                 Logout();
         }
@@ -155,19 +159,26 @@ public class MainActivity extends AppCompatActivity {
             }
             @Override
             protected void onPostExecute(ApprovalDuties result) {
-                if(result.get("Deleted").equals("Y")){
-                    Intent i = new Intent(MainActivity.this,DelegateAuthorityActivity.class);
+                Log.e("OnPostExecute", "Execute" + result);
+                if (result == null) {
+                    Intent i = new Intent(MainActivity.this, DelegateAuthorityActivity.class);
                     startActivity(i);
-                }if(result.get("Deleted").equals("N")){
-                    Intent i = new Intent(MainActivity.this,DeleteAuthorityCheck.class);
-                    i.putExtra("createddate", result.get("CreatedDate"));
-                    i.putExtra("username", result.get("UserName"));
-                    i.putExtra("reason", result.get("Reason"));
-                    i.putExtra("startdate", result.get("StartDate"));
-                    i.putExtra("enddate", result.get("EndDate"));
-                    i.putExtra("deptcode",result.get("DeptCode"));
-                    i.putExtra("deleted",result.get("Deleted"));
-                    startActivity(i);
+                } else {
+                    if (result.get("Deleted").equals("Y")) {
+                        Intent i = new Intent(MainActivity.this, DelegateAuthorityActivity.class);
+                        startActivity(i);
+                    }
+                    if (result.get("Deleted").equals("N")) {
+                        Intent i = new Intent(MainActivity.this, DeleteAuthorityCheck.class);
+                        i.putExtra("createddate", result.get("CreatedDate"));
+                        i.putExtra("username", result.get("UserName"));
+                        i.putExtra("reason", result.get("Reason"));
+                        i.putExtra("startdate", result.get("StartDate"));
+                        i.putExtra("enddate", result.get("EndDate"));
+                        i.putExtra("deptcode", result.get("DeptCode"));
+                        i.putExtra("deleted", result.get("Deleted"));
+                        startActivity(i);
+                    }
                 }
             }
         }.execute(dept_code);
