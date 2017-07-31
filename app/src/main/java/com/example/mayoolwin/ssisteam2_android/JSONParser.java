@@ -77,7 +77,7 @@ public class JSONParser {
         } catch (UnsupportedEncodingException e) {
             Log.e("postStream Exception", StackTrace.trace(e));
         } catch (Exception e) {
-            Log.e("postStream Exception", StackTrace.trace(e));
+            Log.e("postStream Exception2", StackTrace.trace(e));
         }
         return readStream(is);
     }
