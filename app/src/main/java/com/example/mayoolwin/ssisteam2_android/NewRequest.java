@@ -2,6 +2,7 @@ package com.example.mayoolwin.ssisteam2_android;
 
 import android.util.Log;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -25,6 +26,11 @@ public class NewRequest extends HashMap<String,String> {
 
     public NewRequest(){}
 
+    public static  void InsertNewRequest(String name,String dept_code,String reason,String date)
+    {
+        JSONArray c=JSONParser.getJSONArrayFromUrl(host+"/NewRequest/"+name+"/"+dept_code+"/"+reason+"/"+date);
+    }
+
     public static void InsertRequest(NewRequest req) {
         JSONObject jreq = new JSONObject();
         try {
@@ -33,11 +39,11 @@ public class NewRequest extends HashMap<String,String> {
             jreq.put("Reason", req.get("Reason"));
             jreq.put("Status", req.get("Status"));
             jreq.put("Date", req.get("Date"));
-            Log.e("JasonObj",jreq.toString());
+
+
         } catch (Exception e) {
         }
         String result = JSONParser.postStream(host+"/CreateNewRequest", jreq.toString());
-        Log.e("JasonObj",result.toString());
     }
 
 

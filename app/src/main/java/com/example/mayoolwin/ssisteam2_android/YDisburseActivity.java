@@ -1,6 +1,7 @@
 package com.example.mayoolwin.ssisteam2_android;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -89,8 +90,11 @@ public class YDisburseActivity extends Activity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String depName = (String) adapterView.getItemAtPosition(i);
-                textView4.setText(depName);
+                String deptName = (String) adapterView.getItemAtPosition(i);
+                textView4.setText("***"+deptName);
+                Intent intent = new Intent(YDisburseActivity.this, YDisbDetailActivity.class);
+                intent.putExtra("deptName", deptName);
+                startActivity(intent);
             }
         });
 

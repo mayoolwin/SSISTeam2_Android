@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static com.example.mayoolwin.ssisteam2_android.User.host;
+
 /**
  * Created by May Oo Lwin on 7/26/2017.
  */
