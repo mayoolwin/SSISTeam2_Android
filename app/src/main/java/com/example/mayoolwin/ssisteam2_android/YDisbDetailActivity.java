@@ -48,7 +48,7 @@ public class YDisbDetailActivity extends AppCompatActivity {
         new AsyncTask<String, Void, List<YDisburseDetailModel>>() {
             @Override
             protected List<YDisburseDetailModel> doInBackground(String... params) {
-                return YDisburseDetailModel.listDisDeptDetail(params[0]);
+                return YDisburseDetailModel.listDisDeptDetail(loginUserName,deptCode);
             }
             @Override
             protected void onPostExecute(List<YDisburseDetailModel> result) {

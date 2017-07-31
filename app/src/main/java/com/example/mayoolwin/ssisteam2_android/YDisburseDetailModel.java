@@ -24,12 +24,12 @@ public class YDisburseDetailModel extends java.util.HashMap<String,String> {
     }
     public YDisburseDetailModel(){}
 
-    public  static List<YDisburseDetailModel> listDisDeptDetail(String deptname)
+    public  static List<YDisburseDetailModel> listDisDeptDetail(String user, String deptname)
     {
         List<YDisburseDetailModel> yDisburseLsit = new ArrayList<YDisburseDetailModel>();
 
         try {
-            JSONArray a = JSONParser.getJSONArrayFromUrl(host+"/DisbDeptDetail/"+deptname);
+            JSONArray a = JSONParser.getJSONArrayFromUrl(host+"/DisbDeptDetail/"+user+"/"+deptname);
 
             for(int i=0; i<a.length(); i++)
             {

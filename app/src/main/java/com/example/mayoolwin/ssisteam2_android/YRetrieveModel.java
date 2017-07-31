@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONStringer;
 
@@ -21,6 +22,7 @@ import static android.R.id.list;
 
 public class YRetrieveModel extends java.util.HashMap<String,String>
 {
+
    final static  String host = "http:/172.23.134.66/ssisteam2/Classes/WebServices/Service.svc";
     //final static  String host = "http://localhost:65454/Classes/WebServices/Service.svc";
 
@@ -33,11 +35,11 @@ public class YRetrieveModel extends java.util.HashMap<String,String>
 
     public YRetrieveModel(){}
 
-    public  static ArrayList<YRetrieveModel> listEachItemTotalQty()
+    public  static ArrayList<YRetrieveModel> listEachItemTotalQty(String user)
     {
         ArrayList<YRetrieveModel> list = new ArrayList<YRetrieveModel>();
         try {
-            JSONArray jAry = JSONParser.getJSONArrayFromUrl(host+"/RetriveTQty/");
+            JSONArray jAry = JSONParser.getJSONArrayFromUrl(host+"/RetriveTQty/"+user);
             for (int i = 0; i < jAry.length(); i++)
             {
                 JSONObject jObj = jAry.getJSONObject(i);
@@ -53,7 +55,7 @@ public class YRetrieveModel extends java.util.HashMap<String,String>
     }
 
 
-    public  static void updateRetrieveQty(List<YRetrieveModel> retrieveList)
+    public  static void updateRetrieveQty(List<YRetrieveModel> retrieveList,String loginUserName)
     {
 
         JSONArray jsonArray = new JSONArray();
@@ -78,15 +80,24 @@ public class YRetrieveModel extends java.util.HashMap<String,String>
             Log.v("SSS","*******"+jsonArray.toString());
             Log.v("XXX","####"+jObj1.toString());
 
-            String result = JSONParser.postStream(host+"/RetriveTQty/Update",jsonArray.toString() );
 
-            Log.v("RRR","####"+result.toString());
-
-
-        }catch (Exception e)
+        }catch (JSONException e)
         {
-
+                e.printStackTrace();
         }
+
+            try {
+                String result = JSONParser.postStream(host+"/RetriveTQty/Update/"+loginUserName,jsonArray.toString() );
+
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
+
+
+
 
     }
 

@@ -16,7 +16,7 @@ import static com.example.mayoolwin.ssisteam2_android.User.host;
 
 public class YDisburseModel extends java.util.HashMap<String,String>
 {
-   final static  String host = "http://172.23.134.20/ssisteam2/Classes/WebServices/Service.svc";
+   final static  String host = "http://172.23.134.66/ssisteam2/Classes/WebServices/Service.svc";
    //final static  String host = "http://192.168.0.18/TestAd/Service.svc";
 
 
