@@ -26,7 +26,7 @@ public class ApprovalDuties extends java.util.HashMap<String,String> {
         put("EndDate", endDate.toString());
         put("DeptCode", deptCode.toString());
         put("CreatedDate", createdDate.toString());
-        put("Deleted",deleted);
+        put("Deleted", deleted);
         put("Reason", reason);
     }
 
@@ -59,12 +59,11 @@ public class ApprovalDuties extends java.util.HashMap<String,String> {
             jApprovalDuties.put("Reason", ad.get("Reason"));
         } catch (Exception e) {
         }
-       Log.e("dddCreatettt","REsult"+jApprovalDuties.toString());
+       Log.e("dddCreatetttteees","REsult"+jApprovalDuties.toString());
 
        String result = "";
        try {
            result = JSONParser.postStream(host+"/Create", jApprovalDuties.toString()); } catch (Exception e) {
-
        }
        Log.e("dddCreate","REsult"+result);
 
@@ -74,13 +73,20 @@ public class ApprovalDuties extends java.util.HashMap<String,String> {
         ApprovalDuties ap = null;
         try {
             JSONObject a = JSONParser.getJSONFromUrl(host+"/CheckApprovalDuties/"+dept_code);
-            ap = new ApprovalDuties(a.getString("UserName"),
-                    a.getString("StartDate"),
-                    a.getString("EndDate"),
-                    a.getString("DeptCode"),
-                    a.getString("CreatedDate"),
-                    a.getString("Deleted"),
-                    a.getString("Reason"));
+            Log.e("Error Handling","Test"+a);
+            if(a!=null){
+                ap = new ApprovalDuties(a.getString("UserName"),
+                        a.getString("StartDate"),
+                        a.getString("EndDate"),
+                        a.getString("DeptCode"),
+                        a.getString("CreatedDate"),
+                        a.getString("Deleted"),
+                        a.getString("Reason"));
+
+            }else{
+                Log.e("Error Handling Block","Test");
+                ap = null;
+            }
 
         } catch (Exception e) {
         }
@@ -100,10 +106,8 @@ public class ApprovalDuties extends java.util.HashMap<String,String> {
         } catch (Exception e) {
         }
 
-
         Log.e("dddCreatettt","REsult"+jdeletelDuties.toString());
         try {
-
         String result = JSONParser.postStream(host+"/Update", jdeletelDuties.toString());
         Log.e("ddd","REsult"+result);
         } catch (Exception e) {
