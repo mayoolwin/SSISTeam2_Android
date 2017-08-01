@@ -48,4 +48,16 @@ public class RequestDetail extends HashMap<String,String> {
         return reqList;
 
     }
+
+    public static void Update(String id,String qty)
+    {
+
+        JSONArray c = JSONParser.getJSONArrayFromUrl(host+"/UpdateRequestDetail/"+id+"/"+qty);
+    }
+
+    public static void Delete(String id)
+    {
+
+        JSONArray c = JSONParser.getJSONArrayFromUrl(host+"/DeleteRequestDetail/"+id);
+    }
 }

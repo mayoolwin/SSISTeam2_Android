@@ -70,6 +70,8 @@ public class RequestDetailList extends AppCompatActivity implements AdapterView.
             i.putExtra("ItemName",req.get("ItemName"));
             i.putExtra("Quantity",req.get("Quantity"));
             i.putExtra("ReqId",req_id);
+            i.putExtra("Status",status);
+            i.putExtra("UserName",user_name);
             startActivity(i);
         }
         else if(!user_name.equals(name))
