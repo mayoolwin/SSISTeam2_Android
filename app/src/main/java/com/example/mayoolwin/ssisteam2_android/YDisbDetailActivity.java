@@ -1,5 +1,7 @@
 package com.example.mayoolwin.ssisteam2_android;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
@@ -48,7 +50,7 @@ public class YDisbDetailActivity extends AppCompatActivity {
         new AsyncTask<String, Void, List<YDisburseDetailModel>>() {
             @Override
             protected List<YDisburseDetailModel> doInBackground(String... params) {
-                return YDisburseDetailModel.listDisDeptDetail(params[0]);
+                return YDisburseDetailModel.listDisDeptDetail(loginUserName,deptCode);
             }
             @Override
             protected void onPostExecute(List<YDisburseDetailModel> result) {
@@ -123,6 +125,11 @@ public class YDisbDetailActivity extends AppCompatActivity {
 
                 }
 
+                if (discrepencyMap.size() > 0) {
+                    Intent intent = new Intent(getApplicationContext(), FileDiscrepancyActivity.class);
+                    intent.putExtra("List", discrepencyMap);
+                    startActivity(intent);
+                }
 
                 //Discrepency
                 TextView textviewDiscre = (TextView) findViewById(R.id.textviewDiscre);

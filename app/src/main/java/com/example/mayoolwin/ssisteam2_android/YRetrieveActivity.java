@@ -50,7 +50,7 @@ public class YRetrieveActivity extends AppCompatActivity {
         new AsyncTask<Void, Void, List<YRetrieveModel>>() {
             @Override
             protected List<YRetrieveModel> doInBackground(Void... params) {
-                return YRetrieveModel.listEachItemTotalQty();
+                return YRetrieveModel.listEachItemTotalQty(loginUserName);
             }
 
             @Override
@@ -66,46 +66,6 @@ public class YRetrieveActivity extends AppCompatActivity {
             }
         }.execute();
 
-        //
-
-        resCount = listview.getCount();
-        final List<YRetrieveModel> objList = new ArrayList<YRetrieveModel>();
-
-        TextView textViewItem;
-        TextView textViewReqQty;
-        EditText editTextRetQty;
-        //
-        String []keys = new String[resCount];
-        String []values = new String[resCount];
-        String[] reqQtys = new String[resCount];
-
-
-        for(int i = 0; i < listview.getAdapter().getCount(); i++)
-        {
-            textViewItem =(TextView) listview.getChildAt(i).findViewById(R.id.textView2);
-            keys[i] = textViewItem.getText().toString();
-
-            textViewReqQty =(TextView) listview.getChildAt(i).findViewById(R.id.textView3);
-            reqQtys[i] = textViewReqQty.getText().toString();
-
-            editTextRetQty=(EditText) listview.getChildAt(i).findViewById(R.id.editText1);
-            values[i] = editTextRetQty.getText().toString();
-        }
-        for(int j = 0; j < keys.length; j++)
-        {
-
-            if(Integer.parseInt(values[j]) <= Integer.parseInt(reqQtys[j]))
-            {
-                objList.add(new YRetrieveModel(keys[j], values[j],""));
-                textViewTest1.setText("successfully retrieved!");
-            }
-            else if ((Integer.parseInt(values[j])>  Integer.parseInt(reqQtys[j])))
-            {
-                textViewTest1.setText("Cannot retrieve more than requested quantity!");
-                break;
-            }
-        }
-        //
 
         //Update to webservice
         btnConfrim = (Button) findViewById(R.id.buttonConfirm);
@@ -114,15 +74,56 @@ public class YRetrieveActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
+                //
+                resCount = listview.getCount();
+                final List<YRetrieveModel> objList = new ArrayList<YRetrieveModel>();
+
+                TextView textViewItem;
+                TextView textViewReqQty;
+                EditText editTextRetQty;
+                //
+                String []keys = new String[resCount];
+                String []values = new String[resCount];
+                String[] reqQtys = new String[resCount];
+
+
+                for(int i = 0; i < listview.getAdapter().getCount(); i++)
+                {
+                    textViewItem =(TextView) listview.getChildAt(i).findViewById(R.id.textView2);
+                    keys[i] = textViewItem.getText().toString();
+
+                    textViewReqQty =(TextView) listview.getChildAt(i).findViewById(R.id.textView3);
+                    reqQtys[i] = textViewReqQty.getText().toString();
+
+                    editTextRetQty=(EditText) listview.getChildAt(i).findViewById(R.id.editText1);
+                    values[i] = editTextRetQty.getText().toString();
+                }
+                for(int j = 0; j < keys.length; j++)
+                {
+
+                    if(Integer.parseInt(values[j]) <= Integer.parseInt(reqQtys[j]))
+                    {
+                        objList.add(new YRetrieveModel(keys[j], values[j],""));
+                        textViewTest1.setText("successfully retrieved!");
+                    }
+                    else if ((Integer.parseInt(values[j])>  Integer.parseInt(reqQtys[j])))
+                    {
+                        textViewTest1.setText("Cannot retrieve more than requested quantity!");
+                        break;
+                    }
+                }
+
+
                 new AsyncTask<List<YRetrieveModel>, Void, Void>() {
                     @Override
                     protected Void doInBackground(List<YRetrieveModel>... params) {
                         Log.v("GGG","====="+objList);
-                        YRetrieveModel.updateRetrieveQty(params[0]);
+                        YRetrieveModel.updateRetrieveQty(params[0],loginUserName);
                         return null;
                     }
                     @Override
                     protected void onPostExecute(Void result) {
+
                         finish();
                     }
                 }.execute(objList);

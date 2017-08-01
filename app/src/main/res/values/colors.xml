@@ -4,7 +4,8 @@
     <color name="primary_dark">#005e99</color>
     <color name="primary_darker">#005e99</color>
     <color name="accent">#e1253d</color>
-
+    <color name="danger">#d9534f</color>
+    <color name="warning">#f0ad4e</color>
     <color name="black">#000000</color>
     <color name="jet">#222222</color>
     <color name="oil">#333333</color>

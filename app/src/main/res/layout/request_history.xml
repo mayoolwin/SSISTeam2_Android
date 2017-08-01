@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/lblTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Request History"
+        android:textSize="30dp"
+        android:layout_marginLeft="10dp"
+        android:textStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TableLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:stretchColumns="1"
+
+        android:layout_below="@+id/lblTitle"
+        android:id="@+id/tableLayout">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:id="@+id/catrow"
+            android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/lblsearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:layout_marginLeft="7dp"
+        android:layout_below="@+id/lblname"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Search By Name" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/lblname"
+        android:layout_toRightOf="@+id/lblsearch"
+        android:padding="6dp"
+        android:layout_height="wrap_content"
+
+        android:popupBackground="@color/primary_dark" />
+
+        </TableRow>
+        <TableRow
+            android:layout_marginLeft="10dp">
+            <Button
+                android:text="Search"
+                android:id="@+id/btnserarch"
+                />
+        </TableRow>
+    </TableLayout>
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="400dp"
+        android:background="@color/primary_darker"
+        android:id="@+id/listView1"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/tableLayout"
+        />
+
+</RelativeLayout>
