@@ -12,7 +12,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,6 +25,7 @@ import java.util.List;
 public class CustomAdapter extends BaseAdapter {
     Context context;
     List<ViewAllAdjustmentModel> customVos;
+    DateFormatConvert df = new DateFormatConvert();
     public CustomAdapter(Context context, List<ViewAllAdjustmentModel> customVos){
         this.context = context;
         this.customVos = customVos;
@@ -56,13 +60,14 @@ public class CustomAdapter extends BaseAdapter {
 
         id1 = (TextView)convertView.findViewById(R.id.textView2) ;
         id2 = (TextView)convertView.findViewById(R.id.textView3) ;
-        id3 = (TextView)convertView.findViewById(R.id.textView13) ;
-        id4 = (TextView)convertView.findViewById(R.id.textView15) ;
+        id3 = (TextView)convertView.findViewById(R.id.textView15) ;
+        id4 = (TextView)convertView.findViewById(R.id.textView13) ;
         id5 = (TextView)convertView.findViewById(R.id.textView20) ;
         id1.setText(customVos.get(position).getVocherId());
         id2.setText(customVos.get(position).getClerk());
-        id3.setText(customVos.get(position).getStatus());
+        id3.setText(df.changeDateFormat(customVos.get(position).getStatus()));
         id4.setText(customVos.get(position).getDate());
+       // id4.setText(customVos.get(position).getDate());
         id5.setText(customVos.get(position).getHighestCost());
         Log.e("GetView Method","GetView"+customVos);
         b1 = (Button)convertView.findViewById(R.id.button3);
@@ -77,4 +82,6 @@ public class CustomAdapter extends BaseAdapter {
         });
         return convertView;
     }
+
+
 }

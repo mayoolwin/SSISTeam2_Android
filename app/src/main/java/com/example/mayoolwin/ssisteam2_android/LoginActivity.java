@@ -84,6 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                     editor.putString("username", u.get("UserName"));
                     editor.putString("role", u.get("Role"));
                     editor.putString("dept_code",u.get("DeptCode"));
+                    editor.putString("flag",u.get("Flag"));
                     editor.commit();
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
