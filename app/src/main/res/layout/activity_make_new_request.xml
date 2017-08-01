@@ -59,7 +59,7 @@
                 android:layout_marginTop="5dp"
                 android:padding="6dp"
                 android:layout_height="wrap_content"
-                android:foreground="@color/primary_dark"
+
                 android:popupBackground="@color/primary_dark" />
         </TableRow>
     </HorizontalScrollView>
@@ -90,7 +90,7 @@
                 android:layout_marginTop="5dp"
                 android:padding="6dp"
                 android:layout_height="wrap_content"
-                android:foreground="@color/primary_dark"
+
                 android:popupBackground="@color/primary_dark" />
 
 
