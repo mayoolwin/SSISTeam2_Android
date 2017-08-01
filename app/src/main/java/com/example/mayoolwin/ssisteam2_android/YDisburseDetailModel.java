@@ -8,13 +8,15 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.mayoolwin.ssisteam2_android.User.host;
+
 /**
  * Created by Y on 27/07/2017.
  */
 
 public class YDisburseDetailModel extends java.util.HashMap<String,String> {
 
-    final static  String host = "http://172.23.134.66/ssisteam2/Classes/WebServices/Service.svc";
+//    final static  String host = "http://172.23.134.66/ssisteam2/Classes/WebServices/Service.svc";
     //final static  String host = "http://192.168.0.18/TestAd/Service.svc";
 
     public YDisburseDetailModel(String itemName, String retrievedQty, String disbursedQty) {

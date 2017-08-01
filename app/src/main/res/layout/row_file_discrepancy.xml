@@ -32,43 +32,13 @@
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:text="Quantity: "
-                android:id="@+id/fileDiscrepancyCatName" />
+                android:id="@+id/fileDiscrepancyAdjustedQty" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
-                android:id="@+id/fileDiscrepancyCatText" />
-        </TableRow>
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:text="Quantity: "
-                android:id="@+id/fileDiscrepancyRecordedQuantity" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:id="@+id/fileDiscrepancyRecordedText" />
-        </TableRow>
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:text="Quantity: "
-                android:id="@+id/fileDiscrepancyActualQuantity" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:id="@+id/fileDiscrepancyActualText" />
+                android:id="@+id/fileDiscrepancyAdjustedText" />
         </TableRow>
         <TableRow>
 

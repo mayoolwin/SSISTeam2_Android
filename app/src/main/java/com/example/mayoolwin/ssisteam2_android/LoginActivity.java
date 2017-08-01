@@ -18,7 +18,6 @@ public class LoginActivity extends AppCompatActivity {
     EditText user;
     EditText pass;
     Button btn;
-
     boolean valid = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,25 +85,26 @@ public class LoginActivity extends AppCompatActivity {
                                 return User.getUser(strings[0],strings[1]);
                             }
 
-                            protected void onPostExecute(User u)
-                            {
-                                if(u.get("UserName").equals("failed"))
-                                {
-                                    Toast.makeText(getBaseContext(), "User Name or Password is incorrect", Toast.LENGTH_LONG).show();
-                                }
-                                else
-                                {
-                                    pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                                    SharedPreferences.Editor editor = pref.edit();
-                                    editor.putString("username", u.get("UserName"));
-                                    editor.putString("role", u.get("Role"));
-                                    editor.putString("dept_code",u.get("DeptCode"));
-                                    editor.commit();
-                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                }
-                            }
+            protected void onPostExecute(User u)
+            {
+                if(u.get("UserName").equals("failed"))
+                {
+                    Toast.makeText(getBaseContext(), "User Name or Password is incorrect", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("username", u.get("UserName"));
+                    editor.putString("role", u.get("Role"));
+                    editor.putString("dept_code",u.get("DeptCode"));
+                    editor.putString("flag",u.get("Flag"));
+                    editor.commit();
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
 
 
 

@@ -106,14 +106,15 @@ public class DelegateAuthorityActivity extends AppCompatActivity implements
                 c.put(key[5],dept_code);
                 c.put(key[6],"N");*/
 
-
                 String date1=startDate.getText().toString().trim();
                 String date2=endDate.getText().toString().trim();
+                Log.e("Start Date","1"+date1);
+                Log.e("End Date","2"+date2);
                 if((date1.equals("") || date1==null)||(date2.equals("")||date2==null)) {
                     Log.e("Testing reason","reason"+reason.getText().toString());
                     flag=1;
                 }
-                else if(date2.compareTo(date1) == -1){
+                if(date2.compareTo(date1) <0){
                     flag=2;
                 }
                 if(flag==0){
