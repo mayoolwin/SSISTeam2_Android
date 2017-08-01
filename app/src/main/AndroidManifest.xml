@@ -36,7 +36,10 @@
         <activity android:name=".ViewAllAdjustmentDetail" />
         <activity android:name=".TestActivity" />
         <activity android:name=".MonthlyCheckDetailActivity" />
-        <activity android:name=".FileDiscrepancyActivity"></activity>
+        <activity android:name=".FileDiscrepancyActivity" />
+        <activity android:name=".RequestHistory" />
+        <activity android:name=".RequestDetailList" />
+        <activity android:name=".UpdateRequestDetail" />
     </application>
 
 </manifest>
