@@ -14,7 +14,7 @@ public class User extends java.util.HashMap<String,String> {
 
     final static String host = "http://172.23.135.39/SSISTeam2/Classes/WebServices/Service.svc";
 
-    public User(String user_name, String dept_code, String role) {
+    public User(String user_name, String dept_code, String role,String flag) {
         put("UserName", user_name);
         put("DeptCode", dept_code);
         put("Role", role);
