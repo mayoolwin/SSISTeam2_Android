@@ -15,7 +15,7 @@ import static com.example.mayoolwin.ssisteam2_android.User.host;
 
 public class ViewAllAdjustmentDetailModel extends java.util.HashMap<String,String> {
 
-    //final static String host = "http://172.23.135.97/SSISTeam2/Classes/WebServices/Service.svc";
+//    final static String host = "http://172.23.135.97/SSISTeam2/Classes/WebServices/Service.svc";
     public ViewAllAdjustmentDetailModel(String ItemDesc, String QtyAdjust,String PriceAdjust,String Reason)
     {
         put("ItemDesc", ItemDesc);

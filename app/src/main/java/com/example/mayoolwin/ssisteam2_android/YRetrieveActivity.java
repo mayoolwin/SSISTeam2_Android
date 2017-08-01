@@ -3,6 +3,7 @@ package com.example.mayoolwin.ssisteam2_android;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.Parcelable;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.Console;
 import java.util.ArrayList;
@@ -21,6 +23,7 @@ import java.util.Dictionary;
 import java.util.List;
 
 import static android.R.attr.author;
+import static android.R.attr.streamType;
 
 public class YRetrieveActivity extends AppCompatActivity {
 
@@ -28,10 +31,13 @@ public class YRetrieveActivity extends AppCompatActivity {
     String loginUserName;
     ListView listview;
     Button btnConfrim;
-    TextView textViewTest;
-    TextView textViewTest1;
     int resCount = 0;
-
+    TextView textViewItem;
+    TextView textViewReqQty;
+    EditText editTextRetQty;
+    String[] keys = null;
+    String[] values = null;
+    String[] reqQtys = null;
 
 
     @Override
@@ -41,11 +47,9 @@ public class YRetrieveActivity extends AppCompatActivity {
 
 
         pref = PreferenceManager.getDefaultSharedPreferences(this);
-        loginUserName= pref.getString("username", "default");
+        loginUserName = pref.getString("username", "default");
 
         listview = (ListView) findViewById(R.id.listView);
-        textViewTest = (TextView) findViewById(R.id.textViewTest);
-        textViewTest1 = (TextView) findViewById(R.id.textViewTest1);
 
         new AsyncTask<Void, Void, List<YRetrieveModel>>() {
             @Override
@@ -56,15 +60,25 @@ public class YRetrieveActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(List<YRetrieveModel> result) {
 
-                listview.setAdapter(
-                        new SimpleAdapter
-                                (YRetrieveActivity.this, result, R.layout.y_row,
-                                        new String[]{"itemDes", "totalQty"},
-                                        new int[]{R.id.textView2, R.id.textView3})
-                );
+                if(result.size()==0)
+                {
+                    Toast.makeText(YRetrieveActivity.this, "Don't have  Retrieve Item!!", Toast.LENGTH_SHORT).show();
 
+                }
+                else
+                {
+                    listview.setAdapter(
+                            new SimpleAdapter
+                                    (YRetrieveActivity.this, result, R.layout.y_row,
+                                            new String[]{"itemDes", "totalQty"},
+                                            new int[]{R.id.textView2, R.id.textView3})
+                    );
+
+                }
             }
         }.execute();
+
+
 
 
         //Update to webservice
@@ -73,52 +87,51 @@ public class YRetrieveActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
-                //
                 resCount = listview.getCount();
                 final List<YRetrieveModel> objList = new ArrayList<YRetrieveModel>();
+                keys = new String[resCount];
+                values = new String[resCount];
+                reqQtys = new String[resCount];
 
-                TextView textViewItem;
-                TextView textViewReqQty;
-                EditText editTextRetQty;
-                //
-                String []keys = new String[resCount];
-                String []values = new String[resCount];
-                String[] reqQtys = new String[resCount];
+                StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.LAX);
+
+                try {
 
 
-                for(int i = 0; i < listview.getAdapter().getCount(); i++)
-                {
-                    textViewItem =(TextView) listview.getChildAt(i).findViewById(R.id.textView2);
+                    for (int i = 0; i < listview.getAdapter().getCount(); i++)
+                    {
+                    textViewItem = (TextView) listview.getChildAt(i).findViewById(R.id.textView2);
                     keys[i] = textViewItem.getText().toString();
 
-                    textViewReqQty =(TextView) listview.getChildAt(i).findViewById(R.id.textView3);
+                    textViewReqQty = (TextView) listview.getChildAt(i).findViewById(R.id.textView3);
                     reqQtys[i] = textViewReqQty.getText().toString();
 
-                    editTextRetQty=(EditText) listview.getChildAt(i).findViewById(R.id.editText1);
+                    editTextRetQty = (EditText) listview.getChildAt(i).findViewById(R.id.editText1);
                     values[i] = editTextRetQty.getText().toString();
-                }
-                for(int j = 0; j < keys.length; j++)
-                {
+                     }
 
-                    if(Integer.parseInt(values[j]) <= Integer.parseInt(reqQtys[j]))
+                    if (values.length > 0)
                     {
-                        objList.add(new YRetrieveModel(keys[j], values[j],""));
-                        textViewTest1.setText("successfully retrieved!");
-                    }
-                    else if ((Integer.parseInt(values[j])>  Integer.parseInt(reqQtys[j])))
-                    {
-                        textViewTest1.setText("Cannot retrieve more than requested quantity!");
-                        break;
-                    }
-                }
+                          for (int j = 0; j < keys.length; j++)
+                          {
+                                if (Integer.parseInt(values[j]) <= Integer.parseInt(reqQtys[j]))
+                                {
+                                    objList.add(new YRetrieveModel(keys[j], values[j], ""));
+                                    Toast.makeText(YRetrieveActivity.this, "successfully retrieved!", Toast.LENGTH_SHORT).show();
+                                } else if ((Integer.parseInt(values[j]) > Integer.parseInt(reqQtys[j]))) {
+                                    Toast.makeText(YRetrieveActivity.this, "Cannot retrieve more than requested quantity!", Toast.LENGTH_SHORT).show();
+                                }
+                          }
+                     } else {
 
+                         Toast.makeText(YRetrieveActivity.this, "Please Fill Quantity!!", Toast.LENGTH_SHORT).show();
+                     }
 
                 new AsyncTask<List<YRetrieveModel>, Void, Void>() {
                     @Override
                     protected Void doInBackground(List<YRetrieveModel>... params) {
-                        Log.v("GGG","====="+objList);
-                        YRetrieveModel.updateRetrieveQty(params[0],loginUserName);
+                        Log.v("GGG", "=====" + objList);
+                        YRetrieveModel.updateRetrieveQty(params[0], loginUserName);
                         return null;
                     }
                     @Override
@@ -128,7 +141,15 @@ public class YRetrieveActivity extends AppCompatActivity {
                     }
                 }.execute(objList);
 
+
+                } catch (NumberFormatException e) {
+                    Toast.makeText(YRetrieveActivity.this, "Fill Quantity!", Toast.LENGTH_SHORT).show();
+
+                } catch (NullPointerException e) {
+                    Toast.makeText(YRetrieveActivity.this, "Fill Something!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+
     }
 }
