@@ -57,17 +57,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed()
+    {
+        //do nothing;
+    }
+
+    @Override
     public boolean onCreateOptionsMenu (Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String test = pref.getString("role", "employee");
-        if (test.equals("Clerk"))
+        String flag = pref.getString("flag","Y");
+        if (test.equals("Clerk")&&flag.equals("N"))
             getMenuInflater().inflate(R.menu.clerk_menu, menu);
-        else if (test.equals("Employee"))
+        else if (test.equals("Employee")&&flag.equals("N"))
             getMenuInflater().inflate(R.menu.employee_menu, menu);
-        else if (test.equals("DeptHead"))
+        else if (test.equals("DeptHead")&&flag.equals("N"))
             getMenuInflater().inflate(R.menu.departmenthead_menu,menu);
-        else if (test.equals("Supervisor"))
+        else if (test.equals("DeptHead")&&flag.equals("Y"))
+            getMenuInflater().inflate(R.menu.delegateauthority_menu,menu);
+        else if (test.equals("Supervisor")&&flag.equals("N"))
             getMenuInflater().inflate(R.menu.supervisor_menu,menu);
         return true;
     }
@@ -127,6 +136,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.clerk_disbursement:
                 startActivity(new Intent(this, YDisburseActivity.class));
                 return true;
+
+            case R.id.request_history:
+                startActivity(new Intent(this, RequestHistory.class));
+                return true;
+
 
 
             case R.id.view_adjustment:
@@ -188,4 +202,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }.execute(dept_code);
     }
+
+
 }

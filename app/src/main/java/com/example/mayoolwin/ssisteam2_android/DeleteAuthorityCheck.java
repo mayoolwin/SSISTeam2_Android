@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -17,8 +18,8 @@ public class DeleteAuthorityCheck extends AppCompatActivity {
 
     String []key = {"CreatedDate","UserName","Reason","StartDate","EndDate","DeptCode","Deleted"};
     String username,createddate,reason,startdate,enddate,deptcode,deleted;
-    TextView viewUserName,viewCreatedDate,viewReason,viewStartDate,viewEndDate;
-
+    TextView viewUserName,viewCreatedDate,viewReason,viewStartDate,viewEndDate;String test;
+    DateFormatConvert df = new DateFormatConvert();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,21 +33,20 @@ public class DeleteAuthorityCheck extends AppCompatActivity {
         deptcode = getIntent().getExtras().getString("deptcode");
         deleted = getIntent().getExtras().getString("deleted");
 
-
         viewUserName=(TextView)findViewById(R.id.textView9);
-        viewUserName.setText(username);
+        viewUserName.setText(username.toString());
 
         viewCreatedDate=(TextView)findViewById(R.id.textView11);
-        viewCreatedDate.setText(createddate);
+        viewCreatedDate.setText(df.changeDateFormat(createddate));
 
         viewReason=(TextView)findViewById(R.id.textView14);
         viewReason.setText(reason);
 
         viewStartDate=(TextView)findViewById(R.id.textView16);
-        viewStartDate.setText(startdate);
+        viewStartDate.setText(df.changeDateFormat(startdate));
 
         viewEndDate=(TextView)findViewById(R.id.textView18);
-        viewEndDate.setText(enddate);
+        viewEndDate.setText(df.changeDateFormat(enddate));
 
 
         Button b = (Button) findViewById(R.id.button2);
@@ -78,4 +78,5 @@ public class DeleteAuthorityCheck extends AppCompatActivity {
             }
         });
     }
+
 }

@@ -17,6 +17,7 @@ public class User extends java.util.HashMap<String,String> {
         put("UserName", user_name);
         put("DeptCode", dept_code);
         put("Role", role);
+        put("Flag", flag);
 
     }
 
@@ -26,7 +27,8 @@ public class User extends java.util.HashMap<String,String> {
             JSONObject c = JSONParser.getJSONFromUrl(host+"/login/"+name+"/"+pass);
             u = new User(c.getString("user_name"),
                     c.getString("dept_code"),
-                    c.getString("role"));
+                    c.getString("role"),
+                    c.getString("flag"));
         } catch (Exception e) {
         }
         return u;
