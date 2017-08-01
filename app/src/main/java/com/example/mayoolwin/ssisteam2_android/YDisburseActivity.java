@@ -10,15 +10,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 public class YDisburseActivity extends AppCompatActivity {
 
     private Spinner spinner1;
-    private TextView textView2;
     private ListView listView1;
-    private TextView textView4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,39 +25,59 @@ public class YDisburseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_y_disburse);
 
         spinner1 = (Spinner) findViewById(R.id.spinner1);
-        textView2 = (TextView) findViewById(R.id.textView2);
         listView1 = (ListView) findViewById(R.id.listView2);
-        textView4 = (TextView) findViewById(R.id.textView4);
+
+
+        try
+        {
 
         new AsyncTask<Void, Void, List<String>>() {
             @Override
             protected List<String> doInBackground(Void... params) {
-                return YDisburseModel.listCollectP();
+
+                    return YDisburseModel.listCollectP();
+
+
             }
 
             @Override
             protected void onPostExecute(List<String> result) {
-                String[] ary = new String[result.size()];
 
-                for (int i = 0; i < ary.length; i++) {
-                    ary[i] = result.get(i);
+                if(result.size()==0)
+                {
+
+                }
+                else
+                {
+                    String[] ary = new String[result.size()];
+
+                    for (int i = 0; i < ary.length; i++) {
+                        ary[i] = result.get(i);
+                    }
+
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(YDisburseActivity.this,
+                            android.R.layout.simple_spinner_item, ary);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinner1.setAdapter(adapter);
                 }
 
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(YDisburseActivity.this,
-                        android.R.layout.simple_spinner_item, ary);
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                spinner1.setAdapter(adapter);
             }
         }.execute();
+
+        } catch (NullPointerException e)
+        {
+
+        }
+
 
         //select dropdown
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
+                final String cpName = adapterView.getAdapter().getItem(i).toString();
 
-                textView2.setText(Integer.toString((i + 1)));
-                String cpid = textView2.getText().toString();
+                String cpid = Integer.toString(i + 1);
 
                 new AsyncTask<String, Void, List<String>>() {
                     @Override
@@ -69,9 +88,8 @@ public class YDisburseActivity extends AppCompatActivity {
                     @Override
                     protected void onPostExecute(List<String> result) {
 
-                        ArrayAdapter<String> aryAdapter = new ArrayAdapter<String>(YDisburseActivity.this,android.R.layout.simple_list_item_1,result);
-
-                       listView1.setAdapter(aryAdapter);
+                            ArrayAdapter<String> aryAdapter = new ArrayAdapter<String>(YDisburseActivity.this,android.R.layout.simple_list_item_1,result);
+                            listView1.setAdapter(aryAdapter);
 
                     }
                 }.execute(cpid);
@@ -85,11 +103,11 @@ public class YDisburseActivity extends AppCompatActivity {
         listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String deptName = (String) adapterView.getItemAtPosition(i);
-                textView4.setText("***"+deptName);
+                final String deptName = (String) adapterView.getItemAtPosition(i);
                 Intent intent = new Intent(YDisburseActivity.this, YDisbDetailActivity.class);
                 intent.putExtra("deptName", deptName);
                 startActivity(intent);
+
             }
         });
 

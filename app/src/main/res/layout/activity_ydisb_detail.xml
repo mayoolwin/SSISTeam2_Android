@@ -1,105 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
     android:layout_width="match_parent"
-
     android:layout_height="match_parent"
-
+    android:orientation="vertical"
     tools:context="com.example.mayoolwin.ssisteam2_android.YDisbDetailActivity">
 
-    <RelativeLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        <TextView
+            android:id="@id/textView1"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="DISBURSING FORM"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            />
 
-
-
-        <TableLayout
-
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TableRow
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-
-                <TextView
-
-                    android:id="@+id/textviewDiscre"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:text="Test Discrepency"/>
-
-            </TableRow>
-
-            <TableRow
-
-                android:layout_width="match_parent"
-
-                android:layout_height="match_parent">
-
-                <TextView
-
-                    android:id="@id/textView1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"/>
-
-            </TableRow>
-
-            <TableRow
-
-                android:layout_width="match_parent"
-
-                android:layout_height="match_parent">
-
-
-                <TextView
-
-                    android:id="@+id/textViewHead1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Item" />
-
-
-                <TextView
-
-                    android:id="@+id/textViewHead2"
-
-                    android:layout_width="wrap_content"
-
-                    android:layout_height="wrap_content"
-
-                    android:layout_weight="1"
-
-                    android:text="Disbursing Qty" />
-
-
-                <TextView
-
-                    android:id="@+id/textViewHead3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Allocated Qty" />
-
-            </TableRow>
-
-        </TableLayout>
-    </RelativeLayout>
+    </LinearLayout>
 
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:id="@+id/linearLayoutHead"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="3">
+
+
+
+
+        <TextView
+
+            android:id="@+id/textViewHead1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Item Description"/>
+
+
+        <TextView
+
+            android:id="@+id/textViewHead2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="100px"
+            android:text="Disbursing Qty" />
+
+
+        <TextView
+
+            android:id="@+id/textViewHead3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="90px"
+            android:text="Allocated Qty" />
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+
 
         <ListView
 
@@ -107,33 +80,25 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
+
+
     </LinearLayout>
 
-
     <LinearLayout
-
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="center">
+        android:weightSum="1">
 
         <Button
             android:id="@+id/btnSIgnOff"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/listView1"
             android:text="Sign Off" />
 
-        <TextView
-            android:id="@+id/textViewError"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/btnSIgnOff"
-            android:layout_weight="1"
-            android:text="TextView"
-            android:textColor="@color/jumbo" />
-
-
     </LinearLayout>
 
-</RelativeLayout>
+
+
+</LinearLayout>

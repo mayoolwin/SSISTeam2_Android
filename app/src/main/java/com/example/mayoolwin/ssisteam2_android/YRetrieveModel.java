@@ -23,7 +23,7 @@ import static android.R.id.list;
 public class YRetrieveModel extends java.util.HashMap<String,String>
 {
 
-   final static  String host = "http:/172.23.134.66/ssisteam2/Classes/WebServices/Service.svc";
+   final static  String host = "http://172.23.134.105/ssisteam2/Classes/WebServices/Service.svc";
     //final static  String host = "http://localhost:65454/Classes/WebServices/Service.svc";
 
     public YRetrieveModel(String itemDes, String retrieveQty,String totalQty)
@@ -60,7 +60,6 @@ public class YRetrieveModel extends java.util.HashMap<String,String>
 
         JSONArray jsonArray = new JSONArray();
 
-       // String loginName = loginUserName;
         try {
 
             for(YRetrieveModel eachObj : retrieveList )
@@ -72,31 +71,13 @@ public class YRetrieveModel extends java.util.HashMap<String,String>
                 jsonArray.put(jObj);
             }
 
-            JSONObject jObj1 = new JSONObject();
-
-                    //jObj1.put("loginUserName",loginUserName);
-                    jObj1.put("retrievedList",jsonArray);
-
-            Log.v("SSS","*******"+jsonArray.toString());
-            Log.v("XXX","####"+jObj1.toString());
+            String result = JSONParser.postStream(host+"/RetriveTQty/Update/"+loginUserName,jsonArray.toString() );
 
 
         }catch (JSONException e)
         {
                 e.printStackTrace();
         }
-
-            try {
-                String result = JSONParser.postStream(host+"/RetriveTQty/Update/"+loginUserName,jsonArray.toString() );
-
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-
-
-
 
 
     }

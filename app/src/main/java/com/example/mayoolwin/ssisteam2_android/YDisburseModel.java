@@ -1,8 +1,10 @@
 package com.example.mayoolwin.ssisteam2_android;
 
+import android.net.Uri;
 import android.util.Log;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -16,7 +18,7 @@ import static com.example.mayoolwin.ssisteam2_android.User.host;
 
 public class YDisburseModel extends java.util.HashMap<String,String>
 {
-   final static  String host = "http://172.23.134.66/ssisteam2/Classes/WebServices/Service.svc";
+   final static  String host = "http://172.23.134.105/ssisteam2/Classes/WebServices/Service.svc";
    //final static  String host = "http://192.168.0.18/TestAd/Service.svc";
 
 
@@ -31,7 +33,7 @@ public class YDisburseModel extends java.util.HashMap<String,String>
             {
                 list.add(a.getString(i));
             }
-        }catch (Exception e)
+        }catch (JSONException e)
         {
             e.printStackTrace();
         }
@@ -45,7 +47,7 @@ public class YDisburseModel extends java.util.HashMap<String,String>
             JSONArray a = JSONParser.getJSONArrayFromUrl(host+"/DisbCollectDept/"+cpid);
             if(a.length()==0)
             {
-                list.add("There is no department!!");
+                list.add("No department!! ");
             }
             else
             {
@@ -55,10 +57,11 @@ public class YDisburseModel extends java.util.HashMap<String,String>
                 }
             }
 
-        }catch (Exception e)
+        }catch (JSONException e)
         {
 
         }
+
         return  list;
     }
 
