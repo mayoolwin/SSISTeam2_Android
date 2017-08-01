@@ -6,10 +6,15 @@
     android:layout_height="match_parent"
     tools:context="com.example.mayoolwin.ssisteam2_android.MonthlyCheckActivity">
 
-<FrameLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/inventoryCheckListPlaceHolder">
-</FrameLayout>
+    <Button
+        android:id="@+id/inventoryCheckNextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/inventoryCheckListPlaceHolder">
+    </FrameLayout>
 
 </RelativeLayout>

@@ -35,13 +35,13 @@ public class Request extends HashMap<String,String> {
     public static void Approve(String id)
     {
 
-        JSONArray c=JSONParser.getJSONArrayFromUrl(host+"/Approve/"+id);
+        JSONArray c = JSONParser.getJSONArrayFromUrl(host+"/Approve/"+id);
     }
 
     public static void Reject(String id)
     {
 
-        JSONArray c=JSONParser.getJSONArrayFromUrl(host+"/Reject/"+id);
+        JSONArray c = JSONParser.getJSONArrayFromUrl(host+"/Reject/"+id);
     }
 
     public static List<Request> listRequest(String dept_code) {

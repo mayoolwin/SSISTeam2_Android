@@ -1,10 +1,20 @@
 package com.example.mayoolwin.ssisteam2_android;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.util.Log;
+import android.widget.Toast;
+
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONStringer;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
 import java.util.List;
+
+import static android.R.id.list;
 
 /**
  * Created by Y on 25/07/2017.
@@ -12,27 +22,30 @@ import java.util.List;
 
 public class YRetrieveModel extends java.util.HashMap<String,String>
 {
-   //final static  String host = "http://192.168.0.18/TestAd/Service.svc";
-   final static  String host = "http://172.23.134.20/ssisteam2/Classes/WebServices/Service.svc";
 
-    public YRetrieveModel(String itemDes, String totalQty, String retrieveQty)
+   final static  String host = "http:/172.23.134.66/ssisteam2/Classes/WebServices/Service.svc";
+    //final static  String host = "http://localhost:65454/Classes/WebServices/Service.svc";
+
+    public YRetrieveModel(String itemDes, String retrieveQty,String totalQty)
     {
         put("itemDes", itemDes);
-        put("totalQty", totalQty);
         put("retrieveQty",retrieveQty);
+        put("totalQty", totalQty);
     }
 
     public YRetrieveModel(){}
 
-    public  static List<YRetrieveModel> listEachItemTotalQty()
+    public  static ArrayList<YRetrieveModel> listEachItemTotalQty(String user)
     {
-        List<YRetrieveModel> list = new ArrayList<YRetrieveModel>();
+        ArrayList<YRetrieveModel> list = new ArrayList<YRetrieveModel>();
         try {
-            JSONArray a = JSONParser.getJSONArrayFromUrl(host+"/RetriveTQty");
-            for (int i = 0; i < a.length(); i++)
+            JSONArray jAry = JSONParser.getJSONArrayFromUrl(host+"/RetriveTQty/"+user);
+            for (int i = 0; i < jAry.length(); i++)
             {
-                JSONObject j = a.getJSONObject(i);
-                list.add(new YRetrieveModel(j.getString("itemDes"), j.getString("totalQty"),Integer.toString(j.getInt("retrieveQty"))));
+                JSONObject jObj = jAry.getJSONObject(i);
+                list.add(new YRetrieveModel(jObj.getString("itemDes"),
+                                            jObj.getString("retrieveQty"),
+                                            jObj.getString("totalQty")));
             }
         }catch (Exception e)
         {
@@ -42,9 +55,59 @@ public class YRetrieveModel extends java.util.HashMap<String,String>
     }
 
 
+    public  static void updateRetrieveQty(List<YRetrieveModel> retrieveList,String loginUserName)
+    {
 
+        JSONArray jsonArray = new JSONArray();
+
+       // String loginName = loginUserName;
+        try {
+
+            for(YRetrieveModel eachObj : retrieveList )
+            {
+                JSONObject jObj = new JSONObject();
+                jObj.put("itemDes",eachObj.get("itemDes"));
+                jObj.put("retrieveQty", eachObj.get("retrieveQty"));
+                jObj.put("totalQty", eachObj.get("totalQty"));
+                jsonArray.put(jObj);
+            }
+
+            JSONObject jObj1 = new JSONObject();
+
+                    //jObj1.put("loginUserName",loginUserName);
+                    jObj1.put("retrievedList",jsonArray);
+
+            Log.v("SSS","*******"+jsonArray.toString());
+            Log.v("XXX","####"+jObj1.toString());
+
+
+        }catch (JSONException e)
+        {
+                e.printStackTrace();
+        }
+
+            try {
+                String result = JSONParser.postStream(host+"/RetriveTQty/Update/"+loginUserName,jsonArray.toString() );
+
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
+
+
+
+
+    }
 
 
 }
+
+
+
+
+
+
 
 

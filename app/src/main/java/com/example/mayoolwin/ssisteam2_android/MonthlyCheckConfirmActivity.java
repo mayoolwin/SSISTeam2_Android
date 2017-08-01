@@ -20,7 +20,9 @@ import com.example.mayoolwin.ssisteam2_android.fragment.InventoryCheckList;
 
 import org.json.JSONArray;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -61,23 +63,41 @@ public class MonthlyCheckConfirmActivity extends AppCompatActivity implements In
         }
         fTransaction.commit();
 
+        final InventoryCheck testing = inventoryChecks.get(0);
         Button updateButton = (Button) findViewById(R.id.inventoryCheckUpdateButton);
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-//                InventoryCheck
+
 
                 new AsyncTask<ArrayList<InventoryCheck>, Void, Void>() {
                     @Override
                     protected Void doInBackground(ArrayList<InventoryCheck>... params) {
                         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                         String username = pref.getString("username", "default");
-                        InventoryCheck.UpdateInventoryChecks(inventoryChecks, username);
+                        InventoryCheck.UpdateInventoryChecks(params[0], username);
+//                        InventoryCheck.UpdateInventory(params, username);
+
                         return null;
                     }
                 }.execute(inventoryChecks);
 
+//                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//                String date = sdf.format(new Date());
+//                NewRequest req = new NewRequest("01", "hengtiong", "reason", "Penging", date);
+//
+//                new AsyncTask<NewRequest, Void, Void>() {
+//                    @Override
+//                    protected Void doInBackground(NewRequest... params) {
+//
+//                        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+//                        String username = pref.getString("username", "default");
+//                        InventoryCheck.InsertRequest(params[0], username);
+//
+//                        return null;
+//                    }
+//                }.execute(req);
                 startActivity(intent);
             }
         });
