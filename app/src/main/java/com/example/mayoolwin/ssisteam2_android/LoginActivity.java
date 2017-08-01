@@ -18,6 +18,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText user;
     EditText pass;
     Button btn;
+
     boolean valid = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +41,8 @@ public class LoginActivity extends AppCompatActivity {
 
     public void login() {
 
-        String name = user.getText().toString();
-        String password = pass.getText().toString();
+      final String   name = user.getText().toString();
+      final String   password = pass.getText().toString();
 
         if (name.isEmpty() ) {
             user.setError("User Name is empty");
@@ -51,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         if (password.isEmpty()) {
-            pass.setError("between 4 and 10 alphanumeric characters");
+            pass.setError("Password is empty");
             valid = false;
         } else {
             pass.setError(null);
@@ -61,40 +62,57 @@ public class LoginActivity extends AppCompatActivity {
     public void validate() {
 
 
-        String name = user.getText().toString();
-        String password = pass.getText().toString();
+       final String name = user.getText().toString();
+        final String password = pass.getText().toString();
+
+        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
+                R.style.AppTheme_Dark_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Logging in...");
+        progressDialog.show();
 
 
 
-        new AsyncTask<String, Void, User>()
-        {
-            @Override
-            protected User doInBackground(String... strings) {
-                return User.getUser(strings[0],strings[1]);
-            }
 
-            protected void onPostExecute(User u)
-            {
-                if(u.get("UserName").equals("failed"))
-                {
-                    Toast.makeText(getBaseContext(), "User Name or Password is incorrect", Toast.LENGTH_LONG).show();
-                }
-                else
-                {
-                    pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                    SharedPreferences.Editor editor = pref.edit();
-                    editor.putString("username", u.get("UserName"));
-                    editor.putString("role", u.get("Role"));
-                    editor.putString("dept_code",u.get("DeptCode"));
-                    editor.commit();
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(intent);
-                }
-            }
+        new android.os.Handler().postDelayed(
+                new Runnable() {
+                    public void run() {
+                        // On complete call either onSignupSuccess or onSignupFailed
+                        // depending on success
+                        new AsyncTask<String, Void, User>()
+                        {
+                            @Override
+                            protected User doInBackground(String... strings) {
+                                return User.getUser(strings[0],strings[1]);
+                            }
+
+                            protected void onPostExecute(User u)
+                            {
+                                if(u.get("UserName").equals("failed"))
+                                {
+                                    Toast.makeText(getBaseContext(), "User Name or Password is incorrect", Toast.LENGTH_LONG).show();
+                                }
+                                else
+                                {
+                                    pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                                    SharedPreferences.Editor editor = pref.edit();
+                                    editor.putString("username", u.get("UserName"));
+                                    editor.putString("role", u.get("Role"));
+                                    editor.putString("dept_code",u.get("DeptCode"));
+                                    editor.commit();
+                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }
 
 
 
-        }.execute(name,password);
+                        }.execute(name,password);
+                        // onSignupFailed();
+                        progressDialog.dismiss();
+                    }
+                }, 3000);
 
 
     }

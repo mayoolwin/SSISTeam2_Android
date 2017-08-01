@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
     <item android:id="@+id/make_request" android:title="Make New Request"
         android:orderInCategory="101"/>
-    <item android:id="@+id/item2" android:title="bye2"
+    <item android:id="@+id/request_history" android:title="View Request History"
         android:orderInCategory="102"/>
     <item android:id="@+id/item3" android:title="bye3"
         android:orderInCategory="103"/>

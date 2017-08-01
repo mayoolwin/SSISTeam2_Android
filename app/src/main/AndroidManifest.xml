@@ -34,7 +34,10 @@
         <activity android:name=".DeleteAuthorityCheck" />
         <activity android:name=".ViewAllAdjustment" />
         <activity android:name=".ViewAllAdjustmentDetail" />
-        <activity android:name=".TestActivity"></activity>
+        <activity android:name=".TestActivity" />
+        <activity android:name=".RequestHistory" />
+        <activity android:name=".RequestDetailList" />
+        <activity android:name=".UpdateRequestDetail"></activity>
     </application>
 
 </manifest>

@@ -57,6 +57,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed()
+    {
+        //do nothing;
+    }
+
+    @Override
     public boolean onCreateOptionsMenu (Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -126,6 +132,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, YDisburseActivity.class));
                 return true;
 
+            case R.id.request_history:
+                startActivity(new Intent(this, RequestHistory.class));
+                return true;
+
+
 
             case R.id.view_adjustment:
                 startActivity(new Intent(this, ViewAllAdjustment.class));
@@ -183,4 +194,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }.execute(dept_code);
     }
+
+
 }
