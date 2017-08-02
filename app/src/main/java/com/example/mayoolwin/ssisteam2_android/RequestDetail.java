@@ -16,10 +16,11 @@ import static com.example.mayoolwin.ssisteam2_android.User.host;
 public class RequestDetail extends HashMap<String,String> {
 
 
-    public RequestDetail(String item_name, String quantity) {
+    public RequestDetail(String item_name, String quantity,String req_detail_id) {
 
         put("ItemName", item_name);
         put("Quantity", quantity);
+        put("RequestDetailId",req_detail_id);
 
 
     }
@@ -36,7 +37,7 @@ public class RequestDetail extends HashMap<String,String> {
                 JSONObject b=c.getJSONObject(i);
                 RequestDetail req = new RequestDetail(b.getString("itemdesc"),
 
-                        b.getString("quantity"));
+                        b.getString("quantity"),b.getString("req_detail_id"));
                 reqList.add(req);
             }
 
