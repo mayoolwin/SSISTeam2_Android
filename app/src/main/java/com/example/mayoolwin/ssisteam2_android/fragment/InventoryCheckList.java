@@ -92,8 +92,8 @@ public class InventoryCheckList extends android.app.Fragment {
         }
 
         listView.setAdapter(new SimpleAdapter(getActivity(), maps, R.layout.row_inventory_check,
-                new String[]{"itemDescription", "categoryName", "currentQuantity"},
-                new int[]{R.id.inventoryCheckRowText1, R.id.inventoryCheckRowText2, R.id.inventoryCheckRowText3}));
+                new String[]{"itemDescription", "categoryName", "currentQuantity", "actualQuantity"},
+                new int[]{R.id.inventoryCheckRowText1, R.id.inventoryCheckRowText2, R.id.inventoryCheckRowText3, R.id.inventoryCheckRowText4}));
         return view;
     }
 
