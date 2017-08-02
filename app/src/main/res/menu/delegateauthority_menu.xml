@@ -7,10 +7,6 @@
         android:orderInCategory="103"/>
     <item android:id="@+id/view_adjustment" android:title="View All Adjustment"
         android:orderInCategory="104"/>
-    <item android:id="@+id/make_request" android:title="Make New Request"
-        android:orderInCategory="101"/>
-    <item android:id="@+id/request_history" android:title="View Request History"
-        android:orderInCategory="102"/>
     <item android:id="@+id/logout" android:title="@string/logout"
         android:orderInCategory="105"/>
 </menu>

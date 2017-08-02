@@ -72,6 +72,15 @@ public class MainActivity extends AppCompatActivity {
         //Testing git again
 
 
+        TextView roleTextView = (TextView)findViewById(R.id.roleTextView);
+        if(flag.equals("Y")){
+            role="DeptHead(Delegate)";
+            //roleTextView.setText(role + " " + flag);
+            roleTextView.setText(role);
+        }else{
+            roleTextView.setText(role);
+        }
+        //roleTextView.setText(role + " " + flag);
         if(dept_code.equals("default") || role.equals("default"))
         {
             Intent intent = new Intent(this, LoginActivity.class);
