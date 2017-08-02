@@ -81,7 +81,7 @@ public class MakeNewRequestActivity extends AppCompatActivity {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 String currentDateandTime = sdf.format(new Date());
                 EditText reason=(EditText) findViewById(R.id.reason);
-                NewRequest req = new NewRequest(name,dept_code,"Testing","Pending",currentDateandTime);
+                NewRequest req = new NewRequest(name,dept_code,reason.getText().toString(),"Pending",currentDateandTime);
 
                 new AsyncTask<NewRequest, Void, Void>() {
                     @Override
