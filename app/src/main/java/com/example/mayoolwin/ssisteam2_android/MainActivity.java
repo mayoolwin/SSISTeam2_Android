@@ -42,12 +42,21 @@ public class MainActivity extends AppCompatActivity {
 
         //Testing git again
 
+
         pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         name= pref.getString("username", "default");
         String role= pref.getString("role", "default");
+        String flag = pref.getString("flag", "N");
         dept_code= pref.getString("dept_code", "default");
         TextView roleTextView = (TextView)findViewById(R.id.roleTextView);
-        roleTextView.setText(role);
+        if(flag.equals("Y")){
+            role="DeptHead(Delegate)";
+            //roleTextView.setText(role + " " + flag);
+            roleTextView.setText(role);
+        }else{
+            roleTextView.setText(role);
+        }
+        //roleTextView.setText(role + " " + flag);
         if(dept_code.equals("default") || role.equals("default"))
         {
             Intent intent = new Intent(this, LoginActivity.class);
@@ -66,16 +75,25 @@ public class MainActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String test = pref.getString("role", "employee");
-       // String flag = pref.getString("flag","Y");
-        if (test.equals("Clerk"))
+//        if (test.equals("Clerk"))
+//            getMenuInflater().inflate(R.menu.clerk_menu, menu);
+//        else if (test.equals("Employee"))
+//            getMenuInflater().inflate(R.menu.employee_menu, menu);
+//        else if (test.equals("DeptHead"))
+//            getMenuInflater().inflate(R.menu.departmenthead_menu,menu);
+//        else if (test.equals("Supervisor"))
+//            getMenuInflater().inflate(R.menu.supervisor_menu,menu);
+//        return true;
+        String flag = pref.getString("flag","Y");
+        if (test.equals("Clerk")&&flag.equals("N"))
             getMenuInflater().inflate(R.menu.clerk_menu, menu);
-        else if (test.equals("Employee"))
+        else if (test.equals("Employee")&&flag.equals("N"))
             getMenuInflater().inflate(R.menu.employee_menu, menu);
-        else if (test.equals("DeptHead"))
+        else if (test.equals("DeptHead")&&flag.equals("N"))
             getMenuInflater().inflate(R.menu.departmenthead_menu,menu);
-        else if (test.equals("DeptHead"))
+        else if (test.equals("DeptHead")&&flag.equals("Y"))
             getMenuInflater().inflate(R.menu.delegateauthority_menu,menu);
-        else if (test.equals("Supervisor"))
+        else if (test.equals("Supervisor")&&flag.equals("N"))
             getMenuInflater().inflate(R.menu.supervisor_menu,menu);
         return true;
     }

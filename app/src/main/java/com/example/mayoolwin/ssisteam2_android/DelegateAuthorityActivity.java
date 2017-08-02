@@ -148,6 +148,18 @@ public class DelegateAuthorityActivity extends AppCompatActivity implements
             }
         });
 
+
+
+        Button c = (Button) findViewById(R.id.button6);
+        c.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(DelegateAuthorityActivity.this, MainActivity.class);
+                startActivity(i);
+            }
+        });
+
         //For Calendar
         dateFormatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
         findViewsById();

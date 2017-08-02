@@ -22,6 +22,7 @@ public class UpdateRequestDetail extends AppCompatActivity implements View.OnCli
     private String quantity;
     private String user_name;
     private String status;
+    private String req_detail_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +33,7 @@ public class UpdateRequestDetail extends AppCompatActivity implements View.OnCli
          quantity=getIntent().getExtras().getString("Quantity");
          req_id=getIntent().getExtras().getString("ReqId");
         user_name=getIntent().getExtras().getString("UserName");
+        req_detail_id=getIntent().getExtras().getString("RequestDetailId");
         status=getIntent().getExtras().getString("Status");
 
         update=(Button)findViewById(R.id.update);
@@ -47,6 +49,7 @@ public class UpdateRequestDetail extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View v) {
+        String count= qty.getText().toString();
         switch (v.getId()) {
             case R.id.update:
                 // update is clicked
@@ -65,14 +68,32 @@ public class UpdateRequestDetail extends AppCompatActivity implements View.OnCli
                         i.putExtra("Status",status);
                         i.putExtra("Name", user_name);
                         startActivity(i);
+                        finish();
                     }
-                }.execute(req_id,quantity);
+                }.execute(req_detail_id,count);
 
 
                 break;
             case R.id.delete:
                 // delete is clicked
-
+                new AsyncTask<String, Void, Void>() {
+                    @Override
+                    protected Void doInBackground(String... params) {
+                        RequestDetail.Delete(params[0]);
+                        return null;
+                    }
+                    @Override
+                    protected void onPostExecute(Void result) {
+                        Toast t = Toast.makeText(getApplicationContext(), "Delete Successful", Toast.LENGTH_SHORT);
+                        t.show();
+                        Intent i=new Intent(getApplicationContext(),RequestDetailList.class);
+                        i.putExtra("Id",req_id);
+                        i.putExtra("Status",status);
+                        i.putExtra("Name", user_name);
+                        startActivity(i);
+                        finish();
+                    }
+                }.execute(req_detail_id);
                 break;
         }
     }
