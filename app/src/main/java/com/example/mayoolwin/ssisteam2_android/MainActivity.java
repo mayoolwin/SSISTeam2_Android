@@ -49,7 +49,14 @@ public class MainActivity extends AppCompatActivity {
         String flag = pref.getString("flag", "N");
         dept_code= pref.getString("dept_code", "default");
         TextView roleTextView = (TextView)findViewById(R.id.roleTextView);
-        roleTextView.setText(role + " " + flag);
+        if(flag.equals("Y")){
+            role="DeptHead(Delegate)";
+            //roleTextView.setText(role + " " + flag);
+            roleTextView.setText(role);
+        }else{
+            roleTextView.setText(role);
+        }
+        //roleTextView.setText(role + " " + flag);
         if(dept_code.equals("default") || role.equals("default"))
         {
             Intent intent = new Intent(this, LoginActivity.class);
