@@ -39,11 +39,12 @@
                 android:text="Quantity: "
                 android:textSize="20dp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/fileDiscrepancyAdjustedText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:inputType="number"/>
         </TableRow>
 
         <TableRow
@@ -61,7 +62,8 @@
                 android:id="@+id/fileDiscrepancyReasonEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:inputType="text"/>
         </TableRow>
     </TableLayout>
 </LinearLayout>
