@@ -14,15 +14,22 @@ public class User extends java.util.HashMap<String,String> {
 
     final static String host = "http://172.23.134.169/SSISTeam2/Classes/WebServices/Service.svc";
 
-    public User(String user_name, String dept_code, String role,String flag) {
+    public User(String user_name, String dept_code, String role) {
+        put("UserName", user_name);
+        put("DeptCode", dept_code);
+        put("Role", role);
+
+
+    }
+    /*public User(String user_name, String dept_code, String role,String flag) {
         put("UserName", user_name);
         put("DeptCode", dept_code);
         put("Role", role);
         put("Flag", flag);
 
-    }
+    }*/
 
-    public static User getUser(String name,String pass) {
+    /*public static User getUser(String name,String pass) {
         User u = null;
         try {
             JSONObject c = JSONParser.getJSONFromUrl(host+"/login/"+name+"/"+pass);
@@ -33,8 +40,19 @@ public class User extends java.util.HashMap<String,String> {
         } catch (Exception e) {
         }
         return u;
-    }
+    }*/
 
+    public static User getUser(String name,String pass) {
+        User u = null;
+        try {
+            JSONObject c = JSONParser.getJSONFromUrl(host+"/login/"+name+"/"+pass);
+            u = new User(c.getString("user_name"),
+                    c.getString("dept_code"),
+                    c.getString("role"));
+        } catch (Exception e) {
+        }
+        return u;
+    }
 
 
 

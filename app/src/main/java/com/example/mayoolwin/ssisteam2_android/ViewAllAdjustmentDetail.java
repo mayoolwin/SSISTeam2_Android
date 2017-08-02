@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -57,11 +58,13 @@ public class ViewAllAdjustmentDetail extends AppCompatActivity {
                     @Override
                     protected String doInBackground(String... params) {
                         ViewAllAdjustmentDetailModel.updateInventoryAdjustment(params[0]);
+
                         return null;
                     }
                     @Override
                     protected void onPostExecute(String result) {
                         finish();
+                        Toast.makeText(getBaseContext(), "Successfully Approve stock adjustment", Toast.LENGTH_LONG).show();
                         Log.e("ddd","Data"+result);
                     }
                 }.execute(voucherId);
@@ -77,12 +80,15 @@ public class ViewAllAdjustmentDetail extends AppCompatActivity {
                     @Override
                     protected String doInBackground(String... params) {
                         ViewAllAdjustmentDetailModel.deleteInventoryAdjustment(params[0]);
+
                         return null;
                     }
                     @Override
                     protected void onPostExecute(String result) {
+
                         finish();
-                        Log.e("ddd","Data"+result);
+                        Toast.makeText(getBaseContext(), "Successfully Reject stock adjustment", Toast.LENGTH_LONG).show();
+                       // Log.e("ddd","Data"+result);
                     }
                 }.execute(voucherId);
             }

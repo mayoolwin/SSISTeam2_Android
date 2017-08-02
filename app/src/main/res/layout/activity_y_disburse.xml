@@ -19,25 +19,19 @@
     <TextView
 
         android:id="@+id/textView1"
-
         android:layout_width="wrap_content"
-
         android:layout_height="wrap_content"
-
         android:text="Collection Point:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
 
         />
 
     <Spinner
 
         android:id="@+id/spinner1"
-
         android:layout_width="match_parent"
-
         android:layout_height="wrap_content"
-
         android:layout_below="@+id/textView1"
-
         android:popupBackground="@color/primary_dark"
 
         />
@@ -45,28 +39,22 @@
     <TextView
 
         android:id="@+id/textView2"
-
         android:layout_width="wrap_content"
-
         android:layout_height="wrap_content"
-
+        android:layout_below="@+id/spinner1"
         android:text="TextView"
-
-        android:layout_below="@+id/spinner1" />
+        android:visibility="invisible" />
 
 
 
     <TextView
 
         android:id="@+id/textView3"
-
         android:layout_width="wrap_content"
-
         android:layout_height="wrap_content"
-
         android:text="Departments:"
-
-        android:layout_below="@+id/textView2" />
+        android:layout_below="@+id/textView2"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
 
 
 
@@ -81,18 +69,6 @@
         android:layout_below="@+id/textView3"
 
         android:background="@color/oil"></ListView>
-
-
-
-    <TextView
-
-        android:id="@+id/textView4"
-
-        android:layout_width="wrap_content"
-
-        android:layout_height="wrap_content"
-
-        android:layout_below="@+id/listView2"/>
 
 
 

@@ -6,12 +6,14 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.mayoolwin.ssisteam2_android.User.host;
+
 /**
  * Created by May Oo Lwin on 7/29/2017.
  */
 public class ViewAllAdjustmentModel extends java.util.HashMap<String,String>
 {
-    final static String host = "http://172.23.135.97/SSISTeam2/Classes/WebServices/Service.svc";
+//    final static String host = "http://172.23.135.97/SSISTeam2/Classes/WebServices/Service.svc";
     String  vocherId,clerk,date,status,highestCost;
     public ViewAllAdjustmentModel(String VoucherID, String Clerk,String Date,String Status,String HighestCost)
     {

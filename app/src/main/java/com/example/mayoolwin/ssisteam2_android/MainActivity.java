@@ -67,8 +67,17 @@ public class MainActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String test = pref.getString("role", "employee");
-        String flag = pref.getString("flag","Y");
-        if (test.equals("Clerk")&&flag.equals("N"))
+        if (test.equals("Clerk"))
+            getMenuInflater().inflate(R.menu.clerk_menu, menu);
+        else if (test.equals("Employee"))
+            getMenuInflater().inflate(R.menu.employee_menu, menu);
+        else if (test.equals("DeptHead"))
+            getMenuInflater().inflate(R.menu.departmenthead_menu,menu);
+        else if (test.equals("Supervisor"))
+            getMenuInflater().inflate(R.menu.supervisor_menu,menu);
+        return true;
+        //String flag = pref.getString("flag","Y");
+        /*if (test.equals("Clerk")&&flag.equals("N"))
             getMenuInflater().inflate(R.menu.clerk_menu, menu);
         else if (test.equals("Employee")&&flag.equals("N"))
             getMenuInflater().inflate(R.menu.employee_menu, menu);
@@ -78,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
             getMenuInflater().inflate(R.menu.delegateauthority_menu,menu);
         else if (test.equals("Supervisor")&&flag.equals("N"))
             getMenuInflater().inflate(R.menu.supervisor_menu,menu);
-        return true;
+        return true;*/
     }
 
     /*@Override

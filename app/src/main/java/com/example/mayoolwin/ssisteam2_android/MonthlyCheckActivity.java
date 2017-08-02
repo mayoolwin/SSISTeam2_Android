@@ -35,62 +35,76 @@ public class MonthlyCheckActivity extends AppCompatActivity implements Inventory
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_monthly_check);
 
-        try {
-            new AsyncTask<Void, Void, String>(){
+        if (savedInstanceState == null){
+            try {
+                new AsyncTask<Void, Void, String>(){
 
-                @Override
-                protected String doInBackground(Void... voids) {
-                    final String service = "/InventoryCheck/";
-                    try {
-                        return InventoryCheck.getJsonStringFromUrl(host + service);
-                    } catch (Exception e) {
-                        Toast toast = new Toast(getApplicationContext());
-                        toast.makeText(getApplicationContext(),
-                                "Unable to retrieve catalogue list" , Toast.LENGTH_LONG).show();
-                        return null;
+                    @Override
+                    protected String doInBackground(Void... voids) {
+                        final String service = "/InventoryCheck/";
+                        try {
+                            return InventoryCheck.getJsonStringFromUrl(host + service);
+                        } catch (Exception e) {
+                            Toast toast = new Toast(getApplicationContext());
+                            toast.makeText(getApplicationContext(),
+                                    "Unable to retrieve catalogue list" , Toast.LENGTH_LONG).show();
+                            return null;
+                        }
                     }
-                }
 
-                @Override
-                protected void onPostExecute(String a) {
-                    super.onPostExecute(a);
+                    @Override
+                    protected void onPostExecute(String a) {
+                        super.onPostExecute(a);
 
-                    String JSONString = a;
+                        String JSONString = a;
 
-                    try {
-                        if (JSONString == null || JSONString.isEmpty()) {
+                        try {
+                            if (JSONString == null || JSONString.isEmpty()) {
+                                Toast.makeText(getApplicationContext(), "No images found", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                            inventoryChecks = InventoryCheck.fromJSONString(JSONString);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        if (inventoryChecks == null) {
                             Toast.makeText(getApplicationContext(), "No images found", Toast.LENGTH_SHORT).show();
                             return;
                         }
-                        inventoryChecks = InventoryCheck.fromJSONString(JSONString);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+
+                        FragmentManager fm = getFragmentManager();
+                        FragmentTransaction fTransaction = fm.beginTransaction();
+
+                        InventoryCheckList fragment = InventoryCheckList.newInstance(inventoryChecks);
+                        if (fm.findFragmentByTag("InventoryList") == null) {
+                            fTransaction.add(R.id.inventoryCheckListPlaceHolder, fragment, "InventoryList");
+                        } else {
+                            fTransaction.replace(R.id.inventoryCheckListPlaceHolder, fragment, "InventoryList");
+                        }
+                        fTransaction.commit();
                     }
 
-                    if (inventoryChecks == null) {
-                        Toast.makeText(getApplicationContext(), "No images found", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
+                }.execute();
+            } catch (Exception e) {
+                Toast toast = new Toast(getApplicationContext());
+                toast.makeText(getApplicationContext(),
+                        "Unable to retrieve catalogue list", Toast.LENGTH_LONG).show();
+                finish();
+            }
+        } else {
 
-                    FragmentManager fm = getFragmentManager();
-                    FragmentTransaction fTransaction = fm.beginTransaction();
-
-                    InventoryCheckList fragment = InventoryCheckList.newInstance(inventoryChecks);
-                    if (fm.findFragmentByTag("InventoryList") == null) {
-                        fTransaction.add(R.id.inventoryCheckListPlaceHolder, fragment, "InventoryList");
-                    } else {
-                        fTransaction.replace(R.id.inventoryCheckListPlaceHolder, fragment, "InventoryList");
-                    }
-                    fTransaction.commit();
-                }
-
-            }.execute();
-        } catch (Exception e) {
-            Toast toast = new Toast(getApplicationContext());
-            toast.makeText(getApplicationContext(),
-                    "Unable to retrieve catalogue list" , Toast.LENGTH_LONG).show();
-            finish();
+            Bundle arg = savedInstanceState.getBundle("Bundle");
+            ArrayList<HashMap<String, String>> maps = (ArrayList<HashMap<String, String>>) arg.getSerializable("List");
+            for (HashMap<String, String> map: maps
+                 ) {
+                InventoryCheck i = InventoryCheck.fromHashMap(map);
+                inventoryChecks.add(i);
+            }
+            Toast.makeText(getApplicationContext(), String.valueOf(inventoryChecks.size()), Toast.LENGTH_LONG).show();
         }
+
+
 
         final Intent intent = new Intent(this, MonthlyCheckConfirmActivity.class);
 
@@ -197,5 +211,20 @@ public class MonthlyCheckActivity extends AppCompatActivity implements Inventory
             fTransaction.replace(R.id.inventoryCheckListPlaceHolder, fragment, "InventoryList");
         }
         fTransaction.commit();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        ArrayList<HashMap<String, String>> map = new ArrayList<>();
+        Bundle arg = new Bundle();
+        for (InventoryCheck i: inventoryChecks
+             ) {
+            HashMap<String, String> m = i.toHashMap();
+            map.add(m);
+        }
+        arg.putSerializable("List", map);
+
+        savedInstanceState.putBundle("Bundle", arg);
     }
 }
