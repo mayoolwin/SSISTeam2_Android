@@ -18,8 +18,9 @@ public class YDisburseDetailModel extends java.util.HashMap<String,String> {
     final static  String host = "http://172.23.134.105/ssisteam2/Classes/WebServices/Service.svc";
     //final static  String host = "http://192.168.0.18/TestAd/Service.svc";
 
-    public YDisburseDetailModel(String disbursedQty, String itemName, String retrievedQty) {
+    public YDisburseDetailModel(String disbursedQty,String itemCode, String itemName, String retrievedQty) {
         put("disbursedQty", disbursedQty);
+        put("itemCode",itemCode);
         put("itemName", itemName);
         put("retrievedQty", retrievedQty);
 
@@ -39,8 +40,9 @@ public class YDisburseDetailModel extends java.util.HashMap<String,String> {
                 {
                     JSONObject jObj = a.getJSONObject(i);
                     YDisburseDetailModel obj = new YDisburseDetailModel (jObj.getString("disbursedQty"),
-                            jObj.getString("itemName"),
-                            jObj.getString("retrievedQty")
+                                                                        jObj.getString("itemCode"),
+                                                                         jObj.getString("itemName"),
+                                                                        jObj.getString("retrievedQty")
                     );
                     yDisburseLsit.add(obj);
 
@@ -66,6 +68,7 @@ public class YDisburseDetailModel extends java.util.HashMap<String,String> {
             {
                 JSONObject jObj = new JSONObject();
                 jObj.put("disbursedQty", eachObj.get("disbursedQty"));
+                jObj.put("itemCode", eachObj.get("itemCode"));
                 jObj.put("itemName",eachObj.get("itemName"));
                 jObj.put("retrievedQty", eachObj.get("retrievedQty"));
                 jsonArray.put(jObj);

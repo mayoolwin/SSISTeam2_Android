@@ -26,8 +26,9 @@ public class YRetrieveModel extends java.util.HashMap<String,String>
    final static  String host = "http://172.23.134.105/ssisteam2/Classes/WebServices/Service.svc";
     //final static  String host = "http://localhost:65454/Classes/WebServices/Service.svc";
 
-    public YRetrieveModel(String itemDes, String retrieveQty,String totalQty)
+    public YRetrieveModel( String itemCode,String itemDes, String retrieveQty,String totalQty)
     {
+        put("itemCode", itemCode);
         put("itemDes", itemDes);
         put("retrieveQty",retrieveQty);
         put("totalQty", totalQty);
@@ -43,7 +44,8 @@ public class YRetrieveModel extends java.util.HashMap<String,String>
             for (int i = 0; i < jAry.length(); i++)
             {
                 JSONObject jObj = jAry.getJSONObject(i);
-                list.add(new YRetrieveModel(jObj.getString("itemDes"),
+                list.add(new YRetrieveModel(jObj.getString("itemCode"),
+                                            jObj.getString("itemDes"),
                                             jObj.getString("retrieveQty"),
                                             jObj.getString("totalQty")));
             }
@@ -65,6 +67,7 @@ public class YRetrieveModel extends java.util.HashMap<String,String>
             for(YRetrieveModel eachObj : retrieveList )
             {
                 JSONObject jObj = new JSONObject();
+                jObj.put("itemCode",eachObj.get("itemCode"));
                 jObj.put("itemDes",eachObj.get("itemDes"));
                 jObj.put("retrieveQty", eachObj.get("retrieveQty"));
                 jObj.put("totalQty", eachObj.get("totalQty"));

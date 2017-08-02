@@ -70,8 +70,8 @@ public class YRetrieveActivity extends AppCompatActivity {
                     listview.setAdapter(
                             new SimpleAdapter
                                     (YRetrieveActivity.this, result, R.layout.y_row,
-                                            new String[]{"itemDes", "totalQty"},
-                                            new int[]{R.id.textView2, R.id.textView3})
+                                            new String[]{"itemCode","itemDes", "totalQty"},
+                                            new int[]{R.id.textView1,R.id.textView2, R.id.textView3})
                     );
 
                 }
@@ -100,7 +100,7 @@ public class YRetrieveActivity extends AppCompatActivity {
 
                     for (int i = 0; i < listview.getAdapter().getCount(); i++)
                     {
-                    textViewItem = (TextView) listview.getChildAt(i).findViewById(R.id.textView2);
+                    textViewItem = (TextView) listview.getChildAt(i).findViewById(R.id.textView1);
                     keys[i] = textViewItem.getText().toString();
 
                     textViewReqQty = (TextView) listview.getChildAt(i).findViewById(R.id.textView3);
@@ -116,7 +116,7 @@ public class YRetrieveActivity extends AppCompatActivity {
                           {
                                 if (Integer.parseInt(values[j]) <= Integer.parseInt(reqQtys[j]))
                                 {
-                                    objList.add(new YRetrieveModel(keys[j], values[j], ""));
+                                    objList.add(new YRetrieveModel(keys[j],"", values[j], ""));
                                     Toast.makeText(YRetrieveActivity.this, "successfully retrieved!", Toast.LENGTH_SHORT).show();
                                 } else if ((Integer.parseInt(values[j]) > Integer.parseInt(reqQtys[j]))) {
                                     Toast.makeText(YRetrieveActivity.this, "Cannot retrieve more than requested quantity!", Toast.LENGTH_SHORT).show();

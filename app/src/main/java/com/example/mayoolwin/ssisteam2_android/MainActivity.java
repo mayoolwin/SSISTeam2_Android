@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
 
         //Testing git again
 
-
         pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         name= pref.getString("username", "default");
         String role= pref.getString("role", "default");
@@ -67,16 +66,16 @@ public class MainActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String test = pref.getString("role", "employee");
-        String flag = pref.getString("flag","Y");
-        if (test.equals("Clerk")&&flag.equals("N"))
+       // String flag = pref.getString("flag","Y");
+        if (test.equals("Clerk"))
             getMenuInflater().inflate(R.menu.clerk_menu, menu);
-        else if (test.equals("Employee")&&flag.equals("N"))
+        else if (test.equals("Employee"))
             getMenuInflater().inflate(R.menu.employee_menu, menu);
-        else if (test.equals("DeptHead")&&flag.equals("N"))
+        else if (test.equals("DeptHead"))
             getMenuInflater().inflate(R.menu.departmenthead_menu,menu);
-        else if (test.equals("DeptHead")&&flag.equals("Y"))
+        else if (test.equals("DeptHead"))
             getMenuInflater().inflate(R.menu.delegateauthority_menu,menu);
-        else if (test.equals("Supervisor")&&flag.equals("N"))
+        else if (test.equals("Supervisor"))
             getMenuInflater().inflate(R.menu.supervisor_menu,menu);
         return true;
     }
