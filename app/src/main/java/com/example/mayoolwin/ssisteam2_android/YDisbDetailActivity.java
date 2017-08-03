@@ -215,8 +215,8 @@ public class YDisbDetailActivity extends AppCompatActivity {
                                 //Discrepency
                                 //discrepenceyAry[j] = retriveQty[j] - values[j];
                                 //discrepencyMap.put(keys[j], discrepenceyAry[j]);
-                                discreAryList.add(new YDisburseDetailModel(sDisburseAry[j], keys[j],desc[j],sRetrieveAry[j]));
-                                Log.v("Z","Discrep"+discreAryList.get(0));
+//                                discreAryList.add(new YDisburseDetailModel(sDisburseAry[j], keys[j],desc[j],sRetrieveAry[j]));
+//                                Log.v("Z","Discrep"+discreAryList.get(0));
 
                             } else if (values[j] > retriveQty[j]) {
 
