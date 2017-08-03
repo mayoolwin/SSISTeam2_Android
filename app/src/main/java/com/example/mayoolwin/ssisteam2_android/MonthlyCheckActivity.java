@@ -35,6 +35,8 @@ public class MonthlyCheckActivity extends AppCompatActivity implements Inventory
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_monthly_check);
 
+        final Button confirmButton = (Button) findViewById(R.id.inventoryCheckNextButton);
+
         if (savedInstanceState == null){
             try {
                 new AsyncTask<Void, Void, String>(){
@@ -56,6 +58,7 @@ public class MonthlyCheckActivity extends AppCompatActivity implements Inventory
                     protected void onPostExecute(String a) {
                         super.onPostExecute(a);
 
+                        confirmButton.setEnabled(true);
                         String JSONString = a;
 
                         try {
@@ -108,7 +111,6 @@ public class MonthlyCheckActivity extends AppCompatActivity implements Inventory
 
         final Intent intent = new Intent(this, MonthlyCheckConfirmActivity.class);
 
-        Button confirmButton = (Button) findViewById(R.id.inventoryCheckNextButton);
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

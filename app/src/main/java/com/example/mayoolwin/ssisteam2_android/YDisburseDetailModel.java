@@ -1,12 +1,16 @@
 package com.example.mayoolwin.ssisteam2_android;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static com.example.mayoolwin.ssisteam2_android.User.host;
@@ -15,10 +19,8 @@ import static com.example.mayoolwin.ssisteam2_android.User.host;
  * Created by Y on 27/07/2017.
  */
 
-public class YDisburseDetailModel extends java.util.HashMap<String,String> {
+public class YDisburseDetailModel extends java.util.HashMap<String,String> implements Serializable {
 
-
-    //final static  String host = "http://192.168.0.18/TestAd/Service.svc";
 
     public YDisburseDetailModel(String disbursedQty,String itemCode, String itemName, String retrievedQty) {
         put("disbursedQty", disbursedQty);
@@ -29,13 +31,22 @@ public class YDisburseDetailModel extends java.util.HashMap<String,String> {
     }
     public YDisburseDetailModel(){}
 
+    public HashMap<String, String> toHashMap() {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("disbursedQty", this.get("disbursedQty"));
+        map.put("itemCode", this.get("itemCode"));
+        map.put("itemName", this.get("itemName"));
+        map.put("retrievedQty", this.get("retrievedQty"));
+        return map;
+    }
+
 
     public  static List<YDisburseDetailModel> listDisDeptDetail(String user, String deptCode)
     {
         List<YDisburseDetailModel> yDisburseLsit = new ArrayList<YDisburseDetailModel>();
 
         try {
-            JSONArray a = JSONParser.getJSONArrayFromUrl(host+"/DisbDeptDetail/"+user+"/"+deptCode);
+            JSONArray a = JSONParser.getJSONArrayFromUrl(host+"/DisbDeptDetail/" + user + "/" + deptCode);
 
 
                 for(int i=0; i<a.length(); i++)
@@ -85,7 +96,7 @@ public class YDisburseDetailModel extends java.util.HashMap<String,String> {
 
         }
 
-
     }
+
 
 }

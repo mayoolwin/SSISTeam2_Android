@@ -24,9 +24,6 @@ import static com.example.mayoolwin.ssisteam2_android.User.host;
 public class YRetrieveModel extends java.util.HashMap<String,String>
 {
 
-
-    //final static  String host = "http://localhost:65454/Classes/WebServices/Service.svc";
-
     public YRetrieveModel( String itemCode,String itemDes, String retrieveQty,String totalQty)
     {
         put("itemCode", itemCode);
