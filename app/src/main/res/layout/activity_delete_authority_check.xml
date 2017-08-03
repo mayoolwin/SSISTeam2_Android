@@ -15,7 +15,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="18dp"
+            android:textSize="17dp"
             android:textColor="#fff"
             android:text="Current Delegate" />
         <TextView
@@ -23,7 +23,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="18dp"
+            android:textSize="17dp"
             android:textColor="#fff"
             android:text="TextView" />
     </LinearLayout>
@@ -36,7 +36,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="18dp"
+            android:textSize="17dp"
             android:textColor="#fff"
             android:text="Created Date"/>
         <TextView
@@ -44,7 +44,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
+            android:textSize="17dp"
             android:textColor="#fff"
             android:text="TextView" />
     </LinearLayout>
@@ -57,7 +57,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="18dp"
+            android:textSize="17dp"
             android:textColor="#fff"
             android:text="Reason" />
 
@@ -66,7 +66,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="18dp"
+            android:textSize="17dp"
             android:textColor="#fff"
             android:text="TextView" />
     </LinearLayout>
@@ -79,7 +79,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="18dp"
+            android:textSize="17dp"
             android:textColor="#fff"
             android:text="Start Date" />
         <TextView
@@ -87,7 +87,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="18dp"
+            android:textSize="17dp"
             android:textColor="#fff"
             android:text="TextView" />
     </LinearLayout>
@@ -100,7 +100,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="18dp"
+            android:textSize="17dp"
             android:textColor="#fff"
             android:text="End Date" />
 
@@ -109,7 +109,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="18dp"
+            android:textSize="17dp"
             android:textColor="#fff"
             android:text="TextView" />
     </LinearLayout>
@@ -123,7 +123,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="150dp"
             android:layout_marginStart="150dp"
-            android:textSize="18dp"
+            android:textSize="17dp"
             android:textColor="#fff"
             android:text="Delete" />
     </LinearLayout>
