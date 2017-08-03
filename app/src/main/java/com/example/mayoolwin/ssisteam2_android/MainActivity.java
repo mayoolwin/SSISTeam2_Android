@@ -1,5 +1,7 @@
 package com.example.mayoolwin.ssisteam2_android;
 
+import android.app.ProgressDialog;
+import android.app.TabActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -17,6 +19,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TabHost;
 import android.widget.TextView;
@@ -31,10 +35,20 @@ import static com.example.mayoolwin.ssisteam2_android.R.color.base;
 
 public class MainActivity extends AppCompatActivity {
 
+    private ListView listView;
+    private List<WorkingPartnerModel> pList;
+
+    // Progress Dialog
+    private ProgressDialog pDialog;
     SharedPreferences pref;
     public static String dept_code;
     public static String name;
     Button b;
+
+    private static final String PROFILE_SPEC = "Profile";
+    // TabSpec Names
+    private static final String INBOX_SPEC = "Contact";
+    private static final String OUTBOX_SPEC = "Outbox";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,44 +59,80 @@ public class MainActivity extends AppCompatActivity {
         String flag = pref.getString("flag", "N");
         dept_code= pref.getString("dept_code", "default");
 
-        TabHost host = (TabHost)findViewById(R.id.tabHost);
-        host.setup();
-
-        TextView roleTextView = (TextView)findViewById(R.id.txttab1);
-        if(flag.equals("Y")){
-            role="DeptHead(Delegate)";
-            //roleTextView.setText(role + " " + flag);
-            roleTextView.setText(role);
-        }else{
-            roleTextView.setText(role);
-        }
-
-        //Tab 1
-        TabHost.TabSpec spec = host.newTabSpec("Tab One");
-        spec.setContent(R.id.tab1);
-        spec.setIndicator("Tab One");
-        host.addTab(spec);
-
-        //Tab 2
-        spec = host.newTabSpec("Tab Two");
-        spec.setContent(R.id.tab2);
-        spec.setIndicator("Tab Two");
-        host.addTab(spec);
-
-        //Tab 3
-        spec = host.newTabSpec("Tab Three");
-        spec.setContent(R.id.tab3);
-        spec.setIndicator("Tab Three");
-        host.addTab(spec);
-
-        //Testing git again
-
-        //roleTextView.setText(role + " " + flag);
         if(dept_code.equals("default") || role.equals("default"))
         {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }
+
+        listView = (ListView) findViewById(R.id.listView1);
+
+
+
+        new AsyncTask<String, Void, List<WorkingPartnerModel>>() {
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                pDialog = new ProgressDialog(MainActivity.this);
+                pDialog.setMessage("Loading Data ...");
+                pDialog.setIndeterminate(false);
+                pDialog.setCancelable(false);
+                pDialog.show();
+            }
+
+            @Override
+            protected List<WorkingPartnerModel> doInBackground(String... params) {
+                List<WorkingPartnerModel> r = WorkingPartnerModel.getWorkingPartner(params[0],params[1]);
+                return r;
+            }
+
+            @Override
+            protected void onPostExecute(List<WorkingPartnerModel> result) {
+
+                pList=result;
+                // dismiss the dialog after getting all products
+                pDialog.dismiss();
+                // updating UI from Background Thread
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        /**
+                         * Updating parsed JSON data into ListView
+                         * */
+                        listView.setAdapter(new SimpleAdapter(getApplicationContext(), pList, R.layout.contact_info_row, new String[]{"UserName", "Role", "Email","PhNo"}, new int[]{R.id.name, R.id.txtrole, R.id.txtemail,R.id.txtphno}));
+                    }
+                });
+
+
+
+            }
+        }.execute(name,dept_code);
+
+
+        TabHost host = (TabHost)findViewById(R.id.tabHost);
+        host.setup();
+
+        //Tab 1
+        TabHost.TabSpec spec = host.newTabSpec("Colleagues");
+        spec.setContent(R.id.tab1);
+        spec.setIndicator("Colleagues");
+        host.addTab(spec);
+
+        //Tab 2
+        spec = host.newTabSpec("Recent Activity");
+        spec.setContent(R.id.tab2);
+        spec.setIndicator("Recent Activity");
+        host.addTab(spec);
+
+        //Tab 3
+        spec = host.newTabSpec("Profile");
+        spec.setContent(R.id.tab3);
+        spec.setIndicator("Profile");
+        host.addTab(spec);
+
+
+
+
     }
 
     @Override

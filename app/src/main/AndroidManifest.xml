@@ -40,6 +40,7 @@
         <activity android:name=".RequestHistory" />
         <activity android:name=".RequestDetailList" />
         <activity android:name=".UpdateRequestDetail" />
+        <activity android:name=".ContactActivity"></activity>
     </application>
 
 </manifest>

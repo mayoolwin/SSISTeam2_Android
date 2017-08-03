@@ -1,12 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.mayoolwin.ssisteam2_android.MainActivity">
-
-
+    tools:context=".MainActivity">
 
     <TabHost
         android:id="@+id/tabHost"
@@ -34,13 +30,28 @@
                     android:id="@+id/tab1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/primary_darker"
+                    android:background="@color/primary"
+                    android:foreground="@color/white"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:id="@+id/txttab1"/>
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:textStyle="bold"
+                        android:textSize="17dp"
+                        android:id="@+id/txttab2"
+                        android:text="Your Working Partner" />
+
+                    <ListView
+                        android:layout_width="wrap_content"
+                        android:layout_height="400dp"
+                        android:background="@color/primary_darker"
+                        android:id="@+id/listView1"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@+id/txttab2"
+                        />
 
                 </LinearLayout>
 
@@ -48,7 +59,7 @@
                     android:id="@+id/tab2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/warning"
+                    android:background="#da8200"
                     android:orientation="vertical">
 
                     <TextView
@@ -61,7 +72,7 @@
                     android:id="@+id/tab3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/primary_darker"
+                    android:background="#5b89ff"
                     android:orientation="vertical">
 
                     <TextView
@@ -73,5 +84,4 @@
         </LinearLayout>
     </TabHost>
 
-
-</RelativeLayout>
+</LinearLayout>
