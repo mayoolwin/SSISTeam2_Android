@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,15 +60,15 @@ public class YRetrieveActivity extends AppCompatActivity {
                 }
                 else
                 {
-//                    listview.setAdapter(
-//                            new SimpleAdapter
-//                                    (YRetrieveActivity.this, result, R.layout.y_row,
-//                                            new String[]{"itemCode","itemDes", "totalQty"},
-//                                            new int[]{R.id.textView1,R.id.textView2, R.id.textView3})
-//                    );
+                    listview.setAdapter(
+                            new SimpleAdapter
+                                    (YRetrieveActivity.this, result, R.layout.y_row,
+                                            new String[]{"itemCode","itemDes", "totalQty"},
+                                            new int[]{R.id.textView1,R.id.textView2, R.id.textView3})
+                    );
 
-                    rCustomAdapter customAdapter = new rCustomAdapter(YRetrieveActivity.this,result);
-                    listview.setAdapter(customAdapter);
+//                    rCustomAdapter customAdapter = new rCustomAdapter(YRetrieveActivity.this,result);
+//                    listview.setAdapter(customAdapter);
 
                 }
             }
