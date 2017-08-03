@@ -4,13 +4,14 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
+import static com.example.mayoolwin.ssisteam2_android.User.host;
+
 /**
  * Created by Y on 01/08/2017.
  */
 
 public class Dept  extends HashMap<String,String> {
 
-    final static  String host = "http://172.23.134.105/ssisteam2/Classes/WebServices/Service.svc";
 
     public Dept(String ContactNumber, String DeptCode, String RepUser ) {
 
