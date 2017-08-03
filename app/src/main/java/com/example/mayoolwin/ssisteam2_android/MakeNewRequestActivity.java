@@ -100,7 +100,8 @@ public class MakeNewRequestActivity extends AppCompatActivity {
                     }
                     @Override
                     protected void onPostExecute(Void result) {
-
+                        Toast.makeText(getBaseContext(), "Request Successful!", Toast.LENGTH_LONG).show();
+                        finish();
                     }
                 }.execute(req);
 
@@ -166,54 +167,57 @@ public class MakeNewRequestActivity extends AppCompatActivity {
                 Spinner cat_name = (Spinner) findViewById(R.id.spinner2);
                 Spinner item_desc = (Spinner) findViewById(R.id.spinner1);
                 EditText quantity = (EditText) findViewById(R.id.edit_qty);
+                String qty=quantity.getText().toString();
                 Button submit=(Button)findViewById(R.id.submit) ;
                 boolean duplicate=false;
                 Item item = new Item(item_desc.getSelectedItem().toString(), quantity.getText().toString());
+                if (qty.isEmpty() ) {
+                    quantity.setError("Quantity is empty");
 
-                if(itemlist==null)
-                {
-                    itemlist= new ArrayList<Item>();
-                    itemlist.add(item);
-                    View(itemlist);
-                    submit.setVisibility(View.VISIBLE);
                 }
 
-                else {
-
-
-                    for (Item i: itemlist)
+                else
+                {
+                    if(itemlist==null)
                     {
-                        if (i.get("ItemDesc") == item.get("ItemDesc"))
+                        itemlist= new ArrayList<Item>();
+                        itemlist.add(item);
+                        View(itemlist);
+                        submit.setVisibility(View.VISIBLE);
+                    }
+
+                    else {
+
+
+                        for (Item i: itemlist)
                         {
-                            duplicate = true;
-                            break;
+                            if (i.get("ItemDesc") == item.get("ItemDesc"))
+                            {
+                                duplicate = true;
+                                break;
+                            }
+
+                        }
+
+                        if (!duplicate)
+                        {
+
+                            itemlist.add(item);
+                            View(itemlist);
+                            submit.setVisibility(View.VISIBLE);
+
+                        }
+                        else {
+                            DuplicateItem();
+                            View(itemlist);
+                            submit.setVisibility(View.VISIBLE);
                         }
 
                     }
 
-                    if (!duplicate)
-                    {
-
-                        itemlist.add(item);
-                        View(itemlist);
-                        submit.setVisibility(View.VISIBLE);
-
-                    }
-                    else {
-                       DuplicateItem();
-                        View(itemlist);
-                        submit.setVisibility(View.VISIBLE);
-                    }
+                    //Testing Duplication
 
                 }
-
-                //Testing Duplication
-
-
-
-
-
-
 
 
                 }

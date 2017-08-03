@@ -81,6 +81,7 @@ public class ApproveRequestActivity extends AppCompatActivity{
                         t.show();
                         Intent i=new Intent(getApplicationContext(),ViewAllPendingRequestActivity.class);
                         startActivity(i);
+                        finish();
                     }
                 }.execute(req_id);
             }
@@ -108,6 +109,7 @@ public class ApproveRequestActivity extends AppCompatActivity{
                         t.show();
                         Intent i=new Intent(getApplicationContext(),ViewAllPendingRequestActivity.class);
                         startActivity(i);
+                        finish();
                     }
                 }.execute(req_id);
             }

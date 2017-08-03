@@ -1,5 +1,6 @@
 package com.example.mayoolwin.ssisteam2_android;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,7 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends Activity {
 
     SharedPreferences pref;
     EditText user;

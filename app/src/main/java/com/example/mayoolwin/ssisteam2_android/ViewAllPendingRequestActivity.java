@@ -6,24 +6,27 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import java.util.List;
 
-public class ViewAllPendingRequestActivity extends Activity implements AdapterView.OnItemClickListener {
+public class ViewAllPendingRequestActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
 
     SharedPreferences pref;
+    TextView status;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pending_request_list);
 
         pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-
+        status=(TextView)findViewById(R.id.lblstatus);
         String dept_code= pref.getString("dept_code", "default");
 
         final ListView listView=(ListView)findViewById(R.id.listView2);
@@ -43,7 +46,10 @@ public class ViewAllPendingRequestActivity extends Activity implements AdapterVi
             protected void onPostExecute(List<Request> result) {
 
 
-
+                if(result.isEmpty())
+                {
+                    status.setText("Nothing found!");
+                }
                 listView.setAdapter(new SimpleAdapter(getApplicationContext(),result,R.layout.pending_request_row,new String[]{"Name","Date"},new int[]{R.id.name,R.id.date}));
 
 
@@ -68,5 +74,7 @@ public class ViewAllPendingRequestActivity extends Activity implements AdapterVi
         i.putExtra("Reason",req.get("Reason"));
 
         startActivity(i);
+        finish();
+
     }
 }
