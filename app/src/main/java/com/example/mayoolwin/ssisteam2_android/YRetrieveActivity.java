@@ -79,8 +79,6 @@ public class YRetrieveActivity extends AppCompatActivity {
         }.execute();
 
 
-
-
         //Update to webservice
         btnConfrim = (Button) findViewById(R.id.buttonConfirm);
         btnConfrim.setOnClickListener(new View.OnClickListener() {
