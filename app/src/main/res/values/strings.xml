@@ -1,12 +1,26 @@
 <resources>
-    <string name="app_name">SISSTeam2</string>
     <string name="clerk_menu_monthly">Monthly Check</string>
     <string name="clerk_menu_retrieval">Retrieval Forms</string>
     <string name="clerk_menu_disbursement">Disbursement Forms</string>
     <string name="clerk_menu_discrepancy">File Discrepancy</string>
     <string name="logout">Logout</string>
     <string name="confirm">Confirm</string>
+    <string name="next">Next</string>
+    <string name="inventory_check_name">Item Name: </string>
+    <string name="inventory_check_category">Category: </string>
+    <string name="inventory_check_recorded">Recorded: </string>
+    <string name="inventory_check_actual">Actual: </string>
+    <string name="inventory_check_reason">Reason: </string>
+    <string name="inventory_check_adjusted">Adjusted: </string>
 
+    <!--Activity Titles-->
+    <string name="app_name">Logic University Stationery App</string>
+    <string name="icon_name">LU Stationery</string>
+    <string name="monthly_list_name">Monthly Check List</string>
+    <string name="monthly_confirm_name">Monthly Check Confirmation</string>
+    <string name="monthly_detail_name">Monthly Check Confirmation</string>
+    <string name="logic_activity_name">Login Activity</string>
+    <string name="file_discrepancy_name">File Discrepancy</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

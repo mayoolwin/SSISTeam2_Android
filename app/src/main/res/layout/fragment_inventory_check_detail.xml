@@ -1,111 +1,136 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/monsoon"
     tools:context="com.example.mayoolwin.ssisteam2_android.fragment.InventoryCheckDetail">
 
     <TableLayout
         android:layout_width="match_parent"
-        android:paddingLeft="15dp"
-        android:paddingStart="15dp"
+        android:layout_height="wrap_content"
         android:paddingEnd="15dp"
-        android:layout_height="match_parent">
+        android:paddingLeft="15dp"
+        android:paddingStart="15dp">
 
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:text="Reason: "
-                android:id="@+id/textView2" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:id="@+id/inventoryCheckDetailText1" />
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                android:text="@string/inventory_check_name"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/inventoryCheckDetailText1"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                android:textSize="20sp" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:padding="10dp">
 
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Reason: "
-                android:textSize="20dp" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                android:text="@string/inventory_check_category"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/inventoryCheckDetailText2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20dp" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                android:textSize="20sp" />
         </TableRow>
 
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:text="Reason: "
-                android:id="@+id/textView2" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:id="@+id/inventoryCheckDetailText3" />
-        </TableRow>
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:padding="10dp">
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Actual Quantity: "
-                android:textSize="20dp"
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                android:text="@string/inventory_check_recorded"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/inventoryCheckDetailText3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                android:textSize="20sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                android:text="@string/inventory_check_actual"
                 android:textColor="@color/white"
-                android:id="@+id/textView1" />
+                android:textSize="20sp" />
 
             <NumberPicker
                 android:id="@+id/inventoryCheckDetailNumPicker"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:textColor="@color/white" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:padding="10dp">
 
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Reason: "
-                android:textSize="20dp" />
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                android:text="@string/inventory_check_reason"
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/inventoryCheckDetailEdit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:inputType="text"
-                android:textSize="20dp" />
+                android:padding="5dp"
+                android:textSize="20sp" />
         </TableRow>
 
-        <TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
 
             <Button
+                android:id="@+id/inventoryCheckDetailConfirm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
                 android:text="@string/confirm"
-                android:id="@+id/inventoryCheckDetailConfirm" />
+                android:textSize="20sp" />
         </TableRow>
     </TableLayout>
-</FrameLayout>
+</ScrollView>

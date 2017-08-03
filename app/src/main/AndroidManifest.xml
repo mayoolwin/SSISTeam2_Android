@@ -13,9 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -24,9 +25,14 @@
         <activity android:name=".YDisburseActivity" />
         <activity android:name=".YDisbDetailActivity" />
         <activity android:name=".ApproveRequestActivity" />
-        <activity android:name=".MonthlyCheckActivity" />
-        <activity android:name=".MonthlyCheckConfirmActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".MonthlyCheckActivity"
+            android:label="@string/monthly_list_name"/>
+        <activity android:name=".MonthlyCheckConfirmActivity"
+            android:label="@string/monthly_confirm_name"/>
+        <activity android:name=".MonthlyCheckDetailActivity"
+            android:label="@string/monthly_detail_name"/>
+        <activity android:name=".LoginActivity"
+            android:label="@string/logic_activity_name"/>
         <activity android:name=".SecondAcitvity" />
         <activity android:name=".ViewAllPendingRequestActivity" />
         <activity android:name=".DelegateAuthorityActivity" />
@@ -35,8 +41,8 @@
         <activity android:name=".ViewAllAdjustment" />
         <activity android:name=".ViewAllAdjustmentDetail" />
         <activity android:name=".TestActivity" />
-        <activity android:name=".MonthlyCheckDetailActivity" />
-        <activity android:name=".FileDiscrepancyActivity" />
+        <activity android:name=".FileDiscrepancyActivity"
+            android:label="@string/file_discrepancy_name"/>
         <activity android:name=".RequestHistory" />
         <activity android:name=".RequestDetailList" />
         <activity android:name=".UpdateRequestDetail" />

@@ -9,40 +9,98 @@
     <TableLayout
         android:layout_width="match_parent"
         android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         android:layout_height="match_parent">
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Item Name: "
-                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/inventory_check_name"
+                android:textSize="20sp"
+                android:padding="5dp"
                 android:textColor="@color/white"
                 android:id="@+id/textView1" />
 
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:textColor="@color/white"
-                android:id="@+id/inventoryCheckDetailActualQtyEditText" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="20sp"
+                android:padding="5dp"
+                android:id="@+id/inventoryCheckRowText1" />
         </TableRow>
         <TableRow>
 
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="20sp"
+                android:padding="5dp"
+                android:text="@string/inventory_check_category"
+                android:id="@+id/textView2" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="20sp"
+                android:padding="5dp"
+                android:id="@+id/inventoryCheckRowText2" />
+        </TableRow>
+        <TableRow>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="20sp"
+                android:padding="5dp"
+                android:text="@string/inventory_check_recorded"
+                android:id="@+id/textView2" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="20sp"
+                android:padding="5dp"
+                android:id="@+id/inventoryCheckRowText3" />
+        </TableRow>
+        <TableRow>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="20sp"
+                android:padding="5dp"
+                android:text="@string/inventory_check_actual"
+                android:id="@+id/textView2" />
+
+            <NumberPicker
+                android:id="@+id/inventoryCheckDetailNumPicker"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:text="Quantity: "
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+        </TableRow>
+        <TableRow>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="20sp"
+                android:padding="5dp"
+                android:text="@string/inventory_check_reason"
                 android:id="@+id/textView2" />
 
             <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:id="@+id/inventoryCheckDetailReasonEditText" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                android:textSize="20sp"
+                android:id="@+id/inventoryCheckDetailReasonEditText"
+                android:inputType="text"/>
         </TableRow>
     </TableLayout>
 
@@ -52,6 +110,7 @@
         android:layout_height="wrap_content"
         android:text="@string/confirm"
         android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true" />
 
 </RelativeLayout>
