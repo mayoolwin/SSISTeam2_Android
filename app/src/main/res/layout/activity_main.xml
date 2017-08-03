@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:foreground="@color/white"
     tools:context=".MainActivity">
 
     <TabHost
@@ -41,7 +42,7 @@
                         android:layout_marginTop="10dp"
                         android:textStyle="bold"
                         android:textSize="17dp"
-                        android:id="@+id/txttab2"
+                        android:id="@+id/txttab1"
                         android:text="Your Working Partner" />
 
                     <ListView
@@ -55,7 +56,7 @@
 
                 </LinearLayout>
 
-                <LinearLayout
+                <!--<LinearLayout
                     android:id="@+id/tab2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -64,21 +65,67 @@
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="This is tab 2" />
-                </LinearLayout>
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:textStyle="bold"
+                        android:textSize="17dp"
+                        android:id="@+id/txttab2"
+                        android:text="Nothing found" />
+                </LinearLayout>-->
 
                 <LinearLayout
                     android:id="@+id/tab3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#5b89ff"
+                    android:background="@color/primary_darker"
                     android:orientation="vertical">
 
-                    <TextView
+                    <TableLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="This is tab 3" />
+                        android:layout_height="match_parent">
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:layout_height="match_parent">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Name: "
+                                android:textSize="20dp"
+                                android:textColor="@color/white"
+                                android:id="@+id/textView1" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="20dp"
+                                android:textColor="@color/white"
+                                android:id="@+id/name" />
+                        </TableRow>
+                        <TableRow
+                            android:layout_marginLeft="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="20dp"
+                                android:text="Role: "
+                                android:id="@+id/textView2" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="20dp"
+                                android:id="@+id/txtrole" />
+                        </TableRow>
+
+
+
+
+
+                    </TableLayout>
                 </LinearLayout>
             </FrameLayout>
         </LinearLayout>

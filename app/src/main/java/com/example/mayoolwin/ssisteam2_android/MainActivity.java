@@ -4,12 +4,15 @@ import android.app.ProgressDialog;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.view.View;
@@ -59,6 +62,15 @@ public class MainActivity extends AppCompatActivity {
         String flag = pref.getString("flag", "N");
         dept_code= pref.getString("dept_code", "default");
 
+        TextView txtname=(TextView)findViewById(R.id.name);
+        TextView txtrole=(TextView)findViewById(R.id.txtrole);
+
+
+        txtname.setText(name);
+        txtrole.setText(role);
+
+
+
         if(dept_code.equals("default") || role.equals("default"))
         {
             Intent intent = new Intent(this, LoginActivity.class);
@@ -100,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
                          * Updating parsed JSON data into ListView
                          * */
                         listView.setAdapter(new SimpleAdapter(getApplicationContext(), pList, R.layout.contact_info_row, new String[]{"UserName", "Role", "Email","PhNo"}, new int[]{R.id.name, R.id.txtrole, R.id.txtemail,R.id.txtphno}));
+                        registerForContextMenu(listView);
                     }
                 });
 
@@ -119,10 +132,10 @@ public class MainActivity extends AppCompatActivity {
         host.addTab(spec);
 
         //Tab 2
-        spec = host.newTabSpec("Recent Activity");
+        /*spec = host.newTabSpec("Recent Activity");
         spec.setContent(R.id.tab2);
-        spec.setIndicator("Recent Activity");
-        host.addTab(spec);
+        spec.setIndicator("Inbox");
+        host.addTab(spec);*/
 
         //Tab 3
         spec = host.newTabSpec("Profile");
@@ -291,5 +304,39 @@ public class MainActivity extends AppCompatActivity {
         }.execute(dept_code);
     }
 
+
+
+    // Content Menu
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
+    {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        menu.add(0, v.getId(), 0, "Call");//groupId, itemId, order, title
+
+    }
+    @Override
+    public boolean onContextItemSelected(MenuItem item){
+
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+
+        int pos = info.position;
+
+        String ph_no=pList.get(pos).get("PhNo");
+        Uri uri;
+        Intent i;
+
+        if(item.getTitle()=="Call"){
+            String tel="tel:"+ph_no;
+            uri = Uri.parse(tel);
+            i = new Intent(Intent.ACTION_DIAL, uri);
+            startActivity(i);
+        }
+        else{
+            return false;
+        }
+        return true;
+    }
 
 }
