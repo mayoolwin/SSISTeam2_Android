@@ -20,19 +20,28 @@ import static com.example.mayoolwin.ssisteam2_android.User.host;
 
 public class FileDiscrepancy extends HashMap<String, String> {
 
-    public FileDiscrepancy(String itemName, String adjustedQty, String reason) {
+    public FileDiscrepancy(String itemCode,String itemName, String retrievedQty, String disbursedQty, String adjustQty, String reason) {
+        this.put("ItemCode", itemCode);
         this.put("ItemName", itemName);
-        this.put("AdjustedQty", adjustedQty);
+        this.put("RetrievedQty", retrievedQty);
+        this.put("DisbursedQty", disbursedQty);
+        this.put("AdjustedQty", adjustQty);
         this.put("Reason", reason);
     }
 
-    public static ArrayList<FileDiscrepancy> FromDisbursement(HashMap<String, Integer> map) {
+    public static ArrayList<FileDiscrepancy> FromDisbursement(ArrayList<HashMap<String, String>> mapsList) {
         ArrayList<FileDiscrepancy> list = new ArrayList<>();
-        for (Map.Entry<String, Integer> pair: map.entrySet()
+        for (HashMap<String, String> map: mapsList
              ) {
-            String itemName = pair.getKey();
-            String adjustedQty = String.valueOf(pair.getValue());
-            FileDiscrepancy fileDiscrepancy = new FileDiscrepancy(itemName, adjustedQty, "");
+            String itemCode = map.get("itemCode");
+            String itemName = map.get("itemName");
+            String disburseQty = map.get("disbursedQty");
+            String retrievedQty = map.get("retrievedQty");
+            int retrievedInt = Integer.parseInt(retrievedQty);
+            int disbursedInt = Integer.parseInt(disburseQty);
+            int adjustedInt = disbursedInt - retrievedInt;
+            String adjustedQty = String.valueOf(adjustedInt);
+            FileDiscrepancy fileDiscrepancy = new FileDiscrepancy(itemCode, itemName, retrievedQty, disburseQty, adjustedQty, "");
             list.add(fileDiscrepancy);
         }
         return list;

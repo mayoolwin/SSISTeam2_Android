@@ -257,19 +257,30 @@ public class YDisbDetailActivity extends AppCompatActivity {
 
                     YDisburseDetailModel.UpdateDisburseQty(objList, loginUserName, mydeptCode);
 
-                    //***send to Discrepency
- //                   Intent intent = new Intent(YDisbDetailActivity.this, FileDiscrepancyActivity.class);
-//                    ArrayList<HashMap<String, String>> maps = new ArrayList<HashMap<String, String>>();
-//                    for (YDisburseDetailModel eachDisburse : objList )
-//                    {
-//                        HashMap<String, String> m = eachDisburse.toHashMap();
-//                        maps.add(m);
-//                    }
-//                    Bundle bundle = new Bundle();
-//                    bundle.putSerializable("discpList", maps);
-//                    intent.putExtra("Bundle", bundle);
-//                    startActivity(intent);
-//                    Log.v("ZZZ","discre"+maps.get(1).toString());
+//                    ***send to Discrepency
+                    Intent intent = new Intent(YDisbDetailActivity.this, FileDiscrepancyActivity.class);
+                    boolean discrepancyFound = false;
+                    ArrayList<HashMap<String, String>> maps = new ArrayList<HashMap<String, String>>();
+                    for (YDisburseDetailModel eachDisburse : objList )
+                    {
+                        int retrievedQty = Integer.parseInt(eachDisburse.get("retrievedQty"));
+                        int disbursedQty = Integer.parseInt(eachDisburse.get("disbursedQty"));
+                        if (retrievedQty != disbursedQty) {
+                            HashMap<String, String> m = eachDisburse.toHashMap();
+                            maps.add(m);
+                            discrepancyFound = true;
+                        }
+                    }
+                    if (discrepancyFound) {
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("List", maps);
+                        intent.putExtra("Bundle", bundle);
+                        startActivity(intent);
+                        Log.v("ZZZ","discre" + maps.size());
+                    } else {
+                        finish();
+                    }
+
 
                 } catch (NumberFormatException e) {
 

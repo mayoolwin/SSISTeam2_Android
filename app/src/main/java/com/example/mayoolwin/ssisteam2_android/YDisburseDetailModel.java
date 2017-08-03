@@ -21,11 +21,6 @@ import static com.example.mayoolwin.ssisteam2_android.User.host;
 
 public class YDisburseDetailModel extends java.util.HashMap<String,String> implements Serializable {
 
-    private  String disbursedQty;
-    private  String itemCode;
-    private  String itemName;
-    private  String retrievedQty;
-
 
     public YDisburseDetailModel(String disbursedQty,String itemCode, String itemName, String retrievedQty) {
         put("disbursedQty", disbursedQty);
@@ -38,10 +33,10 @@ public class YDisburseDetailModel extends java.util.HashMap<String,String> imple
 
     public HashMap<String, String> toHashMap() {
         HashMap<String, String> map = new HashMap<>();
-        map.put("disbursedQty", disbursedQty);
-        map.put("itemCode", itemCode);
-        map.put("itemName", itemName);
-        map.put("retrievedQty", retrievedQty);
+        map.put("disbursedQty", this.get("disbursedQty"));
+        map.put("itemCode", this.get("itemCode"));
+        map.put("itemName", this.get("itemName"));
+        map.put("retrievedQty", this.get("retrievedQty"));
         return map;
     }
 
@@ -51,7 +46,7 @@ public class YDisburseDetailModel extends java.util.HashMap<String,String> imple
         List<YDisburseDetailModel> yDisburseLsit = new ArrayList<YDisburseDetailModel>();
 
         try {
-            JSONArray a = JSONParser.getJSONArrayFromUrl(host+"/DisbDeptDetail/"+user+"/"+deptCode);
+            JSONArray a = JSONParser.getJSONArrayFromUrl(host+"/DisbDeptDetail/" + user + "/" + deptCode);
 
 
                 for(int i=0; i<a.length(); i++)

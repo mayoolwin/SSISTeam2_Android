@@ -26,12 +26,14 @@ public class FileDiscrepancyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_file_discrepancy);
 
         Intent intent = getIntent();
-        HashMap<String, Integer> disburseDetailModels = (HashMap<String, Integer>) intent.getSerializableExtra("List");
-        final ArrayList<FileDiscrepancy> fileDiscrepancies = FileDiscrepancy.FromDisbursement(disburseDetailModels);
+        Bundle args = intent.getBundleExtra("Bundle");
+        ArrayList<HashMap<String, String>> mapsList = (ArrayList<HashMap<String, String>>) args.get("List");
+        final ArrayList<FileDiscrepancy> fileDiscrepancies = FileDiscrepancy.FromDisbursement(mapsList);
         final ListView fileDiscrepancyList = (ListView) findViewById(R.id.fileDiscrepancyList);
         fileDiscrepancyList.setAdapter(new SimpleAdapter(getApplicationContext(), fileDiscrepancies, R.layout.row_file_discrepancy,
                 new String[]{"ItemName", "AdjustedQty"}, new int[]{R.id.fileDiscrepancyNameLabel, R.id.fileDiscrepancyAdjustedQty}));
-        
+
+
         Button confirmButton = (Button) findViewById(R.id.fileDiscrepancyConfirmButton);
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
