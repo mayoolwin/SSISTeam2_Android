@@ -134,11 +134,14 @@ public class YDisbDetailActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    listview1.setAdapter(
-                            new SimpleAdapter(YDisbDetailActivity.this, result, R.layout.y_row,
-                                    new String[] {"itemCode","itemName","retrievedQty"},
-                                    new int[]{R.id.textView1,R.id.textView2,R.id.textView3})
-                    );
+//                    listview1.setAdapter(
+//                            new SimpleAdapter(YDisbDetailActivity.this, result, R.layout.y_row,
+//                                    new String[] {"itemCode","itemName","retrievedQty"},
+//                                    new int[]{R.id.textView1,R.id.textView2,R.id.textView3})
+//                    );
+
+                    dCustomAdapter adapter = new dCustomAdapter(YDisbDetailActivity.this,result);
+                    listview1.setAdapter(adapter);
 
                 }
             }

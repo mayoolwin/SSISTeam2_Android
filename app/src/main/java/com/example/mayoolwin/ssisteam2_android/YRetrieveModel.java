@@ -24,13 +24,33 @@ import static com.example.mayoolwin.ssisteam2_android.User.host;
 public class YRetrieveModel extends java.util.HashMap<String,String>
 {
 
+     String  itemCode,itemDes,retrieveQty,totalQty;
+
     public YRetrieveModel( String itemCode,String itemDes, String retrieveQty,String totalQty)
     {
         put("itemCode", itemCode);
         put("itemDes", itemDes);
         put("retrieveQty",retrieveQty);
         put("totalQty", totalQty);
+        this.itemCode = itemCode;
+        this.itemDes = itemDes;
+        this.retrieveQty = retrieveQty;
+        this.totalQty = totalQty;
     }
+
+    public String getItemCode() {
+        return itemCode;
+    }
+    public String getItemDes() {
+        return itemDes;
+    }
+    public String getRetrieveQty() {
+        return retrieveQty;
+    }
+    public String getTotalQty() {return totalQty;}
+
+
+
 
     public YRetrieveModel(){}
 
