@@ -25,7 +25,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-public class RequestHistory extends Activity implements AdapterView.OnItemClickListener {
+public class RequestHistory extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
 
     private DatePickerDialog fromDatePickerDialog;

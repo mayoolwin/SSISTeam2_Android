@@ -49,7 +49,13 @@ public class MainActivity extends AppCompatActivity {
         host.setup();
 
         TextView roleTextView = (TextView)findViewById(R.id.txttab1);
-        roleTextView.setText(role + " " + flag);
+        if(flag.equals("Y")){
+            role="DeptHead(Delegate)";
+            //roleTextView.setText(role + " " + flag);
+            roleTextView.setText(role);
+        }else{
+            roleTextView.setText(role);
+        }
 
         //Tab 1
         TabHost.TabSpec spec = host.newTabSpec("Tab One");
@@ -71,15 +77,6 @@ public class MainActivity extends AppCompatActivity {
 
         //Testing git again
 
-
-        TextView roleTextView = (TextView)findViewById(R.id.roleTextView);
-        if(flag.equals("Y")){
-            role="DeptHead(Delegate)";
-            //roleTextView.setText(role + " " + flag);
-            roleTextView.setText(role);
-        }else{
-            roleTextView.setText(role);
-        }
         //roleTextView.setText(role + " " + flag);
         if(dept_code.equals("default") || role.equals("default"))
         {
