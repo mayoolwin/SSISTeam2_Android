@@ -1,0 +1,26 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.mayoolwin.ssisteam2_android.MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:textSize="17dp"
+        android:id="@+id/txttab2"
+        android:text="Your Working Partner" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="400dp"
+        android:background="@color/primary_darker"
+        android:id="@+id/listView1"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/txttab2"
+        />
+</RelativeLayout>

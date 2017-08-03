@@ -147,6 +147,7 @@
         android:layout_below="@+id/horizontal_scroll"
         android:layout_marginLeft="58dp"
         android:layout_marginStart="58dp"
+        android:background="@color/success"
         android:layout_marginTop="28dp"
         android:text="Approve" />
 
@@ -157,6 +158,7 @@
         android:layout_alignBottom="@+id/approve"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:background="@color/danger"
         android:layout_marginEnd="58dp"
         android:layout_marginRight="58dp"
         android:text="Reject" />
