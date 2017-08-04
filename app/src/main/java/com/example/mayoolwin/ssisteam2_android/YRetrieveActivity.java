@@ -32,11 +32,14 @@ public class YRetrieveActivity extends AppCompatActivity {
     String[] values = null;
     String[] reqQtys = null;
 
+    private String arrTemp[];
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_yretrieve);
+
 
 
         pref = PreferenceManager.getDefaultSharedPreferences(this);
@@ -53,6 +56,8 @@ public class YRetrieveActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(List<YRetrieveModel> result) {
 
+                arrTemp =  new String[result.size()];
+
                 if(result.size()==0)
                 {
                     Toast.makeText(YRetrieveActivity.this, "Don't have  Retrieve Item!!", Toast.LENGTH_SHORT).show();
@@ -67,7 +72,8 @@ public class YRetrieveActivity extends AppCompatActivity {
                                             new int[]{R.id.textView1,R.id.textView2, R.id.textView3})
                     );
 
-//                    rCustomAdapter customAdapter = new rCustomAdapter(YRetrieveActivity.this,result);
+
+//                    rCustomAdapter customAdapter = new rCustomAdapter(YRetrieveActivity.this,R.layout.y_row,result);
 //                    listview.setAdapter(customAdapter);
 
                 }
@@ -139,7 +145,8 @@ public class YRetrieveActivity extends AppCompatActivity {
                 } catch (NumberFormatException e) {
                     Toast.makeText(YRetrieveActivity.this, "Fill Quantity!", Toast.LENGTH_SHORT).show();
 
-                } catch (NullPointerException e) {
+                }
+                catch (NullPointerException e) {
                     Toast.makeText(YRetrieveActivity.this, "Fill Something!", Toast.LENGTH_SHORT).show();
                 }
             }

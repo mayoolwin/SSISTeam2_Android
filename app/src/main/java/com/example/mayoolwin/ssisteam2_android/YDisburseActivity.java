@@ -77,6 +77,7 @@ public class YDisburseActivity extends AppCompatActivity {
 
                 final String cpName = adapterView.getAdapter().getItem(i).toString();
 
+
                 String cpid = Integer.toString(i + 1);
 
                 new AsyncTask<String, Void, List<String>>() {
@@ -104,9 +105,17 @@ public class YDisburseActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 final String deptName = (String) adapterView.getItemAtPosition(i);
-                Intent intent = new Intent(YDisburseActivity.this, YDisbDetailActivity.class);
-                intent.putExtra("deptName", deptName);
-                startActivity(intent);
+                if(deptName.equals("No department"))
+                {
+
+                    Toast.makeText(YDisburseActivity.this, "No department at this collection point!", Toast.LENGTH_SHORT).show();
+
+                }
+                else
+                {Intent intent = new Intent(YDisburseActivity.this, YDisbDetailActivity.class);
+                    intent.putExtra("deptName", deptName);
+                    startActivity(intent);}
+
 
             }
         });
