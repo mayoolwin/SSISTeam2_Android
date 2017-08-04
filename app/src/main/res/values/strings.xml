@@ -12,6 +12,8 @@
     <string name="inventory_check_actual">Actual: </string>
     <string name="inventory_check_reason">Reason: </string>
     <string name="inventory_check_adjusted">Adjusted: </string>
+    <string name="dept_menu_delegate">Delegate Authority</string>
+    <string name="dept_menu_adjustment">View All Adjustment</string>
 
     <!--Activity Titles-->
     <string name="app_name">Logic University Stationery App</string>
@@ -21,6 +23,9 @@
     <string name="monthly_detail_name">Monthly Check Confirmation</string>
     <string name="logic_activity_name">Login Activity</string>
     <string name="file_discrepancy_name">File Discrepancy</string>
+    <string name="dept_delegateauthority_name">Delegate Authority</string>
+    <string name="view_adjustment_name">View All Pending Adjustment</string>
+    <string name="view_adjustment_detail_name">Adjustment Details</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

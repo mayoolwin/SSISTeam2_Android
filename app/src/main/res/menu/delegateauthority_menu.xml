@@ -5,7 +5,7 @@
 
     <item android:id="@+id/view_request" android:title="View Pending Request"
         android:orderInCategory="103"/>
-    <item android:id="@+id/view_adjustment" android:title="View All Adjustment"
+    <item android:id="@+id/view_adjustment" android:title="@string/dept_menu_adjustment"
         android:orderInCategory="104"/>
     <item android:id="@+id/logout" android:title="@string/logout"
         android:orderInCategory="105"/>

@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
-    <item android:id="@+id/dept_authority" android:title="Delegate Authority"
+    <item android:id="@+id/dept_authority" android:title="@string/dept_menu_delegate"
         android:orderInCategory="101"/>
     <item android:id="@+id/logout" android:title="@string/logout"
         android:orderInCategory="104"/>
     <item android:id="@+id/view_request" android:title="View Pending Request"
         android:orderInCategory="105"/>
-    <item android:id="@+id/view_adjustment" android:title="View All Adjustment"
+    <item android:id="@+id/view_adjustment" android:title="@string/dept_menu_adjustment"
         android:orderInCategory="106"/>
 </menu>
