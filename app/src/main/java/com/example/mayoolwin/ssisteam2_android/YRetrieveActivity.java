@@ -1,9 +1,7 @@
 package com.example.mayoolwin.ssisteam2_android;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.os.Parcelable;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -17,13 +15,8 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.Console;
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.List;
-
-import static android.R.attr.author;
-import static android.R.attr.streamType;
 
 public class YRetrieveActivity extends AppCompatActivity {
 
@@ -73,6 +66,9 @@ public class YRetrieveActivity extends AppCompatActivity {
                                             new String[]{"itemCode","itemDes", "totalQty"},
                                             new int[]{R.id.textView1,R.id.textView2, R.id.textView3})
                     );
+
+//                    rCustomAdapter customAdapter = new rCustomAdapter(YRetrieveActivity.this,result);
+//                    listview.setAdapter(customAdapter);
 
                 }
             }

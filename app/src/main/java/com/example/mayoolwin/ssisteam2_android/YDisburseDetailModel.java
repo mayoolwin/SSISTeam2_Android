@@ -21,13 +21,17 @@ import static com.example.mayoolwin.ssisteam2_android.User.host;
 
 public class YDisburseDetailModel extends java.util.HashMap<String,String> implements Serializable {
 
+    String  disbursedQty,itemCode,itemName,retrievedQty;
 
     public YDisburseDetailModel(String disbursedQty,String itemCode, String itemName, String retrievedQty) {
         put("disbursedQty", disbursedQty);
         put("itemCode",itemCode);
         put("itemName", itemName);
         put("retrievedQty", retrievedQty);
-
+        this.disbursedQty = disbursedQty;
+        this.itemCode = itemCode;
+        this.itemName = itemName;
+        this.retrievedQty=retrievedQty;
     }
     public YDisburseDetailModel(){}
 
@@ -40,6 +44,10 @@ public class YDisburseDetailModel extends java.util.HashMap<String,String> imple
         return map;
     }
 
+    public String getDisbursedQty(){return disbursedQty;};
+    public String getItemCode(){return itemCode;};
+    public String getItemName(){return itemName;};
+    public String getRetrievedQty(){return retrievedQty;};
 
     public  static List<YDisburseDetailModel> listDisDeptDetail(String user, String deptCode)
     {

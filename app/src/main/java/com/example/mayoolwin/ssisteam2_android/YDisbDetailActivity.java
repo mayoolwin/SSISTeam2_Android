@@ -140,6 +140,9 @@ public class YDisbDetailActivity extends AppCompatActivity {
                                     new int[]{R.id.textView1,R.id.textView2,R.id.textView3})
                     );
 
+//                    dCustomAdapter adapter = new dCustomAdapter(YDisbDetailActivity.this,result);
+//                    listview1.setAdapter(adapter);
+
                 }
             }
 
