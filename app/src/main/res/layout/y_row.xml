@@ -48,9 +48,9 @@ android:id="@+id/tableLayout">
         android:layout_marginTop="5dp"
         android:textSize="17dp"
         android:layout_weight="1"
-
-        android:inputType="number"
         android:textAppearance="?android:attr/textAppearanceMedium" />
+        <!--android:inputType="number"-->
+
 
 
 </TableRow>
