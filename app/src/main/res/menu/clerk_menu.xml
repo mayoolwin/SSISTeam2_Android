@@ -8,8 +8,6 @@
         android:orderInCategory="102"/>
     <item android:id="@+id/clerk_monthly" android:title="@string/clerk_menu_monthly"
         android:orderInCategory="103"/>
-    <item android:id="@+id/clerk_discrepancy" android:title="@string/clerk_menu_discrepancy"
-        android:orderInCategory="104"/>
     <item android:id="@+id/logout" android:title="@string/logout"
         android:orderInCategory="104"/>
 </menu>

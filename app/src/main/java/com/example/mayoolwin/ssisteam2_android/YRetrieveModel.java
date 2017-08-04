@@ -12,6 +12,7 @@ import org.json.JSONStringer;
 
 import java.util.ArrayList;
 import java.util.Dictionary;
+import java.util.HashMap;
 import java.util.List;
 
 import static android.R.id.list;
@@ -50,7 +51,14 @@ public class YRetrieveModel extends java.util.HashMap<String,String>
     public String getTotalQty() {return totalQty;}
 
 
-
+    public HashMap<String, String> toHashMap() {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("disbursedQty", this.get("totalQty"));
+        map.put("itemCode", this.get("itemCode"));
+        map.put("itemName", this.get("itemName"));
+        map.put("retrievedQty", this.get("retrievedQty"));
+        return map;
+    }
 
     public YRetrieveModel(){}
 

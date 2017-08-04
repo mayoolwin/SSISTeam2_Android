@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
     <item android:id="@+id/supervisor_view_adjustment" android:title="View All Adjustment"
         android:orderInCategory="101"/>
-    <item android:id="@+id/logout" android:title="@string/logout"
+    <item android:id="@+id/make_request" android:title="Make New Request"
         android:orderInCategory="102"/>
+    <item android:id="@+id/logout" android:title="@string/logout"
+        android:orderInCategory="103"/>
 </menu>

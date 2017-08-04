@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -29,13 +30,14 @@ import static com.example.mayoolwin.ssisteam2_android.User.host;
 public class MonthlyCheckActivity extends AppCompatActivity implements InventoryCheckList.OnFragmentInteractionListener, InventoryCheckDetail.OnFragmentInteractionListener {
 
     ArrayList<InventoryCheck> inventoryChecks = new ArrayList<>();
+    Button confirmButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_monthly_check);
 
-        final Button confirmButton = (Button) findViewById(R.id.inventoryCheckNextButton);
+        confirmButton = (Button) findViewById(R.id.inventoryCheckNextButton);
 
         if (savedInstanceState == null){
             try {
@@ -96,7 +98,8 @@ public class MonthlyCheckActivity extends AppCompatActivity implements Inventory
                 finish();
             }
         } else {
-
+            confirmButton = (Button) findViewById(R.id.inventoryCheckNextButton);
+            confirmButton.setEnabled(true);
             Bundle arg = savedInstanceState.getBundle("Bundle");
             ArrayList<HashMap<String, String>> maps = (ArrayList<HashMap<String, String>>) arg.getSerializable("List");
             for (HashMap<String, String> map: maps
@@ -109,24 +112,24 @@ public class MonthlyCheckActivity extends AppCompatActivity implements Inventory
 
 
 
-        final Intent intent = new Intent(this, MonthlyCheckConfirmActivity.class);
-
-        confirmButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                ArrayList<HashMap<String, String>> maps = new ArrayList<HashMap<String, String>>();
-                for (InventoryCheck inventory: inventoryChecks
-                     ) {
-                    maps.add(inventory.toHashMap());
-                }
-                Bundle arg = new Bundle();
-                arg.putSerializable("List", maps);
-                intent.putExtra("Bundle", arg);
-
-                startActivity(intent);
-            }
-        });
+//        final Intent intent = new Intent(this, MonthlyCheckConfirmActivity.class);
+//
+//        confirmButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                ArrayList<HashMap<String, String>> maps = new ArrayList<HashMap<String, String>>();
+//                for (InventoryCheck inventory: inventoryChecks
+//                     ) {
+//                    maps.add(inventory.toHashMap());
+//                }
+//                Bundle arg = new Bundle();
+//                arg.putSerializable("List", maps);
+//                intent.putExtra("Bundle", arg);
+//
+//                startActivity(intent);
+//            }
+//        });
     }
 
     //Portrait orientation
@@ -195,6 +198,32 @@ public class MonthlyCheckActivity extends AppCompatActivity implements Inventory
         Toast.makeText(getApplicationContext(), inventoryChecks.get(index).getReason(), Toast.LENGTH_LONG).show();
     }
 
+//    @Override
+//    public void onConfigurationChanged(Configuration newConfig) {
+//        super.onConfigurationChanged(newConfig);
+//        if (newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE){
+//            setContentView(R.layout.activity_monthly_check);
+//            confirmButton = (Button)findViewById(R.id.inventoryCheckNextButton);
+//            confirmButton.setEnabled(true);
+//            confirmButton.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    confirmMonthlyCheck(view);
+//                }
+//            });
+//        }else if (newConfig.orientation==Configuration.ORIENTATION_PORTRAIT){
+//            setContentView(R.layout.activity_monthly_check);
+//            confirmButton = (Button)findViewById(R.id.inventoryCheckNextButton);
+//            confirmButton.setEnabled(true);
+//            confirmButton.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    confirmMonthlyCheck(view);
+//                }
+//            });
+//        }
+//    }
+
     //Landscape orientation
     @Override
     public void onFragmentInteraction(String reason, int actualQty, int index) {
@@ -215,9 +244,24 @@ public class MonthlyCheckActivity extends AppCompatActivity implements Inventory
         fTransaction.commit();
     }
 
+    public void confirmMonthlyCheck(View view) {
+        Intent intent = new Intent(this, MonthlyCheckConfirmActivity.class);
+
+        ArrayList<HashMap<String, String>> maps = new ArrayList<HashMap<String, String>>();
+        for (InventoryCheck inventory: inventoryChecks
+                ) {
+            maps.add(inventory.toHashMap());
+        }
+        Bundle arg = new Bundle();
+        arg.putSerializable("List", maps);
+        intent.putExtra("Bundle", arg);
+
+        startActivity(intent);    }
+
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
+        Button confirmButton = (Button) findViewById(R.id.inventoryCheckNextButton);
         ArrayList<HashMap<String, String>> map = new ArrayList<>();
         Bundle arg = new Bundle();
         for (InventoryCheck i: inventoryChecks

@@ -11,9 +11,9 @@
     <color name="oil">#333333</color>
     <color name="monsoon">#777777</color>
     <color name="success">#5cb85c</color>
-    <color name="jumbo">#5cb85c</color>
     <color name="aluminum">#999999</color>
     <color name="base">#AAAAAA</color>
     <color name="iron">#CCCCCC</color>
     <color name="white">#FFFFFF</color>
+    <color name="jumbo">#5cb85c</color>
 </resources>

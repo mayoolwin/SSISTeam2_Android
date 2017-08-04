@@ -31,7 +31,7 @@ public class FileDiscrepancyActivity extends AppCompatActivity {
         final ArrayList<FileDiscrepancy> fileDiscrepancies = FileDiscrepancy.FromDisbursement(mapsList);
         final ListView fileDiscrepancyList = (ListView) findViewById(R.id.fileDiscrepancyList);
         fileDiscrepancyList.setAdapter(new SimpleAdapter(getApplicationContext(), fileDiscrepancies, R.layout.row_file_discrepancy,
-                new String[]{"ItemName", "AdjustedQty"}, new int[]{R.id.fileDiscrepancyNameLabel, R.id.fileDiscrepancyAdjustedQty}));
+                new String[]{"ItemName", "AdjustedQty"}, new int[]{R.id.fileDiscrepancyNameText, R.id.fileDiscrepancyAdjustedText}));
 
 
         Button confirmButton = (Button) findViewById(R.id.fileDiscrepancyConfirmButton);

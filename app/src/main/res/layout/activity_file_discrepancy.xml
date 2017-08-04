@@ -6,29 +6,24 @@
     android:layout_height="match_parent"
     tools:context="com.example.mayoolwin.ssisteam2_android.FileDiscrepancyActivity">
 
-    <TextView
-        android:id="@+id/fileDiscrepancyTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="View Pending Requests"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
     <Button
         android:id="@+id/fileDiscrepancyConfirmButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="@string/confirm"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
 
     <ListView
         android:id="@+id/fileDiscrepancyList"
+        android:background="@color/primary_darker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/fileDiscrepancyTitle"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 

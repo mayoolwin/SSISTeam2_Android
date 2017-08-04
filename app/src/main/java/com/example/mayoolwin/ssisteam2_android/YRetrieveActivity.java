@@ -1,5 +1,6 @@
 package com.example.mayoolwin.ssisteam2_android;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.StrictMode;
@@ -16,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.HashMap;
 import java.util.List;
 
 public class YRetrieveActivity extends AppCompatActivity {
@@ -88,7 +91,7 @@ public class YRetrieveActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 resCount = listview.getCount();
-                final List<YRetrieveModel> objList = new ArrayList<YRetrieveModel>();
+                final ArrayList<YRetrieveModel> objList = new ArrayList<YRetrieveModel>();
                 keys = new String[resCount];
                 values = new String[resCount];
                 reqQtys = new String[resCount];
@@ -109,6 +112,7 @@ public class YRetrieveActivity extends AppCompatActivity {
                     editTextRetQty = (EditText) listview.getChildAt(i).findViewById(R.id.editText1);
                     values[i] = editTextRetQty.getText().toString();
                      }
+                    ArrayList<HashMap<String, String>> maps = new ArrayList<HashMap<String, String>>();
 
                     if (values.length > 0)
                     {
@@ -148,6 +152,28 @@ public class YRetrieveActivity extends AppCompatActivity {
                 }
                 catch (NullPointerException e) {
                     Toast.makeText(YRetrieveActivity.this, "Fill Something!", Toast.LENGTH_SHORT).show();
+                }
+
+
+                if (objList.size() > 0) {
+                    Intent intent = new Intent(YRetrieveActivity.this, FileDiscrepancyActivity.class);
+                    ArrayList<HashMap<String, String>> maps = new ArrayList<HashMap<String, String>>();
+                    for (YRetrieveModel model : objList )
+                    {
+                        int retrievedQty = Integer.parseInt(model.get("retrievedQty"));
+                        int disbursedQty = Integer.parseInt(model.get("totalQty"));
+                        if (retrievedQty != disbursedQty) {
+                            HashMap<String, String> m = model.toHashMap();
+                            maps.add(m);
+                        }
+                    }
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("List", maps);
+                    intent.putExtra("Bundle", bundle);
+                    startActivity(intent);
+                    Log.v("ZZZ","discre" + maps.size());
+                    finish();
+
                 }
             }
         });

@@ -5,9 +5,9 @@
     <item android:id="@+id/dept_authority" android:title="@string/dept_menu_delegate"
         android:orderInCategory="101"/>
     <item android:id="@+id/logout" android:title="@string/logout"
-        android:orderInCategory="104"/>
+        android:orderInCategory="102"/>
     <item android:id="@+id/view_request" android:title="View Pending Request"
-        android:orderInCategory="105"/>
+        android:orderInCategory="103"/>
     <item android:id="@+id/view_adjustment" android:title="@string/dept_menu_adjustment"
-        android:orderInCategory="106"/>
+        android:orderInCategory="104"/>
 </menu>
