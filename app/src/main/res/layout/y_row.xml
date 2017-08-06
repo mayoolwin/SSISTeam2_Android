@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 <TableLayout
-android:layout_width="350dp"
-android:layout_height="wrap_content"
+android:layout_width="match_parent"
+android:layout_height="40dp"
 android:stretchColumns="1"
 
 android:layout_below="@+id/lblTitle"
@@ -18,14 +18,14 @@ android:id="@+id/tableLayout">
     <TextView
         android:id="@+id/textView1"
         android:layout_width="0dp"
-        android:layout_height="0pt"
+        android:layout_height="match_parent"
         android:text="TextView"/>
     <TextView
         android:id="@+id/textView2"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:padding="6dp"
-        android:textSize="17dp"
+        android:textSize="14dp"
         android:layout_weight="2"
         android:layout_below="@+id/lblname"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -33,21 +33,23 @@ android:id="@+id/tableLayout">
     <TextView
         android:id="@+id/textView3"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:padding="6dp"
-        android:textSize="17dp"
+        android:textSize="14dp"
         android:layout_weight="1"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="TextView" />
-    <EditText
-        android:id="@+id/editText1"
+    <TextView
+        android:id="@+id/textView4"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:padding="6dp"
         android:textColor="@color/white"
-        android:layout_marginTop="5dp"
-        android:textSize="17dp"
+        android:text="0"
+        android:textSize="14dp"
+        android:editable="false"
         android:layout_weight="1"
+
         android:textAppearance="?android:attr/textAppearanceMedium" />
         <!--android:inputType="number"-->
 

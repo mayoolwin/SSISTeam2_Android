@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_gravity="center"
+
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/space"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+
+        android:textAppearance="?android:attr/textAppearanceMedium"
+         />
+
+        <TextView
+            android:id="@+id/txtqty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/space"
+            android:padding="6dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Retrieved Quantity:" />
+
+        <EditText
+            android:id="@+id/edit_qty"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:padding="6dp"
+            android:layout_below="@+id/space"
+            android:layout_toRightOf="@+id/txtqty"
+            android:textColor="@color/white"
+            android:inputType="number" />
+
+    <Button
+        android:id="@+id/ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_below="@+id/txtqty"
+        android:layout_marginTop="20dp"
+
+        android:background="@color/success"
+        android:text="ok" />
+    <Button
+        android:id="@+id/cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:background="@color/danger"
+        android:layout_below="@+id/txtqty"
+        android:layout_toRightOf="@+id/ok"
+        android:layout_marginTop="20dp"
+       android:layout_marginLeft="30dp"
+
+        android:text="cancel" />
+
+    <TextView
+        android:id="@+id/space2"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ok"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        />
+
+
+
+</RelativeLayout>

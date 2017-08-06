@@ -21,9 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".YRetrieveActivity" />
+        <activity android:name=".YRetrieveActivity" android:screenOrientation="portrait" />
         <activity android:name=".YDisburseActivity" />
-        <activity android:name=".YDisbDetailActivity" />
+        <activity android:name=".YDisbDetailActivity" android:screenOrientation="portrait"  />
         <activity android:name=".ApproveRequestActivity" />
         <activity android:name=".MonthlyCheckActivity"
             android:label="@string/monthly_list_name"/>

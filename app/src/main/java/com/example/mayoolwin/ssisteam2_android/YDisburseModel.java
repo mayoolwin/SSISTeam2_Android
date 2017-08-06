@@ -41,6 +41,7 @@ public class YDisburseModel extends java.util.HashMap<String,String>
     {
         List<String> list = new ArrayList<String>();
         try {
+
             JSONArray a = JSONParser.getJSONArrayFromUrl(host+"/DisbCollectDept/"+cpid);
             if(a.length()==0)
             {

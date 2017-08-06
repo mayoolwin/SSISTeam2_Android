@@ -40,7 +40,7 @@ public class FileDiscrepancyActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String result = "";
                 for (int i = 0; i < fileDiscrepancyList.getAdapter().getCount(); i++) {
-                    EditText reasonEditText = (EditText) fileDiscrepancyList.getChildAt(i).findViewById(R.id.fileDiscrepancyReasonEdit);
+                    EditText reasonEditText = (EditText) YDisbDetailActivity.getViewByPosition(i,fileDiscrepancyList).findViewById(R.id.fileDiscrepancyReasonEdit);
                     fileDiscrepancies.get(i).put("Reason", reasonEditText.getText().toString());
                     result += fileDiscrepancies.get(i).get("Reason");
                 }

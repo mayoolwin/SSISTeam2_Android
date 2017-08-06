@@ -14,6 +14,7 @@
     <string name="inventory_check_adjusted">Adjusted: </string>
     <string name="dept_menu_delegate">Delegate Authority</string>
     <string name="dept_menu_adjustment">View All Adjustment</string>
+    <string name="customdialogtitle">Edit Retrieved Qty</string>
 
     <!--Activity Titles-->
     <string name="app_name">Logic University Stationery App</string>

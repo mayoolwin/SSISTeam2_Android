@@ -56,7 +56,7 @@ public class YRetrieveModel extends java.util.HashMap<String,String>
         map.put("disbursedQty", this.get("totalQty"));
         map.put("itemCode", this.get("itemCode"));
         map.put("itemName", this.get("itemName"));
-        map.put("retrievedQty", this.get("retrievedQty"));
+        map.put("retrievedQty", this.get("retrieveQty"));
         return map;
     }
 

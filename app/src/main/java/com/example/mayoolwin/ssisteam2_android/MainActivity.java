@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                pDialog = new ProgressDialog(MainActivity.this);
+                pDialog = new ProgressDialog(MainActivity.this, R.style.AppTheme_Dark_Dialog);
                 pDialog.setMessage("Loading Data ...");
                 pDialog.setIndeterminate(false);
                 pDialog.setCancelable(false);
