@@ -45,27 +45,9 @@ public class ApproveRequestActivity extends AppCompatActivity{
         editreason.setText(reason);
         editdate.setText(date);
 
-        new AsyncTask<String,Void,List<RequestDetail>>()
-        {
-
-            @Override
-            protected List<RequestDetail> doInBackground(String... params) {
-                List<RequestDetail> r=RequestDetail.listRequestDetail(params[0]);
-                return r;
-            }
-
-            @Override
-            protected void onPostExecute(List<RequestDetail> result) {
-
-                addData(result);
-
-
-            }
-        }.execute(req_id);
-
         //Button Approve
-        Button b = (Button) findViewById(R.id.approve);
-        b.setOnClickListener(new View.OnClickListener() {
+        final Button approveButton = (Button) findViewById(R.id.approve);
+        approveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -87,13 +69,9 @@ public class ApproveRequestActivity extends AppCompatActivity{
             }
         });
 
-
-
         //Button Reject
-
-        //Button Approve
-        Button r = (Button) findViewById(R.id.reject);
-        r.setOnClickListener(new View.OnClickListener() {
+        final Button rejectButton = (Button) findViewById(R.id.reject);
+        rejectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -115,7 +93,27 @@ public class ApproveRequestActivity extends AppCompatActivity{
             }
         });
 
+        new AsyncTask<String,Void,List<RequestDetail>>()
+        {
 
+            @Override
+            protected List<RequestDetail> doInBackground(String... params) {
+                List<RequestDetail> r=RequestDetail.listRequestDetail(params[0]);
+                return r;
+            }
+
+            @Override
+            protected void onPostExecute(List<RequestDetail> result) {
+
+                if (result.size() == 0) {
+                    Toast.makeText(getApplicationContext(), "There are no items in this request!", Toast.LENGTH_LONG).show();
+                    approveButton.setEnabled(false);
+                    rejectButton.setEnabled(true);
+                } else {
+                    addData(result);
+                }
+            }
+        }.execute(req_id);
     }
 
 

@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         txtname.setText(name);
-        txtrole.setText(role);
+        txtrole.setText(role + flag);
 
 
 
@@ -175,6 +175,8 @@ public class MainActivity extends AppCompatActivity {
             getMenuInflater().inflate(R.menu.employee_menu, menu);
         else if (test.equals("DeptHead")&&flag.equals("N"))
             getMenuInflater().inflate(R.menu.departmenthead_menu,menu);
+        else if (test.equals("Manager")&&flag.equals("Y"))
+            getMenuInflater().inflate(R.menu.store_manager_menu,menu);
         else if (test.equals("DeptHead")&&flag.equals("Y"))
             getMenuInflater().inflate(R.menu.delegateauthority_menu,menu);
         else if (test.equals("Supervisor")&&flag.equals("N"))

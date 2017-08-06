@@ -6,6 +6,8 @@
     <string name="logout">Logout</string>
     <string name="confirm">Confirm</string>
     <string name="next">Next</string>
+    <string name="user_fullname">Name: </string>
+    <string name="user_role">Role: </string>
     <string name="inventory_check_name">Item Name: </string>
     <string name="inventory_check_category">Category: </string>
     <string name="inventory_check_recorded">Recorded: </string>
@@ -15,6 +17,7 @@
     <string name="dept_menu_delegate">Delegate Authority</string>
     <string name="dept_menu_adjustment">View All Adjustment</string>
     <string name="customdialogtitle">Edit Retrieved Qty</string>
+    <string name="no_pending_adjustments">No pending inventory adjustments found</string>
 
     <!--Activity Titles-->
     <string name="app_name">Logic University Stationery App</string>
@@ -26,6 +29,7 @@
     <string name="file_discrepancy_name">File Discrepancy</string>
     <string name="dept_delegateauthority_name">Delegate Authority</string>
     <string name="view_adjustment_name">View All Pending Adjustment</string>
+    <string name="view_pending_request">View All Pending Requests</string>
     <string name="view_adjustment_detail_name">Adjustment Details</string>
 
     <!-- TODO: Remove or change this placeholder text -->

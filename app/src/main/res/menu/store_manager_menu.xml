@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
     <item android:id="@+id/dept_authority" android:title="@string/dept_menu_delegate"
         android:orderInCategory="101"/>
-    <item android:id="@+id/view_request" android:title="View Pending Request"
+    <item android:id="@+id/view_request" android:title="@string/view_pending_request"
         android:orderInCategory="102"/>
+    <item android:id="@+id/view_adjustment" android:title="@string/dept_menu_adjustment"
+        android:orderInCategory="103"/>
     <item android:id="@+id/logout" android:title="@string/logout"
         android:orderInCategory="104"/>
-
 </menu>
