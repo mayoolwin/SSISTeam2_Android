@@ -65,6 +65,10 @@ public class ViewAllAdjustment extends AppCompatActivity{
 
         @Override
         protected void onPostExecute(List<ViewAllAdjustmentModel> result) {
+            if (result.size() == 0) {
+                TextView status = (TextView) findViewById(R.id.lblstatus);
+                status.setText("No pending inventory adjustments found");
+            }
 
                 /*listview.setAdapter(
                         new SimpleAdapter

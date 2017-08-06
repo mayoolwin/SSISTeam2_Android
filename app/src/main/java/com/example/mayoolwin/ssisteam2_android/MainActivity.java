@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
         else if (test.equals("DeptHead")&&flag.equals("N"))
             getMenuInflater().inflate(R.menu.departmenthead_menu,menu);
         else if (test.equals("Manager")&&flag.equals("Y"))
-            getMenuInflater().inflate(R.menu.departmenthead_menu,menu);
+            getMenuInflater().inflate(R.menu.store_manager_menu,menu);
         else if (test.equals("DeptHead")&&flag.equals("Y"))
             getMenuInflater().inflate(R.menu.delegateauthority_menu,menu);
         else if (test.equals("Supervisor")&&flag.equals("N"))
