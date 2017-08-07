@@ -263,6 +263,11 @@ public class MakeNewRequestActivity extends AppCompatActivity {
                 }
 
             }
+            if(itemlist.size()<1)
+            {
+                Button submit=(Button)findViewById(R.id.submit) ;
+                submit.setVisibility(View.INVISIBLE);
+            }
             Toast.makeText(getApplicationContext(),"Deleted",Toast.LENGTH_LONG).show();
 
         }

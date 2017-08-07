@@ -32,7 +32,7 @@
 
         <TextView
             android:id="@id/textView1"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -56,18 +56,21 @@
             android:id="@+id/textViewHead1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:text="Item Description"/>
-
+            android:padding="6dp"
+            android:text="Item Description"
+            android:textStyle="bold"
+            android:layout_weight="2"
+            />
 
         <TextView
 
             android:id="@+id/textViewHead2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:layout_marginLeft="100px"
-            android:text="Disbursing Qty" />
+            android:padding="6dp"
+            android:textStyle="bold"
+            android:text="Rerieving Qty"
+            android:layout_weight="1"/>
 
 
         <TextView
@@ -75,9 +78,10 @@
             android:id="@+id/textViewHead3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:layout_marginLeft="90px"
-            android:text="Disbursed Qty" />
+            android:padding="6dp"
+            android:textStyle="bold"
+            android:text="Disbursed Qty"
+            android:layout_weight="1"/>
 
 
 
