@@ -203,7 +203,6 @@ public class YRetrieveActivity extends AppCompatActivity implements AdapterView.
 
 
         final Dialog d = new Dialog(this,R.style.AppTheme_Dark_Dialog);
-        d.setTitle(getString(R.string.customdialogtitle));
 
         d.setContentView(R.layout.customdialog);
         d.setCancelable(false);
