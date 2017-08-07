@@ -167,6 +167,7 @@ public class YRetrieveActivity extends AppCompatActivity implements AdapterView.
                     ArrayList<HashMap<String, String>> maps = new ArrayList<HashMap<String, String>>();
                     for (YRetrieveModel model : objList )
                     {
+
                         int retrievedQty = Integer.parseInt(model.get("retrieveQty"));
                         int disbursedQty = Integer.parseInt(model.get("totalQty"));
                         if (retrievedQty != disbursedQty) {

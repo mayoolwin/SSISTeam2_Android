@@ -51,6 +51,7 @@ public class FileDiscrepancy extends HashMap<String, String> {
     public static JSONObject ToJSONObject(FileDiscrepancy fileDiscrepancy) {
         JSONObject jsonObject = new JSONObject();
         try {
+            jsonObject.put("ItemCode", fileDiscrepancy.get("ItemCode"));
             jsonObject.put("ItemName", fileDiscrepancy.get("ItemName"));
             jsonObject.put("AdjustedQty", fileDiscrepancy.get("AdjustedQty"));
             jsonObject.put("Reason", fileDiscrepancy.get("Reason"));
