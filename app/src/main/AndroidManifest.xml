@@ -37,7 +37,7 @@
         <activity android:name=".ViewAllPendingRequestActivity" />
         <activity android:name=".DelegateAuthorityActivity"
             android:label="@string/dept_delegateauthority_name"/>
-        <activity android:name=".MakeNewRequestActivity" />
+        <activity android:name=".MakeNewRequestActivity"/>
         <activity android:name=".DeleteAuthorityCheck"
             android:label="@string/dept_delegateauthority_name"/>
         <activity android:name=".ViewAllAdjustment"

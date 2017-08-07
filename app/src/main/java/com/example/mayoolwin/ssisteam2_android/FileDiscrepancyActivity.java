@@ -42,7 +42,6 @@ public class FileDiscrepancyActivity extends AppCompatActivity {
                 for (int i = 0; i < fileDiscrepancyList.getAdapter().getCount(); i++) {
                     EditText reasonEditText = (EditText) YDisbDetailActivity.getViewByPosition(i,fileDiscrepancyList).findViewById(R.id.fileDiscrepancyReasonEdit);
                     fileDiscrepancies.get(i).put("Reason", reasonEditText.getText().toString());
-                    result += fileDiscrepancies.get(i).get("Reason");
                 }
                 SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 final String username = pref.getString("username", "default");
@@ -55,6 +54,7 @@ public class FileDiscrepancyActivity extends AppCompatActivity {
                         return null;
                     }
                 }.execute(fileDiscrepancies);
+                finish();
             }
         });
 

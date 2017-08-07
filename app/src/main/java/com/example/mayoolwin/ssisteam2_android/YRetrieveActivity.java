@@ -167,6 +167,7 @@ public class YRetrieveActivity extends AppCompatActivity implements AdapterView.
                     ArrayList<HashMap<String, String>> maps = new ArrayList<HashMap<String, String>>();
                     for (YRetrieveModel model : objList )
                     {
+
                         int retrievedQty = Integer.parseInt(model.get("retrieveQty"));
                         int disbursedQty = Integer.parseInt(model.get("totalQty"));
                         if (retrievedQty != disbursedQty) {
@@ -203,7 +204,6 @@ public class YRetrieveActivity extends AppCompatActivity implements AdapterView.
 
 
         final Dialog d = new Dialog(this,R.style.AppTheme_Dark_Dialog);
-        d.setTitle(getString(R.string.customdialogtitle));
 
         d.setContentView(R.layout.customdialog);
         d.setCancelable(false);

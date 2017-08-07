@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         txtname.setText(name);
-        txtrole.setText(role + flag);
+        txtrole.setText(role);
 
 
 

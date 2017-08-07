@@ -107,7 +107,6 @@ public class MonthlyCheckActivity extends AppCompatActivity implements Inventory
                 InventoryCheck i = InventoryCheck.fromHashMap(map);
                 inventoryChecks.add(i);
             }
-            Toast.makeText(getApplicationContext(), String.valueOf(inventoryChecks.size()), Toast.LENGTH_LONG).show();
         }
 
 
@@ -135,7 +134,6 @@ public class MonthlyCheckActivity extends AppCompatActivity implements Inventory
     //Portrait orientation
     @Override
     public void onFragmentInteraction(InventoryCheck inventoryCheck, int index) {
-        Toast.makeText(getApplicationContext(), inventoryCheck.getItemDescription(), Toast.LENGTH_SHORT).show();
 
         FragmentManager fm = getFragmentManager();
         FragmentTransaction fTransaction = fm.beginTransaction();
@@ -148,7 +146,6 @@ public class MonthlyCheckActivity extends AppCompatActivity implements Inventory
             } else {
                 fTransaction.replace(R.id.inventoryCheckDetailPlaceHolder, fragmentDetail, "InventoryDetail");
             }
-            Toast.makeText(getApplicationContext(), String.valueOf(index), Toast.LENGTH_LONG).show();
             fTransaction.commit();
 
         } else {
@@ -194,8 +191,6 @@ public class MonthlyCheckActivity extends AppCompatActivity implements Inventory
     public void UpdateList(InventoryCheck inventoryCheck, int index) {
         inventoryChecks.get(index).setActualQuantity(inventoryCheck.getActualQuantity());
         inventoryChecks.get(index).setReason(inventoryCheck.getReason());
-
-        Toast.makeText(getApplicationContext(), inventoryChecks.get(index).getReason(), Toast.LENGTH_LONG).show();
     }
 
 //    @Override
@@ -230,7 +225,6 @@ public class MonthlyCheckActivity extends AppCompatActivity implements Inventory
         inventoryChecks.get(index).setActualQuantity(actualQty);
         inventoryChecks.get(index).setReason(reason);
 
-        Toast.makeText(getApplicationContext(), inventoryChecks.get(index).getReason().toString(), Toast.LENGTH_LONG).show();
 
         FragmentManager fm = getFragmentManager();
         FragmentTransaction fTransaction = fm.beginTransaction();
